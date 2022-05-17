@@ -1,0 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+$enable-shadows: true;
+.btn-round {
+  --bs-btn-border-radius: 2rem;
+}
