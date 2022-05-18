@@ -1,0 +1,19 @@
+@import '../../scss/custom/mixins.scss';
+@import '../../scss/custom/custom.scss';
+.secondaryIcons {
+  position: relative;
+  fill: $secondaryIcons;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+    fill: inherit;
+    path {
+      fill: inherit;
+      width: 100%;
+    }
+  }
+  &:hover svg path {
+    fill: darken($secondaryIcons, 50%);
+  }
+}

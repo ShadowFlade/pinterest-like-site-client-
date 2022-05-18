@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
 import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import './scss/custom/custom.scss';
 import './style.scss';
 const root = document.querySelector('#root');
 // @ts-ignore

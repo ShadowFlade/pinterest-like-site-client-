@@ -1,0 +1,20 @@
+@import '../../scss/custom/custom.scss';
+@import '../../scss/custom/mixins.scss';
+
+.header {
+  &__search-input {
+    padding-left: 1rem;
+  }
+  &__search-icon {
+    left: 17px;
+  }
+  &__profile-icon {
+    padding: rem(17.5);
+    border-radius: 50%;
+    background-color: $secondaryIcons;
+    position: relative;
+    span {
+      color: white;
+    }
+  }
+}

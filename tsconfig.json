@@ -17,7 +17,7 @@
       "root/*": ["./*"]
     }
   },
-  "include": ["./src", "/react-app.d.ts", "custom.d.ts"],
+  "include": ["src", "src/custom.d.ts"],
   "exclude": ["node_modules"],
   "typeRoots": ["./types"]
 }

@@ -1,0 +1,14 @@
+@use 'sass:color';
+$enable-shadows: true;
+$mainFontSize: 14px;
+
+$input-bg: hsla(0, 0%, 90%, 1);
+$btn-hover-bg-shade-amount: 90%;
+$input-padding-x: 2rem;
+
+$secondaryIcons: hsla(0, 0%, 59%, 1);
+.btn-round {
+  --bs-btn-border-radius: 2rem;
+}
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';
