@@ -1,0 +1,24 @@
+// @import '../../../node_modules/bootstrap/scss/functions';
+// @import '../../../node_modules/bootstrap/scss/variables';
+// @import '../../../node_modules/bootstrap/scss/mixins';
+@import './custom';
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button-variant(
+      $value,
+      $value,
+      // modify
+      $hover-background: darken($value, 25%),
+      $hover-border: lighten($value, 10%),
+      $active-background: lighten($value, 10%),
+      $active-border: lighten($value, 12.5%) // /modify
+    );
+  }
+}
+// Optional
+// @import '../../../node_modules/bootstrap/scss/reboot';
+// @import '../../../node_modules/bootstrap/scss/type';
+// @import '../../../node_modules/bootstrap/scss/images';
+// @import '../../../node_modules/bootstrap/scss/grid';

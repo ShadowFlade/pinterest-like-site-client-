@@ -9,7 +9,6 @@ import './Header.scss';
 
 export default function Header({ isAuth, messagesCount, notifsCount }: IHeaderProps) {
   const iconWidth = 35;
-  const secondaryIcons = '';
   return (
     <div className="navbar navbar-expand-lg px-3">
       <a href="/" className="mx-2">
