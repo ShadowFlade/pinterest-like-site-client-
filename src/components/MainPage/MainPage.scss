@@ -1,4 +1,4 @@
-.main-page {
+.masonry-layout {
   margin-top: 2rem;
   width: 100%;
   overflow: hidden;
@@ -10,6 +10,10 @@
     margin-bottom: 1rem;
     break-inside: avoid;
     &:hover {
+      box-shadow: 0 0.5rem 1rem rgb(96, 90, 90) !important;
     }
+  }
+  &__pic {
+    background-color: gray;
   }
 }

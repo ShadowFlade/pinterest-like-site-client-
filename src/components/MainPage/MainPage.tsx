@@ -1,39 +1,17 @@
 import * as React from 'react';
-import PostMainPage, { IPostMainPageProps } from '../PostMainPage/PostMainPage';
+import { Post } from '../MasonryLayout/masonry-layout';
+import MasonryLayout from '../MasonryLayout/MasonryLayout';
+import Modal from '../Modal/Modal';
+import UploadPinForm from '../UploadPinForm/UploadPinForm';
 import './MainPage.scss';
 export interface IMainPageProps {
-  items: IPostMainPageProps[];
+  items: Post[];
 }
 
 export default function MainPage({ items }: IMainPageProps) {
   return (
     <div className="main-page">
-      {items.map((post) => {
-        return (
-          <div className="main-page__item shadow mx-2 my-5">
-            {' '}
-            <PostMainPage
-              author={post.author}
-              imgSrc={post.imgSrc}
-              reactions={post.reactions}
-              title={post.title}
-            ></PostMainPage>
-          </div>
-        );
-      })}
-      {/* <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div>
-      <div style={{ backgroundColor: 'red', width: '150px', height: '150px' }}></div> */}
+      <MasonryLayout items={items} />
     </div>
   );
 }

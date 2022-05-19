@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import '../../scss/custom/custom.scss';
 @import '../../scss/custom/mixins.scss';
 
@@ -8,13 +9,11 @@
   &__search-icon {
     left: 17px;
   }
-  &__profile-icon {
-    padding: rem(17.5);
-    border-radius: 50%;
-    background-color: $secondaryIcons;
-    position: relative;
-    span {
-      color: white;
-    }
+}
+.btn-dark.add-pin-button {
+  background-color: red;
+  padding: 5px 6px;
+  &:hover {
+    background-color: darken(red, 10%);
   }
 }

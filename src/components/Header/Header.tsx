@@ -1,13 +1,19 @@
 import * as React from 'react';
-import NotifBaloon from '../NotifBaloon/NotifBaloon';
+import { useState } from 'react';
 import SecondaryIcon from '../SecondaryIcon/SecondaryIcon';
 import { IHeaderProps } from './header';
 import ChatIcon from '../SecondaryIcon/chat-dots.svg';
 import BellIcon from '../SecondaryIcon/bell-fill.svg';
-
+import ProfileIcon from '../ProfileIcon/ProfileIcon';
 import './Header.scss';
 
-export default function Header({ isAuth, messagesCount, notifsCount }: IHeaderProps) {
+export default function Header({
+  isAuth,
+  messagesCount,
+  notifsCount,
+  name,
+  handleModalState,
+}: IHeaderProps) {
   const iconWidth = 35;
   return (
     <div className="navbar navbar-expand-lg px-3">
@@ -24,7 +30,14 @@ export default function Header({ isAuth, messagesCount, notifsCount }: IHeaderPr
         </svg>
       </a>
       <button className="btn btn-dark text-white rounded-pill mx-2 header__home-button">
-        Home
+        My pins
+      </button>
+
+      <button
+        onClick={() => handleModalState()}
+        className="btn btn-dark text white rounded-pill mx-2 header__home-button add-pin-button"
+      >
+        Add pin
       </button>
       <div className="d-flex flex-grow-1 mx-2 position-relative">
         {/* SEARCH ICON */}
@@ -61,7 +74,7 @@ export default function Header({ isAuth, messagesCount, notifsCount }: IHeaderPr
       </div>
 
       <a href="" className="header__profile-icon mx-2">
-        <span className="position-absolute align-middle translate-middle top-50">V</span>
+        <ProfileIcon name={name} />
       </a>
     </div>
   );

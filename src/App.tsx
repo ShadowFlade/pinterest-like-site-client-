@@ -1,5 +1,5 @@
-import { setUseProxies } from 'immer';
 import * as React from 'react';
+import imgSrc10 from './components/PostMainPage/imgs/wp3161439.jpg';
 import * as ReactDOM from 'react-dom/client';
 import CookiePrompt from './components/CookiePrompt/CookiePrompts';
 import Header from './components/Header/Header';
@@ -13,12 +13,16 @@ import imgSrc6 from './components/PostMainPage/imgs/TheHistoryofWebDesign.jpeg';
 import imgSrc7 from './components/PostMainPage/imgs/v8mhrscjvbegyopaxuki.png';
 import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
-import imgSrc10 from './components/PostMainPage/imgs/wp3161439.jpg';
+import { useState } from 'react';
+import UploadPinForm from './components/UploadPinForm/UploadPinForm';
+import { Button, Modal } from 'react-bootstrap';
+import MyModal from './components/Modal/Modal';
 
 const App = () => {
   const items = [
     {
-      imgSrc: imgSrc1,
+      img: imgSrc1,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -28,7 +32,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc2,
+      img: imgSrc2,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -38,7 +43,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc3,
+      img: imgSrc3,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -48,7 +54,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc4,
+      img: imgSrc4,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -58,7 +65,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc5,
+      img: imgSrc5,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -68,7 +76,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc6,
+      img: imgSrc6,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -78,7 +87,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc7,
+      img: imgSrc7,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -88,7 +98,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc8,
+      img: imgSrc8,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -98,7 +109,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc1,
+      img: imgSrc1,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -108,7 +120,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc2,
+      img: imgSrc2,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -118,7 +131,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc3,
+      img: imgSrc3,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -128,7 +142,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc4,
+      img: imgSrc4,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -138,7 +153,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc5,
+      img: imgSrc5,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -148,7 +164,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc6,
+      img: imgSrc6,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -158,7 +175,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc7,
+      img: imgSrc7,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -168,7 +186,8 @@ const App = () => {
       },
     },
     {
-      imgSrc: imgSrc8,
+      img: imgSrc8,
+      type: 'PostMainPage',
       title: 'Title',
       author: 'Vladimir',
       reactions: {
@@ -178,11 +197,29 @@ const App = () => {
       },
     },
   ];
+  const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsUploadPinOpen(false);
+  };
+  const handlePinState = () => {
+    setIsUploadPinOpen(!isUploadPinOpen);
+  };
   return (
     <>
-      <Header isAuth={false} notifsCount={5} messagesCount={10}></Header>
+      <Header
+        isAuth={false}
+        notifsCount={5}
+        messagesCount={10}
+        name={'Sergay'}
+        handleModalState={handlePinState}
+      ></Header>
       <CookiePrompt />
       <MainPage items={items}></MainPage>
+
+      <MyModal isUploadPinOpen={isUploadPinOpen} closeModal={closeModal}>
+        <UploadPinForm isAuth={true} />
+      </MyModal>
     </>
   );
 };

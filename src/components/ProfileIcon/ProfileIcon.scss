@@ -1,0 +1,15 @@
+@use 'sass:color';
+@import '../../scss/custom/custom.scss';
+@import '../../scss/custom/mixins.scss';
+.profile-icon {
+  padding: rem(17.5);
+  border-radius: 50%;
+  background-color: $secondaryIcons;
+  position: relative;
+  span {
+    color: white;
+  }
+  &:hover {
+    color: darken(white, 15%);
+  }
+}
