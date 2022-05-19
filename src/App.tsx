@@ -217,7 +217,11 @@ const App = () => {
       <CookiePrompt />
       <MainPage items={items}></MainPage>
 
-      <MyModal isUploadPinOpen={isUploadPinOpen} closeModal={closeModal}>
+      <MyModal
+        title={'Upload your pin now!'}
+        isUploadPinOpen={isUploadPinOpen}
+        closeModal={closeModal}
+      >
         <UploadPinForm isAuth={true} />
       </MyModal>
     </>

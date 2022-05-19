@@ -1,0 +1,46 @@
+$mt: 2rem;
+.upload-pin {
+  &__input {
+    display: block;
+    color: gray;
+    border: none;
+    box-shadow: 0px 0px 4px -1px rgb(77, 77, 77);
+    transition: box-shadow 0.15s linear;
+    margin: $mt auto 0;
+    width: 100%;
+    padding: 0.3rem 1rem;
+    &:focus {
+      outline: none;
+      box-shadow: 0 4px 4px -1px rgb(77, 77, 77);
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  &__button {
+    display: block;
+    margin-top: $mt;
+    background-color: white;
+    color: blue;
+  }
+  &__submit {
+    margin: 4rem auto 0;
+    display: block;
+  }
+}
+
+.upload-pin__button.btn.btn-lg {
+  display: block;
+  background-color: white;
+  color: blue;
+  margin: $mt auto 0;
+  transition: all 0.18s linear;
+  &:hover {
+    background-color: blue;
+    color: white;
+  }
+}
+.upload-pin__submit.btn.btn-primary {
+  margin: 4rem auto 0;
+  display: block;
+}
