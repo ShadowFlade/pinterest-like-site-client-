@@ -1,6 +1,12 @@
 .main-post {
-  max-height: 400px;
+  max-height: 550px;
+  max-width: 250px;
+  height: auto;
   &__pic {
     height: 70%;
+    overflow: hidden;
   }
+}
+.main-post.card {
+  border: none;
 }

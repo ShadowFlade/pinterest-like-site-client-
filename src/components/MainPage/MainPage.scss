@@ -1,0 +1,15 @@
+.main-page {
+  margin-top: 2rem;
+  width: 100%;
+  overflow: hidden;
+  column-count: auto;
+  column-width: 250px;
+  column-gap: 0.5em;
+  column-fill: auto;
+  &__item {
+    margin-bottom: 1rem;
+    break-inside: avoid;
+    &:hover {
+    }
+  }
+}
