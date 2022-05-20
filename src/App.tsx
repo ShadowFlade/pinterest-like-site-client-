@@ -17,8 +17,11 @@ import { useState } from 'react';
 import UploadPinForm from './components/UploadPinForm/UploadPinForm';
 import { Button, Modal } from 'react-bootstrap';
 import MyModal from './components/Modal/Modal';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 
 const App = () => {
+  const followers = 0;
+  const following = 5;
   const items = [
     {
       img: imgSrc1,
@@ -216,7 +219,7 @@ const App = () => {
       ></Header>
       <CookiePrompt />
       <MainPage items={items}></MainPage>
-
+      <ProfilePage avatar={imgSrc8} followers={followers} following={following} />
       <MyModal
         title={'Upload your pin now!'}
         isUploadPinOpen={isUploadPinOpen}

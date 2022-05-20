@@ -1,0 +1,31 @@
+$length: 250px;
+.collection-mini {
+  padding: 0.5rem;
+  background-color: black;
+  width: $length;
+  height: $length;
+  overflow: hidden;
+  &__inner {
+    display: flex;
+    height: 100%;
+  }
+  &__big-pic {
+    border-right: 1px solid black;
+    width: 48%;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  &__small-pics {
+    height: 50%;
+    width: 48%;
+  }
+  &__small-pic {
+    border-top: 1px solid black;
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+}
