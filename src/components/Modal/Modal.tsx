@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Modal } from 'react-bootstrap';
+import './Modal.scss';
 export interface IMyModal {
   isUploadPinOpen: boolean;
   title: string;
@@ -10,7 +11,7 @@ export default function MyModal({ isUploadPinOpen, title, closeModal, children }
   return (
     <Modal centered size="lg" show={isUploadPinOpen} onHide={closeModal}>
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Modal.Title className="text-center">{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
     </Modal>

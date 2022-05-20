@@ -1,3 +1,4 @@
+@import '~bootstrap/scss/bootstrap';
 $mt: 2rem;
 .upload-pin {
   &__input {
@@ -17,12 +18,7 @@ $mt: 2rem;
       margin-top: 0;
     }
   }
-  &__button {
-    display: block;
-    margin-top: $mt;
-    background-color: white;
-    color: blue;
-  }
+
   &__submit {
     margin: 4rem auto 0;
     display: block;
@@ -43,4 +39,15 @@ $mt: 2rem;
 .upload-pin__submit.btn.btn-primary {
   margin: 4rem auto 0;
   display: block;
+}
+.upload-pin__file.btn {
+  display: block;
+  margin-top: $mt;
+  color: white;
+  width: 20rem;
+  margin: $mt auto 0;
+  &:focus-within {
+    background-color: white;
+    color: $primary;
+  }
 }
