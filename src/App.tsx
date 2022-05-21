@@ -1,6 +1,10 @@
-import * as React from 'react';
-import imgSrc10 from './components/PostMainPage/imgs/wp3161439.jpg';
 import * as ReactDOM from 'react-dom/client';
+import * as React from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import imgSrc10 from './components/PostMainPage/imgs/wp3161439.jpg';
 import CookiePrompt from './components/CookiePrompt/CookiePrompts';
 import Header from './components/Header/Header';
 import MainPage from './components/MainPage/MainPage';
@@ -13,15 +17,28 @@ import imgSrc6 from './components/PostMainPage/imgs/TheHistoryofWebDesign.jpeg';
 import imgSrc7 from './components/PostMainPage/imgs/v8mhrscjvbegyopaxuki.png';
 import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
-import { useState } from 'react';
-import UploadPinForm from './components/UploadPinForm/UploadPinForm';
-import { Button, Modal } from 'react-bootstrap';
-import MyModal from './components/Modal/Modal';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 
 const App = () => {
   const followers = 0;
   const following = 5;
+  const instance = axios.create({
+    baseURL: 'http://localhost:3002/',
+  });
+
+  const fetchPins = async () => {
+    return await instance.get('/').then(({ data }) => data);
+  };
+  const { data, status, error } = useQuery('pins', fetchPins, { retry: false });
+
+  // async function getMe(token: string) {
+  //   const { data } = await instance.get('/', {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   return data;
+  // },
   const items = [
     {
       img: imgSrc1,
@@ -200,34 +217,17 @@ const App = () => {
       },
     },
   ];
-  const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 
-  const closeModal = () => {
-    setIsUploadPinOpen(false);
-  };
-  const handlePinState = () => {
-    setIsUploadPinOpen(!isUploadPinOpen);
-  };
   return (
-    <>
-      <Header
-        isAuth={false}
-        notifsCount={5}
-        messagesCount={10}
-        name={'Sergay'}
-        handleModalState={handlePinState}
-      ></Header>
-      <CookiePrompt />
-      <MainPage items={items}></MainPage>
-      <ProfilePage avatar={imgSrc8} followers={followers} following={following} />
-      <MyModal
-        title={'Upload your pin now!'}
-        isUploadPinOpen={isUploadPinOpen}
-        closeModal={closeModal}
-      >
-        <UploadPinForm isAuth={true} />
-      </MyModal>
-    </>
+    <div className="app mx-5">
+      <Routes>
+        <Route path="/" element={<MainPage items={items} />} />
+        <Route
+          path="/profile/me"
+          element={<ProfilePage avatar={imgSrc8} followers={followers} following={following} />}
+        />
+      </Routes>
+    </div>
   );
 };
 

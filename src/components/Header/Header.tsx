@@ -16,7 +16,7 @@ export default function Header({
 }: IHeaderProps) {
   const iconWidth = 35;
   return (
-    <div className="navbar navbar-expand-lg px-3">
+    <div className="navbar navbar-expand-lg">
       <a href="/" className="mx-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function Header({
         </div>
       </div>
 
-      <a href="" className="header__profile-icon mx-2">
+      <a href="/profile/me" className="header__profile-icon mx-2">
         <ProfileIcon name={name} />
       </a>
     </div>
