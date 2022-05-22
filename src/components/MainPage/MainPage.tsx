@@ -10,21 +10,16 @@ import UploadPinForm from '../UploadPinForm/UploadPinForm';
 import './MainPage.scss';
 export interface IMainPageProps {
   items: Post[];
+  isUploadPinOpen: boolean;
+  closeModal: () => void;
 }
 
-export default function MainPage({ items }: IMainPageProps) {
+export default function MainPage({ items, isUploadPinOpen, closeModal }: IMainPageProps) {
   const mainPage = useRef(null);
-  const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 
-  const closeModal = () => {
-    setIsUploadPinOpen(false);
-  };
   const onEntered = (ref: MutableRefObject<null | HTMLDivElement>) => {
     // ref.current ? (ref.current.style.paddingLeft = '15px') : null;
     ref.current ? console.log('yes') : 'no';
-  };
-  const handlePinState = () => {
-    setIsUploadPinOpen(!isUploadPinOpen);
   };
   const posts = items.map((item) => {
     return (
@@ -39,13 +34,6 @@ export default function MainPage({ items }: IMainPageProps) {
   });
   return (
     <div className="main-page" ref={mainPage}>
-      <Header
-        isAuth={false}
-        notifsCount={5}
-        messagesCount={10}
-        name={'Sergay'}
-        handleModalState={handlePinState}
-      ></Header>
       <CookiePrompt />
       <MasonryLayout items={posts} />
       <MyModal

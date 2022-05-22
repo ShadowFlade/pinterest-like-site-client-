@@ -1,0 +1,14 @@
+.tabs {
+  &__nav {
+    display: flex;
+    justify-content: center;
+  }
+  &__item {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+.tabs__nav.nav-tabs {
+  display: flex;
+  justify-content: center;
+}

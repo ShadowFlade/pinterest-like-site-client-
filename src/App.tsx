@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom/client';
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
@@ -18,6 +18,7 @@ import imgSrc7 from './components/PostMainPage/imgs/v8mhrscjvbegyopaxuki.png';
 import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import Layout from './layout/Layout';
 
 const App = () => {
   const followers = 0;
@@ -25,12 +26,20 @@ const App = () => {
   const instance = axios.create({
     baseURL: 'http://localhost:3002/',
   });
+  const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 
+  const closeModal = () => {
+    setIsUploadPinOpen(false);
+  };
+
+  const handlePinState = () => {
+    setIsUploadPinOpen(!isUploadPinOpen);
+  };
   const fetchPins = async () => {
     return await instance.get('/').then(({ data }) => data);
   };
   const { data, status, error } = useQuery('pins', fetchPins, { retry: false });
-
+  const profileName = 'Vladimir Drugov';
   // async function getMe(token: string) {
   //   const { data } = await instance.get('/', {
   //     headers: {
@@ -221,11 +230,25 @@ const App = () => {
   return (
     <div className="app px-5">
       <Routes>
-        <Route path="/" element={<MainPage items={items} />} />
-        <Route
-          path="/profile/me"
-          element={<ProfilePage avatar={imgSrc8} followers={followers} following={following} />}
-        />
+        <Route path="/" element={<Layout handlePinState={handlePinState} />}>
+          <Route
+            index
+            element={
+              <MainPage closeModal={closeModal} isUploadPinOpen={isUploadPinOpen} items={items} />
+            }
+          />
+          <Route
+            path="profile/me"
+            element={
+              <ProfilePage
+                avatar={imgSrc8}
+                name={profileName}
+                followers={followers}
+                following={following}
+              />
+            }
+          />
+        </Route>
       </Routes>
     </div>
   );

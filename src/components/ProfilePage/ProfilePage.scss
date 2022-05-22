@@ -19,12 +19,10 @@ $length: 250px;
   &__pic {
     clip-path: circle(25%);
   }
-  &__following {
-    margin-left: 2rem;
-  }
+
   &__collections {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 3rem 5rem 0;
   }
@@ -37,4 +35,12 @@ $length: 250px;
       margin-left: 0;
     }
   }
+}
+.nav.nav-tabs {
+  font-size: 20px;
+  border-bottom: none;
+}
+.nav-item {
+  margin: 0 2rem;
+  border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
 }
