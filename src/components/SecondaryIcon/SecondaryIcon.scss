@@ -4,6 +4,8 @@
   position: relative;
   fill: $secondaryIcons;
   cursor: pointer;
+  width: $headerIconsLength;
+  height: $headerIconsLength;
   svg {
     width: inherit;
     height: inherit;

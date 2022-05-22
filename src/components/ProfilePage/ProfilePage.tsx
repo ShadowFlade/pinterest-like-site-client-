@@ -30,20 +30,20 @@ export default function ProfilePage({ avatar, followers, following }: IProfilePa
   const collectionsMini = collections.map((item) => (
     <CollectionMini imgs={[item[0], item[1], item[2]]} />
   ));
+  const numberOfFollowers = followers > 0 ? followers : 'No one is following you yet...';
+  const numberOfFollowing =
+    following > 0 ? following : '0(${<a href="/">Want to follow somebody?</a>})';
   return (
     <div className="profile-page">
       <div className="profile-page__content">
         <header className="profile-page__header">
           <div className="profile-page__avatar">
-            <img src={avatar} alt="avatar" />
-
-            <p className="profile-page__text display-6">
-              <span className="profile-page__followers">
-                {followers > 0 ? followers : 'No one is following you yet...'}
-              </span>
-              <span className="profile-page__following">
-                {following > 0 ? following : '0(${<a href="/">Want to follow somebody?</a>})'}
-              </span>
+            <div className="profile-page__pic">
+              <img src={avatar} alt="avatar" />
+            </div>
+            <p className="profile-page__text">
+              <p className="profile-page__followers">{numberOfFollowers}</p>
+              <p className="profile-page__following">following: {numberOfFollowing}</p>
             </p>
           </div>
         </header>

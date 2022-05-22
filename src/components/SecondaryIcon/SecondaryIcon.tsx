@@ -14,10 +14,10 @@ export default function SecondaryIcon({
   iconLength,
   iconFill,
 }: ISecondaryIconProps) {
-  const length = iconLength || '35px';
-  const fill = '#969696' || iconFill;
+  // const length = iconLength || '35px';
+  // const fill = '#969696' || iconFill;
   return (
-    <span className="secondaryIcons" style={{ width: length, height: length, fill }}>
+    <span className="secondaryIcons">
       {children}
       {notifsCount && <NotifBaloon notifCount={notifsCount} />}
     </span>

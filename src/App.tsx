@@ -219,7 +219,7 @@ const App = () => {
   ];
 
   return (
-    <div className="app mx-5">
+    <div className="app px-5">
       <Routes>
         <Route path="/" element={<MainPage items={items} />} />
         <Route

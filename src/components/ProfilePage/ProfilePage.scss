@@ -5,16 +5,19 @@ $length: 250px;
 .profile-page {
   &__header {
     text-align: center;
+    display: flex;
+    flex-direction: column;
   }
   &__avatar {
     background-color: transparent;
-    margin: 10rem auto 0;
+    margin: 0 auto 0;
+    display: inline;
     img {
       width: 100%;
-      width: rem($length);
-      height: rem($length);
-      border-radius: 50%;
     }
+  }
+  &__pic {
+    clip-path: circle(25%);
   }
   &__following {
     margin-left: 2rem;
@@ -24,6 +27,9 @@ $length: 250px;
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 3rem 5rem 0;
+  }
+  &__text {
+    font-size: 1rem;
   }
   &__item {
     margin-left: 2rem;
