@@ -1,0 +1,15 @@
+.loading {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  &__item {
+    padding: 1rem 0.7rem 0.5rem 0.7rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    height: 500px;
+    flex-basis: 23%;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

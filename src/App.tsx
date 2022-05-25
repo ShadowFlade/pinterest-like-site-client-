@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom/client';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
@@ -19,13 +19,14 @@ import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
-
+const instance = axios.create({
+  baseURL: 'http://localhost:3002/',
+});
 const App = () => {
+  const mainPage = useRef<null | HTMLDivElement>(null);
   const followers = 0;
   const following = 5;
-  const instance = axios.create({
-    baseURL: 'http://localhost:3002/',
-  });
+
   const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 
   const closeModal = () => {
@@ -35,10 +36,7 @@ const App = () => {
   const handlePinState = () => {
     setIsUploadPinOpen(!isUploadPinOpen);
   };
-  const fetchPins = async () => {
-    return await instance.get('/').then(({ data }) => data);
-  };
-  const { data, status, error } = useQuery('pins', fetchPins, { retry: false });
+
   const profileName = 'Vladimir Drugov';
   // async function getMe(token: string) {
   //   const { data } = await instance.get('/', {
@@ -48,193 +46,25 @@ const App = () => {
   //   });
   //   return data;
   // },
-  const items = [
-    {
-      img: imgSrc1,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc2,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc3,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc4,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc5,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc6,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc7,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc8,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc1,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc2,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc3,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc4,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc5,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc6,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc7,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-    {
-      img: imgSrc8,
-      type: 'PostMainPage',
-      title: 'Title',
-      author: 'Vladimir',
-      reactions: {
-        emoji: 'some emoji',
-        emojiCount: 5,
-        likesCount: 200,
-      },
-    },
-  ];
 
   return (
     <div className="app px-5">
       <Routes>
-        <Route path="/" element={<Layout handlePinState={handlePinState} />}>
+        <Route
+          path="/"
+          element={
+            <Layout
+              closeModal={closeModal}
+              isUploadPinOpen={isUploadPinOpen}
+              mainPage={mainPage}
+              handlePinState={handlePinState}
+            />
+          }
+        >
           <Route
             index
             element={
-              <MainPage closeModal={closeModal} isUploadPinOpen={isUploadPinOpen} items={items} />
+              <MainPage ref={mainPage} closeModal={closeModal} isUploadPinOpen={isUploadPinOpen} />
             }
           />
           <Route
@@ -253,5 +83,5 @@ const App = () => {
     </div>
   );
 };
-
+export { instance };
 export default App;
