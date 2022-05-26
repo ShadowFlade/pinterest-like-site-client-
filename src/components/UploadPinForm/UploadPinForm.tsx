@@ -3,21 +3,20 @@ import * as React from 'react';
 import { instance } from '../../App';
 import getBase64 from '../../utils/convertFileToBase64';
 import './UploadPinForm.scss';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 export interface IUploadPinFormProps {
   isAuth: boolean;
 }
 export type NewPost = { title: string; img: string; description: string; file: string };
 
 export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
+  const [imgShow, setImgshow] = useState(false);
   const form = useRef<null | HTMLFormElement>(null);
+  const filePreview = useRef<HTMLImageElement | null>(null);
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // const data: { [key: string]: any } = {};
     const newData = new FormData(e.target as HTMLFormElement);
-    // for (let [key, value] of newData.entries()) {
-    //   data[key] = value;
-    // }
+
     await instance
       .post('/pinupload', newData, {
         headers: {
@@ -27,6 +26,19 @@ export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
       .then(({ data }) => console.log(data))
       .catch((e) => console.log(e));
   };
+  function onFileInput(event: React.ChangeEvent) {
+    const reader = new FileReader();
+    reader.onload = () =>
+      filePreview.current && reader.result && typeof reader.result === 'string'
+        ? (filePreview.current.src = reader.result)
+        : false;
+    const inputFile = event.target as HTMLInputElement;
+    console.log('🚀 ~ file: UploadPinForm.tsx ~ line 37 ~ onFileInput ~ inputFile', inputFile);
+    if (inputFile.files && inputFile.files.length > 0) {
+      reader.readAsDataURL(inputFile.files[0]);
+      setImgshow(true);
+    }
+  }
   return (
     <div className="upload-pin">
       <form
@@ -45,6 +57,7 @@ export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
           className="upload-pin__input"
           placeholder="Enter the title"
           aria-label="Title"
+          required
         />
         <input
           name="description"
@@ -62,9 +75,12 @@ export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
           placeholder="Link your pin (optional)"
           aria-label="Title"
         />
+        <div className="upload-pin__preview" style={{ display: imgShow ? 'block' : 'none' }}>
+          <img alt="thumbnail" ref={filePreview} />
+        </div>
 
         <label tabIndex={4} className="upload-pin__file btn btn-primary">
-          <input name="file" type="file" style={{ display: 'none' }} />
+          <input name="file" type="file" style={{ display: 'none' }} onChange={onFileInput} />
           Upload image
         </label>
 
