@@ -4,7 +4,7 @@
     "lib": ["es6", "dom", "DOM", "DOM.Iterable", "ESNext"],
     "rootDir": "src",
     "module": "es6",
-    "target": "es5",
+    "target": "es2015",
     "sourceMap": true,
     "moduleResolution": "node",
     "noImplicitReturns": true,
@@ -15,7 +15,8 @@
     "paths": {
       "@/*": ["src/*"],
       "root/*": ["./*"]
-    }
+    },
+    "downlevelIteration": true
   },
   "include": ["src", "src/custom.d.ts"],
   "exclude": ["node_modules"],

@@ -23,9 +23,12 @@ const MainPage = forwardRef(
     ref: MutableRefObject<null | HTMLDivElement>
   ) => {
     const { data, status, error } = usePins();
-    const pins: { pins: IPostMainPageProps[]; img: string } = data;
+
+    const pins: { pinterest: IPostMainPageProps[] } = data;
     if (status === 'success') {
-      const posts = pins.pins?.map((item) => {
+      console.log(data);
+
+      const posts = data.pinterest?.map((item: any) => {
         return (
           <PostMainPage
             author={item.author}

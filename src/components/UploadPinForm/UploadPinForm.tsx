@@ -1,25 +1,27 @@
 import axios from 'axios';
 import * as React from 'react';
 import { instance } from '../../App';
+import getBase64 from '../../utils/convertFileToBase64';
 import './UploadPinForm.scss';
 import { useRef } from 'react';
 export interface IUploadPinFormProps {
   isAuth: boolean;
 }
+export type NewPost = { title: string; img: string; description: string; file: string };
 
 export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
   const form = useRef<null | HTMLFormElement>(null);
-  const onSubmit = (e: React.FormEvent) => {
-    const data = new FormData(form.current ? form.current : undefined);
-
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(data);
-    instance
-      .post('/pinupload', data, {
+    // const data: { [key: string]: any } = {};
+    const newData = new FormData(e.target as HTMLFormElement);
+    // for (let [key, value] of newData.entries()) {
+    //   data[key] = value;
+    // }
+    await instance
+      .post('/pinupload', newData, {
         headers: {
           'Access-Control-Allow-Origin': 'http://localhost:3002',
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
         },
       })
       .then(({ data }) => console.log(data))
@@ -33,8 +35,10 @@ export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
         method="POST"
         onSubmit={onSubmit}
         ref={form}
+        encType="multipart/form-data"
       >
         <input
+          name="title"
           tabIndex={1}
           autoFocus
           type="text"
@@ -43,6 +47,7 @@ export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
           aria-label="Title"
         />
         <input
+          name="description"
           tabIndex={2}
           type="text"
           className="upload-pin__input"
@@ -50,6 +55,7 @@ export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
           aria-label="Title"
         />
         <input
+          name="URL"
           tabIndex={3}
           type="text"
           className="upload-pin__input"
