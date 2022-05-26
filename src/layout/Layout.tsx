@@ -34,7 +34,7 @@ export default function Layout({
         closeModal={closeModal}
         ref={mainPage}
       >
-        <UploadPinForm isAuth={true} />
+        <UploadPinForm closeModal={closeModal} isAuth={true} />
       </MyModal>
     </div>
   );

@@ -6,10 +6,11 @@ import './UploadPinForm.scss';
 import { useRef, useState } from 'react';
 export interface IUploadPinFormProps {
   isAuth: boolean;
+  closeModal: () => void;
 }
 export type NewPost = { title: string; img: string; description: string; file: string };
 
-export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
+export default function UploadPinForm({ isAuth, closeModal }: IUploadPinFormProps) {
   const [imgShow, setImgshow] = useState(false);
   const form = useRef<null | HTMLFormElement>(null);
   const filePreview = useRef<HTMLImageElement | null>(null);
@@ -23,8 +24,11 @@ export default function UploadPinForm({ isAuth }: IUploadPinFormProps) {
           'Access-Control-Allow-Origin': 'http://localhost:3002',
         },
       })
-      .then(({ data }) => console.log(data))
-      .catch((e) => console.log(e));
+      .then(() => {
+        console.log('should be closed');
+        closeModal();
+      })
+      .catch((e) => console.error(e));
   };
   function onFileInput(event: React.ChangeEvent) {
     const reader = new FileReader();
