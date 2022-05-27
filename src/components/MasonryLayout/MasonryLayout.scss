@@ -1,12 +1,12 @@
+$gap: 1em;
+$columnWidth: 250px;
 .masonry-layout {
-  margin-top: 2rem;
-  width: 100%;
-  padding-bottom: 2rem;
+  display: columns;
+  column-width: $columnWidth;
+  gap: $gap;
+  max-width: 100%;
   overflow: hidden;
-  column-count: auto;
-  column-width: 250px;
-  column-gap: 0.5em;
-  column-fill: auto;
+  padding-bottom: 2rem;
   &__item {
     margin-bottom: 1rem;
     break-inside: avoid;
@@ -14,7 +14,23 @@
       box-shadow: 0 0.5rem 1rem rgb(96, 90, 90) !important;
     }
   }
+
   &__pic {
     background-color: gray;
+  }
+}
+
+@supports (grid-template-rows: masonry) {
+  .masonry {
+    display: grid;
+    gap: $gap;
+    grid-template-columns: repeat(auto-fill, $columnWidth);
+    grid-template-rows: masonry;
+    &__item {
+      margin-bottom: 0;
+    }
+    &__featured {
+      grid-column: span 2;
+    }
   }
 }
