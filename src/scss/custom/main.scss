@@ -17,6 +17,9 @@
     );
   }
 }
+p {
+  margin-bottom: 0;
+}
 @import '../../components/PostMainPage/PostMainPage.scss'; // Optional
 // @import '../../../node_modules/bootstrap/scss/reboot';
 // @import '../../../node_modules/bootstrap/scss/type';

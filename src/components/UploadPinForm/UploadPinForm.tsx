@@ -1,16 +1,19 @@
-import axios from 'axios';
 import * as React from 'react';
-import { instance } from '../../App';
-import getBase64 from '../../utils/convertFileToBase64';
-import './UploadPinForm.scss';
 import { useRef, useState } from 'react';
-export interface IUploadPinFormProps {
-  isAuth: boolean;
-  closeModal: () => void;
-}
-export type NewPost = { title: string; img: string; description: string; file: string };
+
+import { useForm } from 'react-hook-form';
+
+import { instance } from '../../App';
+import './UploadPinForm.scss';
+import { IUploadPinFormProps } from './upload-pin-form';
 
 export default function UploadPinForm({ isAuth, closeModal }: IUploadPinFormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const defaultErrorMessage = 'This field is required';
   const [imgShow, setImgshow] = useState(false);
   const form = useRef<null | HTMLFormElement>(null);
   const filePreview = useRef<HTMLImageElement | null>(null);
@@ -25,11 +28,11 @@ export default function UploadPinForm({ isAuth, closeModal }: IUploadPinFormProp
         },
       })
       .then(() => {
-        console.log('should be closed');
         closeModal();
       })
       .catch((e) => console.error(e));
   };
+
   function onFileInput(event: React.ChangeEvent) {
     const reader = new FileReader();
     reader.onload = () =>
@@ -37,7 +40,6 @@ export default function UploadPinForm({ isAuth, closeModal }: IUploadPinFormProp
         ? (filePreview.current.src = reader.result)
         : false;
     const inputFile = event.target as HTMLInputElement;
-    console.log('🚀 ~ file: UploadPinForm.tsx ~ line 37 ~ onFileInput ~ inputFile', inputFile);
     if (inputFile.files && inputFile.files.length > 0) {
       reader.readAsDataURL(inputFile.files[0]);
       setImgshow(true);
@@ -49,48 +51,64 @@ export default function UploadPinForm({ isAuth, closeModal }: IUploadPinFormProp
         className="upload-pin__form centered"
         name="upload-pin"
         method="POST"
-        onSubmit={onSubmit}
         ref={form}
         encType="multipart/form-data"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <input
-          name="title"
-          tabIndex={1}
-          autoFocus
-          type="text"
-          className="upload-pin__input"
-          placeholder="Enter the title"
-          aria-label="Title"
-          required
-        />
-        <input
-          name="description"
-          tabIndex={2}
-          type="text"
-          className="upload-pin__input"
-          placeholder="Describe your pin"
-          aria-label="Title"
-        />
-        <input
-          name="URL"
-          tabIndex={3}
-          type="text"
-          className="upload-pin__input"
-          placeholder="Link your pin (optional)"
-          aria-label="Title"
-        />
-        <div className="upload-pin__preview" style={{ display: imgShow ? 'block' : 'none' }}>
-          <img alt="thumbnail" ref={filePreview} />
+        <div className="upload-pin__item">
+          <input
+            {...register('title', { required: defaultErrorMessage })}
+            tabIndex={1}
+            autoFocus
+            type="text"
+            className="upload-pin__input"
+            placeholder="Enter the title"
+            aria-label="Title"
+          />
+          <p className="upload-pin__error">{errors.title?.message}</p>
+        </div>
+        <div className="upload-pin__item">
+          <input
+            {...register('description')}
+            tabIndex={2}
+            type="text"
+            className="upload-pin__input"
+            placeholder="Describe your pin"
+            aria-label="Description"
+          />
+        </div>
+        <div className="upload-pin__item">
+          <input
+            {...register('URL', { required: defaultErrorMessage })}
+            tabIndex={3}
+            type="text"
+            className="upload-pin__input"
+            placeholder="Link your pin (optional)"
+            aria-label="URL"
+          />
+        </div>
+        <div className="upload-pin__item">
+          <div className="upload-pin__preview" style={{ display: imgShow ? 'block' : 'none' }}>
+            <img alt="thumbnail" ref={filePreview} />
+          </div>
+          <label className="upload-pin__file-btn btn btn-primary">
+            <input
+              {...register('file', { required: defaultErrorMessage })}
+              className="upload-pin__file-input"
+              type="file"
+              onChange={onFileInput}
+              tabIndex={4}
+            />
+            Upload image
+          </label>
+          <p className="upload-pin__error"> {errors.file?.message}</p>
         </div>
 
-        <label tabIndex={4} className="upload-pin__file btn btn-primary">
-          <input name="file" type="file" style={{ display: 'none' }} onChange={onFileInput} />
-          Upload image
-        </label>
-
-        <button tabIndex={5} className="upload-pin__submit btn btn-primary ">
-          Submit
-        </button>
+        <div className="upload-pin__item">
+          <button tabIndex={5} className="upload-pin__submit btn btn-primary ">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -1,17 +1,11 @@
 import * as React from 'react';
-import { useState, useRef, forwardRef, MutableRefObject } from 'react';
+import { forwardRef, MutableRefObject } from 'react';
 import CookiePrompt from '../CookiePrompt/CookiePrompts';
-import Header from '../Header/Header';
-import Loading from '../Loading/Loading';
-import { Post } from '../MasonryLayout/masonry-layout';
 import MasonryLayout from '../MasonryLayout/MasonryLayout';
-import MyModal from '../Modal/Modal';
-import PostMainPage, { IPostMainPageProps } from '../PostMainPage/PostMainPage';
-import UploadPinForm from '../UploadPinForm/UploadPinForm';
-import { instance } from '@/App';
-import './MainPage.scss';
-import { useQuery } from 'react-query';
+import PostMainPage from '../PostMainPage/PostMainPage';
 import usePins from '../../hooks/usePins';
+import './MainPage.scss';
+
 export interface IMainPageProps {
   isUploadPinOpen: boolean;
   closeModal: () => void;
@@ -24,11 +18,11 @@ const MainPage = forwardRef(
   ) => {
     const { data, status, error } = usePins();
 
-    const pins: { pinterest: IPostMainPageProps[] } = data;
     if (status === 'success') {
-      console.log(data);
-
       const posts = data.pinterest?.map((item: any) => {
+        if (!item.img) {
+          return;
+        }
         return (
           <PostMainPage
             author={item.author}

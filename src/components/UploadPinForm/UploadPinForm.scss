@@ -1,13 +1,23 @@
 @import '~bootstrap/scss/bootstrap';
 $mt: 2rem;
 .upload-pin {
+  transition: width height 0.3s linear;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item:not(:first-child) {
+    margin-top: $mt;
+    text-align: center;
+  }
   &__input {
     display: block;
     color: rgb(0, 0, 0);
     border: none;
     box-shadow: 0px 0px 4px -1px rgb(77, 77, 77);
     transition: box-shadow 0.15s linear;
-    margin: $mt auto 0;
+    margin: 0 auto;
     width: 100%;
     padding: 0.3rem 1rem;
     &:focus {
@@ -19,20 +29,41 @@ $mt: 2rem;
     }
   }
   &__preview {
-    margin: 2rem auto 2rem;
+    margin: 0.5rem auto;
     padding: 0.2rem;
     background-color: rgba(172, 172, 172, 0.872);
     max-width: 240px;
     max-height: 200px;
     border-radius: 10px;
     border: 3px solid;
+    transition: width height 0.3s linear;
     img {
       width: 100%;
+      transition: width height 0.3s linear;
     }
   }
   &__submit {
-    margin: 4rem auto 0;
+    margin: 0 auto;
     display: block;
+  }
+
+  &__file-btn {
+    margin: 0 auto;
+    max-width: 250px;
+    &:focus-within {
+      background-color: var(--bs-btn-hover-bg);
+      border-color: var(--bs-btn-hover-border-color);
+      color: var(--bs-btn-hover-color);
+    }
+  }
+  &__file-input {
+    width: 0;
+    height: 0;
+  }
+  &__error {
+    color: red;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.889);
+    margin-top: 0.5rem;
   }
 }
 
@@ -40,7 +71,7 @@ $mt: 2rem;
   display: block;
   background-color: white;
   color: blue;
-  margin: $mt auto 0;
+  margin: 0 auto;
   transition: all 0.18s linear;
   &:hover {
     background-color: blue;
@@ -48,15 +79,14 @@ $mt: 2rem;
   }
 }
 .upload-pin__submit.btn.btn-primary {
-  margin: 4rem auto 0;
+  margin: 0 auto;
   display: block;
 }
 .upload-pin__file.btn {
   display: block;
-  margin-top: $mt;
   color: white;
   width: 20rem;
-  margin: $mt auto 0;
+  margin: 0 auto;
   &:focus-within {
     background-color: white;
     color: $primary;
