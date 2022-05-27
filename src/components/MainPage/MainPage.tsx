@@ -4,12 +4,8 @@ import CookiePrompt from '../CookiePrompt/CookiePrompts';
 import MasonryLayout from '../MasonryLayout/MasonryLayout';
 import PostMainPage from '../PostMainPage/PostMainPage';
 import usePins from '../../hooks/usePins';
+import { IMainPageProps } from './main-page';
 import './MainPage.scss';
-
-export interface IMainPageProps {
-  isUploadPinOpen: boolean;
-  closeModal: () => void;
-}
 
 const MainPage = forwardRef(
   (
@@ -19,10 +15,10 @@ const MainPage = forwardRef(
     const { data, status, error } = usePins();
 
     if (status === 'success') {
-      const posts = data.pinterest?.map((item: any) => {
-        if (!item.img) {
-          return;
-        }
+      const posts = data.map((item: any) => {
+        // if (!item.img) {
+        //   return;
+        // } //TODO change back
         return (
           <PostMainPage
             author={item.author}

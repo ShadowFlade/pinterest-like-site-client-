@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 export interface IPostMainPageProps {
-  img: string;
+  img: string | File;
   title: string;
   author: string;
-  type: string;
-  reactions: {
+  type?: string;
+  reactions?: {
     emoji: string;
     emojiCount: number;
     likesCount: number;
@@ -13,13 +13,14 @@ export interface IPostMainPageProps {
 }
 
 export default function PostMainPage({ img, title, author, reactions }: IPostMainPageProps) {
+  // console.log(img, typeof img, 'POSTMainPageProps');
   return (
     <div className="main-post card">
       <div className="main-post__pic ">
         <img
           className="main-post__pic-img card-img-top img-fluid"
           loading="lazy"
-          src={img}
+          src={typeof img === 'string' ? img : img.name}
           alt="post"
         />
       </div>

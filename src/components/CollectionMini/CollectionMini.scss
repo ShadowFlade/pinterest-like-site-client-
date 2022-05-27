@@ -3,6 +3,7 @@
 @import '../../scss/custom/mixins.scss';
 $length: 250px;
 .collection-mini {
+  cursor: pointer;
   padding: 0.5rem;
   background-color: white;
   width: $length;
@@ -11,6 +12,11 @@ $length: 250px;
   border: 2px solid $secondary;
   border-radius: 15px;
   padding: 1rem;
+  img {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+  }
   &__inner {
     border-radius: 8px;
     display: flex;
@@ -20,10 +26,6 @@ $length: 250px;
     border-radius: 8px;
     border-right: 1px solid white;
     width: 48%;
-    img {
-      height: 100%;
-      width: 100%;
-    }
   }
   &__small-pics {
     border-radius: 8px;

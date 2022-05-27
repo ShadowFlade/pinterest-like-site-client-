@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { instance } from '../../App';
 import './UploadPinForm.scss';
 import { IUploadPinFormProps } from './upload-pin-form';
+import useCreatePin from '../../hooks/useCreatePin';
 
 export default function UploadPinForm({ isAuth, closeModal }: IUploadPinFormProps) {
   const {
@@ -13,24 +14,16 @@ export default function UploadPinForm({ isAuth, closeModal }: IUploadPinFormProp
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { mutate } = useCreatePin(closeModal);
+
   const defaultErrorMessage = 'This field is required';
   const [imgShow, setImgshow] = useState(false);
   const form = useRef<null | HTMLFormElement>(null);
   const filePreview = useRef<HTMLImageElement | null>(null);
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const newData = new FormData(e.target as HTMLFormElement);
 
-    await instance
-      .post('/pinupload', newData, {
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:3002',
-        },
-      })
-      .then(() => {
-        closeModal();
-      })
-      .catch((e) => console.error(e));
+  const onSubmit = async (data: { [key: string]: string }, e: React.FormEvent) => {
+    e.preventDefault();
+    mutate(e);
   };
 
   function onFileInput(event: React.ChangeEvent) {
@@ -79,7 +72,7 @@ export default function UploadPinForm({ isAuth, closeModal }: IUploadPinFormProp
         </div>
         <div className="upload-pin__item">
           <input
-            {...register('URL', { required: defaultErrorMessage })}
+            {...register('URL')}
             tabIndex={3}
             type="text"
             className="upload-pin__input"

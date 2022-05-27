@@ -29,6 +29,7 @@
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
     "@types/react-modal": "^3.13.1",
+    "@types/react-query": "^1.2.9",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "axios": "^0.26.1",
