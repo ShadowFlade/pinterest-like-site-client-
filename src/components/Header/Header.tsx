@@ -5,6 +5,7 @@ import { IHeaderProps } from './header';
 import ChatIcon from '../SecondaryIcon/chat-dots.svg';
 import BellIcon from '../SecondaryIcon/bell-fill.svg';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
+import { Link } from 'react-router-dom';
 import './Header.scss';
 
 export default function Header({
@@ -13,8 +14,28 @@ export default function Header({
   notifsCount,
   name,
   handleModalState,
+  handleRegisterLoginModal,
 }: IHeaderProps) {
   const iconWidth = 35;
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const openRegisterModal = () => {
+    setIsRegisterOpen(true);
+  };
+  const auth = isAuth ? (
+    <Link to={'/profile/me'} className="header__profile-icon mx-2">
+      <ProfileIcon name={name} />
+    </Link>
+  ) : (
+    <div className="header__auth">
+      <button onClick={handleRegisterLoginModal} className="btn btn-primary mx-1">
+        Login
+      </button>
+      <button onClick={handleRegisterLoginModal} className="btn btn-secondary mx-1">
+        Register
+      </button>
+    </div>
+  );
   return (
     <div className="navbar navbar-expand-lg">
       <a href="/" className="mx-2">
@@ -72,10 +93,7 @@ export default function Header({
           </SecondaryIcon>
         </div>
       </div>
-
-      <a href="/profile/me" className="header__profile-icon mx-2">
-        <ProfileIcon name={name} />
-      </a>
+      {auth}
     </div>
   );
 }

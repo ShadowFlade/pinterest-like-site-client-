@@ -68,6 +68,7 @@
     "@reduxjs/toolkit": "^1.8.1",
     "autoprefixer": "10.4.5",
     "bootstrap": "^5.2.0-beta1",
+    "classnames": "^2.3.1",
     "clean-webpack-plugin": "^4.0.0",
     "jquery": "^3.6.0",
     "mongodb": "^4.6.0",

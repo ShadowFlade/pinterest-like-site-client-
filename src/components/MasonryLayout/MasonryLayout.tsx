@@ -6,7 +6,7 @@ export default function MasonryLayout({ items }: { items: any[] }) {
     <div className="masonry-layout">
       {items.map((post) => {
         return (
-          <div className="masonry-layout__item shadow mx-2 my-5" key={nanoid()}>
+          <div className="masonry-layout__item shadow" key={nanoid()}>
             {post}
           </div>
         );

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface IPostMainPageProps {
+export interface Pin {
   img: string | File;
   title: string;
   author: string;
@@ -12,8 +12,7 @@ export interface IPostMainPageProps {
   };
 }
 
-export default function PostMainPage({ img, title, author, reactions }: IPostMainPageProps) {
-  // console.log(img, typeof img, 'POSTMainPageProps');
+export default function PostMainPage({ img, title, author, reactions }: Pin) {
   return (
     <div className="main-post card">
       <div className="main-post__pic ">

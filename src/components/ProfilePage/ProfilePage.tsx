@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { ICollectionMiniProps } from '../CollectionMini/collection-mini';
 import CollectionMini from '../CollectionMini/CollectionMini';
-import { ProfileStatistics } from './profile-page';
 import img1 from '../PostMainPage/imgs/_.jpeg';
 import img2 from '../PostMainPage/imgs/8Os5eDI.jpg';
 import img3 from '../PostMainPage/imgs/hotobuildmuscle.png';
@@ -12,8 +10,10 @@ import imgSrc7 from '../PostMainPage/imgs/v8mhrscjvbegyopaxuki.png';
 import imgSrc8 from '../PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from '../PostMainPage/imgs/wp3161438.jpg';
 import ProfileTabs, { EProfileTabs } from '../ProfileTabs/ProfileTabs';
+import CollectionMiniModal from '../CollectionMiniModal/CollectionMiniModal';
 import './ProfilePage.scss';
-import MasonryLayout from '../MasonryLayout/MasonryLayout';
+import { useState, useRef } from 'react';
+import { instance } from '@/App';
 
 export interface IProfilePageProps {
   avatar: string;
@@ -24,6 +24,15 @@ export interface IProfilePageProps {
 }
 
 export default function ProfilePage({ avatar, followers, following, name }: IProfilePageProps) {
+  // instance.get('profile/me').then(({data})=>{
+
+  // })
+  const [activeCollection, setActiveCollection] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const collMiniModalRef = useRef();
   const collections = [
     [img1, img2, img3],
     [imgSrc4, imgSrc5, imgSrc6],
@@ -67,6 +76,7 @@ export default function ProfilePage({ avatar, followers, following, name }: IPro
       </div>
 
       <div className="profile-page__statistics"></div>
+      <CollectionMiniModal ref={collMiniModalRef} closeModal={closeModal}></CollectionMiniModal>
     </div>
   );
 }

@@ -6,4 +6,5 @@ export interface IHeaderProps {
   messagesCount: number;
   name: string;
   handleModalState: () => void;
+  handleRegisterLoginModal: () => void;
 }
