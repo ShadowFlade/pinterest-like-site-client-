@@ -7,4 +7,7 @@ export interface IHeaderProps {
   name: string;
   handleModalState: () => void;
   handleRegisterLoginModal: () => void;
+  handleLoginModal: () => void;
+  handleRegisterModal: () => void;
+  setIsLeft: Dispatch<SetStateAction<boolean>>;
 }

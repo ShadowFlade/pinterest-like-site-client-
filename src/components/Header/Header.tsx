@@ -14,24 +14,20 @@ export default function Header({
   notifsCount,
   name,
   handleModalState,
-  handleRegisterLoginModal,
+  handleLoginModal,
+  handleRegisterModal,
 }: IHeaderProps) {
   const iconWidth = 35;
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const openRegisterModal = () => {
-    setIsRegisterOpen(true);
-  };
   const auth = isAuth ? (
     <Link to={'/profile/me'} className="header__profile-icon mx-2">
       <ProfileIcon name={name} />
     </Link>
   ) : (
     <div className="header__auth">
-      <button onClick={handleRegisterLoginModal} className="btn btn-primary mx-1">
+      <button onClick={handleLoginModal} className="btn btn-primary mx-1">
         Login
       </button>
-      <button onClick={handleRegisterLoginModal} className="btn btn-secondary mx-1">
+      <button onClick={handleRegisterModal} className="btn btn-secondary mx-1">
         Register
       </button>
     </div>
