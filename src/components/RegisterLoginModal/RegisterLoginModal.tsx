@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 
 import './RegisterLoginModal.scss';
 import { instance } from '../../App';
+import AuthFormInputField from '../AuthFormInputFiled/AuthFormInputField';
 
 const RegisterLoginModal = ({
   isRegisterModalOpen,
@@ -21,6 +22,8 @@ const RegisterLoginModal = ({
   const defaultErrorMessage = 'This field is required';
   const [mailVal, setMailVal] = useState('');
   const [passVal, setPassVal] = useState('');
+  const [fullNameVal, setFullNameVal] = useState('');
+  const [usernameVal, setUsernameVal] = useState('');
   const wrapper = useRef<HTMLDivElement | null>(null);
   const body = useRef<HTMLDivElement | null>(null);
   const slide = (e: React.MouseEvent) => {
@@ -72,60 +75,80 @@ const RegisterLoginModal = ({
           <div className={`wrapper ${left ? null : 'move'}`} ref={wrapper}>
             <form id="login" tabIndex={500} onSubmit={handleSubmit(onSubmit)}>
               <h3>Login</h3>
-              <div className="mail">
-                <input
-                  {...register('mail', { required: defaultErrorMessage })}
-                  value={mailVal}
-                  onChange={(e) => setMailVal(e.target.value)}
-                  type="mail"
-                  autoFocus={left}
-                />
-                <label>Mail</label>
-                <p>{errors.mail?.message}</p>
-              </div>
-              <div className="passwd">
-                <input
-                  value={passVal}
-                  type="password"
-                  {...register('password', { required: defaultErrorMessage })}
-                  onChange={(e) => setPassVal(e.target.value)}
-                />
-                <label>Password</label>
-                <p>{errors.password?.message}</p>
-              </div>
+
+              <AuthFormInputField
+                label="Mail"
+                className="mail"
+                value={mailVal}
+                formControlProps={register('mail', { required: defaultErrorMessage })}
+                errorMessage={errors.mail?.message}
+                type="mail"
+                autofocus
+                onChange={({ target }: { target: HTMLInputElement }) => setMailVal(target.value)}
+              />
+
+              <AuthFormInputField
+                label="password"
+                className="passwd"
+                value={passVal}
+                formControlProps={register('password', { required: defaultErrorMessage })}
+                errorMessage={errors.password?.message}
+                type="password"
+                autofocus={false}
+                onChange={(e) => setPassVal(e.target.value)}
+              />
+
               <div className="submit">
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
             <form id="register" tabIndex={502} onSubmit={handleSubmit(onSubmit)}>
               <h3>Register</h3>
-              <div className="name">
-                <input type="text" {...register('full-name', { required: defaultErrorMessage })} />
-                <label>Full Name</label>
-              </div>
-              <div className="mail">
-                <input
-                  type="mail"
-                  {...register('mail', { required: defaultErrorMessage })}
-                  value={mailVal}
-                  onChange={(e) => setMailVal(e.target.value)}
-                  autoFocus={!left}
-                />
-                <label>Mail</label>
-              </div>
-              <div className="uid">
-                <input type="text" {...register('username', { required: defaultErrorMessage })} />
-                <label>User Name</label>
-              </div>
-              <div className="passwd">
-                <input
-                  type="password"
-                  {...register('password', { required: defaultErrorMessage })}
-                  value={passVal}
-                  onChange={(e) => setPassVal(e.target.value)}
-                />
-                <label>Password</label>
-              </div>
+
+              <AuthFormInputField
+                label="Full name"
+                className="name"
+                value={fullNameVal}
+                formControlProps={register('full-name', { required: defaultErrorMessage })}
+                errorMessage={errors.password?.message}
+                type="text"
+                autofocus={false}
+                onChange={(e) => setFullNameVal(e.target.value)}
+              />
+
+              <AuthFormInputField
+                label="Mail"
+                className="mail"
+                value={mailVal}
+                formControlProps={register('mail', { required: defaultErrorMessage })}
+                errorMessage={errors.mail?.message}
+                type="mail"
+                autofocus
+                onChange={({ target }: { target: HTMLInputElement }) => setMailVal(target.value)}
+              />
+
+              <AuthFormInputField
+                label="Username"
+                className="uid"
+                value={usernameVal}
+                formControlProps={register('username', { required: defaultErrorMessage })}
+                errorMessage={errors.username?.message}
+                type="text"
+                autofocus={false}
+                onChange={({ target }: { target: HTMLInputElement }) =>
+                  setUsernameVal(target.value)
+                }
+              />
+              <AuthFormInputField
+                label="password"
+                className="passwd"
+                value={passVal}
+                formControlProps={register('password', { required: defaultErrorMessage })}
+                errorMessage={errors.password?.message}
+                type="password"
+                autofocus={false}
+                onChange={(e) => setPassVal(e.target.value)}
+              />
               <div className="submit">
                 <button className="btn btn-primary ">Register</button>
               </div>
