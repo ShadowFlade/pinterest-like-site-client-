@@ -1,38 +1,42 @@
 import * as React from 'react';
 import { ChangeEventHandler } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { useField, FieldHookConfig } from 'formik';
+import FormInputFieldError from '../FormInputFieldError/FormInputFieldError';
 
 export interface IAuthFormInputFieldProps {
   className: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
   type: string;
   autofocus: boolean;
   label: string;
-  formControlProps: UseFormRegisterReturn;
-  errorMessage: string;
+  name: string;
 }
 
 export default function AuthFormInputField({
-  formControlProps,
-  value,
-  onChange,
   type,
   label,
   autofocus,
-  errorMessage,
+  name,
+  className,
 }: IAuthFormInputFieldProps) {
+  const [field, meta, helpers] = useField({ name, type, autoFocus: autofocus });
+  const { value } = field;
+  const { setValue } = helpers;
+  const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target?.value);
+  };
   return (
-    <div className="mail">
+    <div className={className}>
       <input
-        {...formControlProps}
+        {...field}
+        name={name}
         value={value}
-        onChange={onChange}
+        onChange={changeValue}
         type={type}
         autoFocus={autofocus}
       />
       <label>{label}</label>
-      <p>{errorMessage}</p>
+      {meta.touched && meta.error ? <FormInputFieldError message={meta.error} /> : null}
     </div>
   );
 }

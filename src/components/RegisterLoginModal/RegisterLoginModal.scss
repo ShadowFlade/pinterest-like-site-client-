@@ -63,6 +63,7 @@
   transition: all 0.5s;
   color: #303030;
   overflow: hidden;
+  padding-top: 10%;
 }
 .veen .wrapper > form {
   padding: 15px 30px 30px;
@@ -75,15 +76,15 @@
   outline: none;
 }
 .veen .wrapper #login {
-  padding-top: 20%;
   visibility: visible;
+  transform: translateX(0%);
 }
 .veen .wrapper #register {
-  transform: translateY(-80%) translateX(100%);
   visibility: hidden;
+  transform: translateY(-102%) translateX(100%);
 }
 .veen .wrapper.move #register {
-  transform: translateY(-80%) translateX(0%);
+  transform: translateY(-102%) translateX(0);
   visibility: visible;
 }
 .veen .wrapper.move #login {
@@ -188,4 +189,5 @@ select:-webkit-autofill {
 
 .button-option {
   background: transparent;
+  margin: 0.5rem 0;
 }
