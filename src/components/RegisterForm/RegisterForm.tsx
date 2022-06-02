@@ -1,10 +1,11 @@
-import { instance } from '../../App';
+import { axiosConfig } from '../../App';
 import * as React from 'react';
 import { useState } from 'react';
 import * as yup from 'yup';
 import AuthFormInputField from '../AuthFormInputFiled/AuthFormInputField';
 import { Form, Formik } from 'formik';
 import FormInputFieldError from '../FormInputFieldError/FormInputFieldError';
+import axios from 'axios';
 export interface IRegisterFormProps {
   left: boolean;
   closeRegisterModal: () => void;
@@ -24,20 +25,14 @@ export default function RegisterForm({ left, closeRegisterModal }: IRegisterForm
   const registerUser = async (e: React.FormEvent) => {
     e.preventDefault();
     const userData = new FormData(e.target as HTMLFormElement);
-    await instance
-      .post('/register', userData, {
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:3002',
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data.success) {
-          closeRegisterModal();
-        } else {
-          setError(res.data.error);
-        }
-      });
+    await axios.post('/register', userData, axiosConfig).then((res) => {
+      console.log(res);
+      if (res.data.success) {
+        closeRegisterModal();
+      } else {
+        setError(res.data.error);
+      }
+    });
   };
   return (
     <Formik

@@ -19,10 +19,22 @@ import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
-const instance = axios.create({
+const axiosConfig = {
   baseURL: 'http://localhost:3002/',
-});
+  withCredentials: true,
+  'Access-Control-Allow-Origin': 'http://localhost:3002',
+};
+
 const App = () => {
+  const [isAuth, setIsAuth] = useState(false);
+
+  axios.get('/login/auth', axiosConfig).then(async ({ data }) => {
+    if (data.isAuth) {
+      console.log('auth');
+      setIsAuth(true);
+    }
+  });
+
   const mainPage = useRef<null | HTMLDivElement>(null);
   const followers = 0;
   const following = 5;
@@ -38,14 +50,6 @@ const App = () => {
   };
 
   const profileName = 'Vladimir Drugov';
-  // async function getMe(token: string) {
-  //   const { data } = await instance.get('/', {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  //   return data;
-  // },
 
   return (
     <div className="app px-5">
@@ -83,5 +87,5 @@ const App = () => {
     </div>
   );
 };
-export { instance };
+export { axiosConfig };
 export default App;

@@ -1,25 +1,19 @@
 import { Formik, Form, Field, FormikProps } from 'formik';
 import { useState, useRef, ChangeEvent } from 'react';
-
 import * as yup from 'yup';
 import * as React from 'react';
 import AuthFormInputField from '../AuthFormInputFiled/AuthFormInputField';
-import { instance } from '../../App';
+import { axiosConfig } from '../../App';
 import FormInputFieldError from '../FormInputFieldError/FormInputFieldError';
+import { ILoginForm } from './login-form';
+import axios from 'axios';
+
 const loginSchema = yup.object().shape({
   email: yup.string().email('Invalid email').required(),
   password: yup.string().min(6, 'Too short!').required(),
   FullName: yup.string().min(5, 'Too short').email('Invalid email').required(),
 });
-interface ILoginForm {
-  left: boolean;
-  closeRegisterModal: () => void;
-}
-interface Values {
-  password: string;
-  FullName: string;
-  email: string;
-}
+
 const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
   const [error, setError] = useState('');
   const timeBeforeServerErrorDisappears = 5000;
@@ -27,20 +21,16 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
     e.preventDefault();
     const userData = new FormData(e.target as HTMLFormElement);
     const sleep = new Promise((res) => setTimeout(res, timeBeforeServerErrorDisappears));
-    await instance
-      .post('/login', userData, {
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:3002',
-        },
-      })
-      .then(({ data }) => {
-        if (data.error) {
-          setError(data.error);
-          sleep.then(() => setError(''));
-        } else {
-          closeRegisterModal();
-        }
-      });
+    await axios.post('/login', userData, axiosConfig).then((res) => {
+      if (res.data.error) {
+        setError(res.data.error);
+        sleep.then(() => setError(''));
+      } else if (res.data.success) {
+        console.log(res);
+        closeRegisterModal();
+        console.log('yeah');
+      }
+    });
   };
 
   return (

@@ -13,7 +13,6 @@ import ProfileTabs, { EProfileTabs } from '../ProfileTabs/ProfileTabs';
 import CollectionMiniModal from '../CollectionMiniModal/CollectionMiniModal';
 import './ProfilePage.scss';
 import { useState, useRef } from 'react';
-import { instance } from '@/App';
 
 export interface IProfilePageProps {
   avatar: string;
@@ -24,9 +23,6 @@ export interface IProfilePageProps {
 }
 
 export default function ProfilePage({ avatar, followers, following, name }: IProfilePageProps) {
-  // instance.get('profile/me').then(({data})=>{
-
-  // })
   const [activeCollection, setActiveCollection] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => {

@@ -1,7 +1,8 @@
-import { instance } from '../App';
+import { axiosConfig } from '../App';
 import * as React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { nanoid } from 'nanoid';
+import axios from 'axios';
 
 export default function useCreatePin(cb: () => void) {
   const queryClient = useQueryClient();
@@ -52,9 +53,5 @@ export default function useCreatePin(cb: () => void) {
 async function uploadPin(e: React.FormEvent): Promise<void> {
   //here
   const newData = new FormData(e.target as HTMLFormElement);
-  return await instance.post('/pinupload', newData, {
-    headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:3002',
-    },
-  });
+  return await axios.post('/pinupload', newData, axiosConfig);
 }
