@@ -4,6 +4,7 @@ import { useState } from 'react';
 import * as yup from 'yup';
 import AuthFormInputField from '../AuthFormInputFiled/AuthFormInputField';
 import { Form, Formik } from 'formik';
+import FormInputFieldError from '../FormInputFieldError/FormInputFieldError';
 export interface IRegisterFormProps {
   left: boolean;
   closeRegisterModal: () => void;
@@ -19,11 +20,7 @@ const registerSchema = yup
   .required();
 
 export default function RegisterForm({ left, closeRegisterModal }: IRegisterFormProps) {
-  const defaultErrorMessage = 'This field is required';
-  const [mailVal, setMailVal] = useState('');
-  const [passVal, setPassVal] = useState('');
-  const [fullNameVal, setFullNameVal] = useState('');
-  const [usernameVal, setUsernameVal] = useState('');
+  const [error, setError] = useState('');
   const registerUser = async (e: React.FormEvent) => {
     e.preventDefault();
     const userData = new FormData(e.target as HTMLFormElement);
@@ -34,7 +31,12 @@ export default function RegisterForm({ left, closeRegisterModal }: IRegisterForm
         },
       })
       .then((res) => {
-        closeRegisterModal();
+        console.log(res);
+        if (res.data.success) {
+          closeRegisterModal();
+        } else {
+          setError(res.data.error);
+        }
       });
   };
   return (
@@ -72,6 +74,7 @@ export default function RegisterForm({ left, closeRegisterModal }: IRegisterForm
               Register
             </button>
           </div>
+          <FormInputFieldError message={error} />
         </Form>
       )}
     </Formik>

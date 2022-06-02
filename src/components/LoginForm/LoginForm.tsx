@@ -21,14 +21,26 @@ interface Values {
   email: string;
 }
 const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
+  const [error, setError] = useState('');
+  const timeBeforeServerErrorDisappears = 5000;
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
     const userData = new FormData(e.target as HTMLFormElement);
-    await instance.post('/login', userData, {
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3002',
-      },
-    });
+    const sleep = new Promise((res) => setTimeout(res, timeBeforeServerErrorDisappears));
+    await instance
+      .post('/login', userData, {
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost:3002',
+        },
+      })
+      .then(({ data }) => {
+        if (data.error) {
+          setError(data.error);
+          sleep.then(() => setError(''));
+        } else {
+          closeRegisterModal();
+        }
+      });
   };
 
   return (
@@ -42,7 +54,7 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
         console.log(values);
       }}
     >
-      {() => (
+      {({ setErrors }) => (
         <Form id="login" onSubmit={login}>
           <h3>Login</h3>
           <AuthFormInputField
@@ -51,21 +63,21 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
             className="mail"
             type="mail"
             autofocus={left}
+            handleServerErrors={setError}
           ></AuthFormInputField>
 
-          {
-            <AuthFormInputField
-              name="password"
-              label="password"
-              className="passwd"
-              type="password"
-              autofocus={false}
-            ></AuthFormInputField>
-          }
+          <AuthFormInputField
+            name="password"
+            label="password"
+            className="passwd"
+            type="password"
+            autofocus={false}
+          ></AuthFormInputField>
 
           <button type="submit" className="btn btn-primary">
             Login
           </button>
+          <FormInputFieldError message={error} />
         </Form>
       )}
     </Formik>
