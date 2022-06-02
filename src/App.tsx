@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom/client';
 import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
@@ -19,73 +19,71 @@ import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
+import ContextProvider from './Context';
 const axiosConfig = {
-  baseURL: 'http://localhost:3002/',
-  withCredentials: true,
-  'Access-Control-Allow-Origin': 'http://localhost:3002',
+	baseURL: 'http://localhost:3002/',
+	withCredentials: true,
+	'Access-Control-Allow-Origin': 'http://localhost:3002',
 };
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(false);
+	const mainPage = useRef<null | HTMLDivElement>(null);
+	const followers = 0;
+	const following = 5;
 
-  axios.get('/login/auth', axiosConfig).then(async ({ data }) => {
-    if (data.isAuth) {
-      console.log('auth');
-      setIsAuth(true);
-    }
-  });
+	const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 
-  const mainPage = useRef<null | HTMLDivElement>(null);
-  const followers = 0;
-  const following = 5;
+	const closeModal = () => {
+		setIsUploadPinOpen(false);
+	};
 
-  const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
+	const handlePinState = () => {
+		setIsUploadPinOpen(!isUploadPinOpen);
+	};
 
-  const closeModal = () => {
-    setIsUploadPinOpen(false);
-  };
+	const profileName = 'Vladimir Drugov';
 
-  const handlePinState = () => {
-    setIsUploadPinOpen(!isUploadPinOpen);
-  };
-
-  const profileName = 'Vladimir Drugov';
-
-  return (
-    <div className="app px-5">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout
-              closeModal={closeModal}
-              isUploadPinOpen={isUploadPinOpen}
-              mainPage={mainPage}
-              handlePinState={handlePinState}
-            />
-          }
-        >
-          <Route
-            index
-            element={
-              <MainPage ref={mainPage} closeModal={closeModal} isUploadPinOpen={isUploadPinOpen} />
-            }
-          />
-          <Route
-            path="profile/me"
-            element={
-              <ProfilePage
-                avatar={imgSrc8}
-                name={profileName}
-                followers={followers}
-                following={following}
-              />
-            }
-          />
-        </Route>
-      </Routes>
-    </div>
-  );
+	return (
+		<ContextProvider>
+			<div className="app px-5">
+				<Routes>
+					<Route
+						path="/"
+						element={
+							<Layout
+								closeModal={closeModal}
+								isUploadPinOpen={isUploadPinOpen}
+								mainPage={mainPage}
+								handlePinState={handlePinState}
+							/>
+						}
+					>
+						<Route
+							index
+							element={
+								<MainPage
+									ref={mainPage}
+									closeModal={closeModal}
+									isUploadPinOpen={isUploadPinOpen}
+								/>
+							}
+						/>
+						<Route
+							path="profile/me"
+							element={
+								<ProfilePage
+									avatar={imgSrc8}
+									name={profileName}
+									followers={followers}
+									following={following}
+								/>
+							}
+						/>
+					</Route>
+				</Routes>
+			</div>
+		</ContextProvider>
+	);
 };
 export { axiosConfig };
 export default App;
