@@ -1,0 +1,71 @@
+@import '../../common/vars.scss';
+@import '../../common/mixins.scss';
+.like-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: rem(13);
+	margin-right: rem(11);
+	position: relative;
+	border: 1px solid rgba(31, 32, 65, 0.25);
+
+	border-radius: 10px;
+	width: 40px;
+	min-width: 40px;
+	max-width: 60px;
+	height: 20px;
+	&__label {
+		@include label;
+
+		font-weight: 530;
+		font-size: rem(12);
+		margin-bottom: 1.11429rem;
+	}
+	&__input {
+		opacity: 0;
+		z-index: 2;
+		width: 50%;
+		position: relative;
+		left: -10%;
+		cursor: pointer;
+		&:checked ~ .like__icon {
+			opacity: 0;
+			transition: all 0.3s ease-out;
+		}
+		&:checked ~ .like__icon--active {
+			opacity: 1;
+		}
+		&:checked ~ .like-custom {
+			border-color: #bc9cff;
+		}
+		&:checked ~ .like__number {
+			color: #bc9cff;
+		}
+	}
+	&__number {
+		position: absolute;
+		font-size: 10px;
+		font-weight: 400;
+		color: rgba(31, 32, 65, 0.25);
+		transition: all 0.3s linear;
+		right: 26%;
+
+		user-select: none;
+	}
+	&__icon {
+		left: 11%;
+		top: 23%;
+		position: absolute;
+		color: rgba(31, 32, 65, 0.25);
+		font-size: rem(12);
+		opacity: 1;
+		&--active {
+			opacity: 0;
+			transition: 0.3s ease-out;
+			color: #bc9cff;
+		}
+	}
+	.material-icons {
+		font-size: 10px;
+	}
+}

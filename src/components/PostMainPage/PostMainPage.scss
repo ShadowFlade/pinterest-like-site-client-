@@ -1,11 +1,15 @@
 .main-post {
-  max-height: 550px;
-  height: auto;
-  &__pic {
-    height: 70%;
-    overflow: hidden;
-  }
+	color: black;
+	max-height: 550px;
+	height: auto;
+	&__pic {
+		height: 70%;
+		overflow: hidden;
+	}
 }
 .main-post.card {
-  border: none;
+	border: none;
+}
+a:-webkit-any-link {
+	color: inherit;
 }

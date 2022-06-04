@@ -1,0 +1,9 @@
+.reactions {
+	display: flex;
+	&__emoji {
+		margin-right: 0.5rem;
+	}
+	&__amount {
+		color: white;
+	}
+}

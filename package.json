@@ -65,7 +65,9 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "@fontsource/roboto": "^4.5.7",
     "@hookform/resolvers": "^2.8.10",
+    "@mui/icons-material": "^5.8.2",
     "@reduxjs/toolkit": "^1.8.1",
     "autoprefixer": "10.4.5",
     "bootstrap": "^5.2.0-beta1",
