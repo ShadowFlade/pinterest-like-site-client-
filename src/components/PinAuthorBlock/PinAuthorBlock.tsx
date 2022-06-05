@@ -1,6 +1,7 @@
 import * as React from 'react';
 import LikeButton from '../LikeButton/LikeButton';
 import Reactions, { IReaction } from '../Reactions/Reactions';
+import './PinAuthorBlock.scss';
 
 export interface IPinAuthorBlockProps {
 	authorName: string;
