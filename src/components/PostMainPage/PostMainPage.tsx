@@ -3,7 +3,7 @@ import * as React from 'react';
 export interface Pin {
 	img: string | File;
 	title: string;
-	author: string;
+	author: string | undefined;
 	type?: string;
 	readonly _id: string;
 	reactions?: {

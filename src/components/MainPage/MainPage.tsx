@@ -31,7 +31,7 @@ const MainPage = forwardRef(
 				);
 			});
 			return (
-				<div className="main-page" ref={ref}>
+				<div className="main-page px-2" ref={ref}>
 					<CookiePrompt />
 					{posts && posts.length > 1 ? (
 						<MasonryLayout items={posts} />

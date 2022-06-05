@@ -4,11 +4,12 @@ export interface IPinDetailed {
 	_id: string;
 }
 export interface Author {
-	name: string;
+	name?: string;
 	img: string | File;
 	readonly _id: string;
+	email: string;
 }
 export interface DetailedResponse {
-	pin: Pin;
+	pin: Pin | undefined;
 	author: Author | undefined;
 }

@@ -19,7 +19,7 @@ import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
-import ContextProvider from './Context';
+import ContextProvider from './Context/Context';
 import PinDetailed from './components/PinDetailed/PinDetailed';
 const axiosConfig = {
 	baseURL: 'http://localhost:3002/',

@@ -7,7 +7,7 @@ import BellIcon from '../SecondaryIcon/bell-fill.svg';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
 import { Link } from 'react-router-dom';
 import './Header.scss';
-import { MyContext } from '@/Context';
+import { MyContext } from '@/Context/Context';
 
 export default function Header({
 	messagesCount,
@@ -18,10 +18,11 @@ export default function Header({
 	handleRegisterModal,
 }: IHeaderProps) {
 	const iconWidth = 35;
-	const { isAuth } = useContext(MyContext);
+	const { isAuth, user } = useContext(MyContext);
+	console.log(user, 'from header');
 	const auth = isAuth ? (
 		<Link to={'/profile/me'} className="header__profile-icon mx-2">
-			<ProfileIcon name={name} />
+			<ProfileIcon name={user?.name || user?.email || ''} />
 		</Link>
 	) : (
 		<div className="header__auth">
