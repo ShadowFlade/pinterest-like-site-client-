@@ -1,6 +1,7 @@
 import * as React from 'react';
 import LikeButton from '../LikeButton/LikeButton';
-import Reactions, { IReaction } from '../Reactions/Reactions';
+import Reactions from '../Reactions/Reactions';
+import { IReaction } from '../Reactions/reactions';
 import './PinAuthorBlock.scss';
 
 export interface IPinAuthorBlockProps {
@@ -11,20 +12,24 @@ export interface IPinAuthorBlockProps {
 export default function PinAuthorBlock({ authorName, avatar }: IPinAuthorBlockProps) {
 	const reactions: IReaction[] = [
 		{
-			emoji: 'U+1F600',
+			emoji: '🐑',
 			amount: 5,
+			symbol: 'some emoji',
 		},
 		{
-			emoji: 'U+1F618 	',
+			emoji: '💗',
 			amount: 2,
+			symbol: 'some emoji',
 		},
 		{
-			emoji: 'U+1F911',
+			emoji: '😍',
 			amount: 5,
+			symbol: 'some emoji',
 		},
 		{
-			emoji: 'U+1F62A',
+			emoji: '😀',
 			amount: 10,
+			symbol: 'some emoji',
 		},
 	];
 	return (
@@ -37,10 +42,14 @@ export default function PinAuthorBlock({ authorName, avatar }: IPinAuthorBlockPr
 					<img src={avatar} className="pin-author__img" />
 				</div>
 				<div className="pin-author__info">
-					<h2 className="pin-author__name">{authorName}</h2>
+					<h2 className="pin-author__name h4">{authorName}</h2>
 					<div className="pin-author__interact">
-						<LikeButton numberOfLikes={5} />
-						<Reactions reactions={reactions} />
+						<div className="pin-author__like-button">
+							<LikeButton numberOfLikes={5} />
+						</div>
+						<div className="pin-author__reactions mt-1">
+							<Reactions reactions={reactions} />
+						</div>
 					</div>
 				</div>
 			</div>

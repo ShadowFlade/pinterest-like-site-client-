@@ -5,13 +5,7 @@ import { Outlet } from 'react-router-dom';
 import MyModal from '../components/Modal/Modal';
 import UploadPinForm from '../components/UploadPinForm/UploadPinForm';
 import RegisterLoginModal from '../components/RegisterLoginModal/RegisterLoginModal';
-
-export interface ILayoutProps {
-	handlePinState: () => void;
-	isUploadPinOpen: boolean;
-	closeModal: () => void;
-	mainPage: React.MutableRefObject<null | HTMLDivElement>;
-}
+import { ILayoutProps } from './layout';
 
 export default function Layout({
 	handlePinState,

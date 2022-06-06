@@ -28,7 +28,7 @@ const ContextProvider = ({ children }: { children: JSX.Element }) => {
 
 	useEffect(() => {
 		login();
-	}, []);
+	}, []); //covert it to use react-query
 
 	const defaultState = {
 		isAuth,

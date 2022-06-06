@@ -8,6 +8,7 @@ import ContentLoader from 'react-content-loader';
 import { Pin } from '../PostMainPage/PostMainPage';
 import './PinDetailed.scss';
 import { Author, DetailedResponse } from './pin-detailed';
+import { STALE_TIME } from '@/variables';
 
 export default function PinDetailed() {
 	const { id } = useParams();
@@ -15,18 +16,18 @@ export default function PinDetailed() {
 		return axios.get(`pin/detailed/${id}`, axiosConfig);
 	};
 
-	const { data, status, error } = useQuery('getSinglePin', getData, {
+	const { data, isLoading, isSuccess, error } = useQuery('getSinglePin', getData, {
 		retry: false,
+		staleTime: STALE_TIME,
 	});
-	const isLoading = status === 'loading';
-	const isSuccess = status === 'success';
+
 	const { pin, author }: DetailedResponse =
-		status === 'success' && data ? data.data : { pin: undefined, author: undefined }; // why if we substitute it with isSuccess it yields a mistake
+		isSuccess && data ? data.data : { pin: undefined, author: undefined }; // why if we substitute it with isSuccess it yields a mistake
 
 	const src = isSuccess && pin && typeof pin.img === 'string' ? pin.img : '';
 	const img = isLoading ? (
 		<ContentLoader height={500} viewBox="0 0 400px 500px">
-			<rect x="0" y="0" rx="5" ry="5" width="300" height="300" />{' '}
+			<rect x="0" y="0" rx="5" ry="5" width="300" height="300" />
 		</ContentLoader>
 	) : (
 		<img src={src} alt="" className="pin__img" />
@@ -49,7 +50,7 @@ export default function PinDetailed() {
 			</ContentLoader>
 		);
 	const authorBlock =
-		status === 'success' && author ? (
+		isSuccess && author ? (
 			<PinAuthorBlock authorName={author.name || author.email} avatar={''} />
 		) : (
 			<ContentLoader height={200} viewBox="0 0 200px 200px">
@@ -65,8 +66,10 @@ export default function PinDetailed() {
 						{/* <header className="pin__header"></header> */}
 						<div className="pin__main mt-5">
 							<h2 className="pin__title h2 text-white">{title}</h2>
-							<div className="pin__description mt-1">{description}</div>
-							<div className="pin__author mt-1">{authorBlock}</div>
+							<div className="pin__description mt-1 pb-2 border-bottom border-1 border-white">
+								{description}
+							</div>
+							<div className="pin__author mt-3">{authorBlock}</div>
 						</div>
 						<div className="pin__interactions"></div>
 					</div>

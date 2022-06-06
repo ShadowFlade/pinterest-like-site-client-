@@ -1,0 +1,22 @@
+@keyframes jump {
+	0%,
+	100% {
+		top: 0px;
+	}
+	50% {
+		top: -10px;
+		transform: scale(2);
+	}
+}
+
+.emoji {
+	cursor: pointer;
+	user-select: none;
+	position: relative;
+	&__active {
+		animation-name: jump;
+		animation-duration: 0.7s;
+		animation-timing-function: cubic-bezier(0, 0.6, 0.5, 0.74);
+		animation-play-state: running;
+	}
+}
