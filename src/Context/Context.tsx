@@ -13,19 +13,26 @@ import { IContext, User } from './context';
 export const MyContext = React.createContext<IContext>({
 	isAuth: false,
 	user: null,
+	refetch: null,
 });
 
 const ContextProvider = ({ children }: { children: JSX.Element }) => {
-	const [isAuth, setIsAuth] = useState(false);
-	const [user, setUser] = useState<null | User>(null);
 	const login = () => {
+		console.log('requesting');
 		return axios.get('/login/auth', axiosConfig);
 	};
-	const { data, isSuccess }: UseQueryResult<AxiosResponse<{ isAuth: boolean; user: User }>> =
-		useQuery('profile-me', login);
+	const {
+		data,
+		isSuccess,
+		refetch,
+	}: UseQueryResult<AxiosResponse<{ isAuth: boolean; user: User }>> = useQuery(
+		'profile-me',
+		login
+	);
 	const defaultState = {
 		isAuth: data?.data.isAuth || false,
 		user: data?.data.user || null,
+		refetch,
 	};
 
 	return <MyContext.Provider value={defaultState}>{children}</MyContext.Provider>;

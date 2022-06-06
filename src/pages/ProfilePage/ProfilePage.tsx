@@ -12,14 +12,12 @@ import imgSrc9 from '../../components/PostMainPage/imgs/wp3161438.jpg';
 import ProfileTabs, { EProfileTabs } from '../../components/ProfileTabs/ProfileTabs';
 import CollectionMiniModal from '../../components/CollectionMiniModal/CollectionMiniModal';
 import { useState, useRef, useContext } from 'react';
-import { IProfilePageProps } from './profile-page';
-import './ProfilePage.scss';
 import { MyContext } from '@/Context/Context';
-import { User } from '@/Context/context';
+import { nanoid } from 'nanoid';
+import './ProfilePage.scss';
 
 export default function ProfilePage() {
-	const { isAuth, user } = useContext(MyContext);
-	const { _id, name } = user as User; //user cant visit this page without being authorized
+	const { isAuth, user, refetch } = useContext(MyContext);
 	const avatar = '';
 	const FOLLOWERS = 5;
 	const FOLLOWING = 10;
@@ -35,7 +33,7 @@ export default function ProfilePage() {
 		[imgSrc7, imgSrc8, imgSrc9],
 	];
 	const collectionsMini = collections.map((item) => (
-		<CollectionMini imgs={[item[0], item[1], item[2]]} />
+		<CollectionMini key={nanoid()} imgs={[item[0], item[1], item[2]]} />
 	));
 	const numberOfFOLLOWERS = FOLLOWERS > 0 ? FOLLOWERS : 'No one is FOLLOWING you yet...';
 	const numberOfFOLLOWING =
@@ -59,7 +57,7 @@ export default function ProfilePage() {
 						<div className="profile-page__pic">
 							<img src={avatar} alt="avatar" />
 						</div>
-						<h1 className="profile-page__name h1">{user && name}</h1>
+						<h1 className="profile-page__name h1">{user && user.name}</h1>
 						<p className="profile-page__text">
 							<p className="profile-page__FOLLOWERS">{numberOfFOLLOWERS}</p>
 							<p className="profile-page__FOLLOWING">
