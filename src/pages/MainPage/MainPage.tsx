@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { forwardRef, MutableRefObject } from 'react';
-import CookiePrompt from '../CookiePrompt/CookiePrompts';
-import MasonryLayout from '../MasonryLayout/MasonryLayout';
-import PostMainPage, { Pin } from '../PostMainPage/PostMainPage';
+import CookiePrompt from '../../components/CookiePrompt/CookiePrompts';
+import MasonryLayout from '../../components/MasonryLayout/MasonryLayout';
+import PostMainPage, { Pin } from '../../components/PostMainPage/PostMainPage';
 import usePins from '../../hooks/usePins';
 import { IMainPageProps } from './main-page';
 import './MainPage.scss';

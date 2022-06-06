@@ -19,7 +19,7 @@ export default function Header({
 }: IHeaderProps) {
 	const iconWidth = 35;
 	const { isAuth, user } = useContext(MyContext);
-	console.log(user, 'from header');
+	console.log(user, isAuth, 'from header');
 	const auth = isAuth ? (
 		<Link to={'/profile/me'} className="header__profile-icon mx-2">
 			<ProfileIcon name={user?.name || user?.email || ''} />

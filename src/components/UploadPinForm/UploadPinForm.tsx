@@ -20,7 +20,7 @@ export default function UploadPinForm({ closeModal }: IUploadPinFormProps) {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	const { mutate } = useCreatePin({ cb: closeModal, user });
+	const { mutate } = useCreatePin({ cb: closeModal, user: user || null });
 
 	const defaultErrorMessage = 'This field is required';
 	const [imgShow, setImgshow] = useState(false);

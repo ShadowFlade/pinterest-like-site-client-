@@ -8,7 +8,7 @@ import { Pin } from '@/components/PostMainPage/PostMainPage';
 import { PinUploadData } from '@/components/UploadPinForm/UploadPinForm';
 export interface userCreatePinOptions {
 	cb: () => void;
-	user: User | undefined;
+	user: User | null;
 }
 //TODO dont like passing data arguments into userCreatePin arguments
 export default function useCreatePin({ cb, user }: userCreatePinOptions) {

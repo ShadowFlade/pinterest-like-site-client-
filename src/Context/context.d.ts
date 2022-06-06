@@ -3,9 +3,7 @@ import { Dispatch } from 'react';
 
 interface IContext {
 	isAuth: boolean;
-	setIsAuth: Dispatch<React.SetStateAction<boolean>> | undefined;
-	user: User | undefined;
-	setUser: Dispatch<React.SetStateAction<User | undefined>> | undefined;
+	user: User | null;
 }
 export enum AccessGroup {
 	User = 'User',
