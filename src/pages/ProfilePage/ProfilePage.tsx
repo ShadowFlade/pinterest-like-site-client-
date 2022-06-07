@@ -41,7 +41,11 @@ export default function ProfilePage() {
 	const tabProfileContent = (
 		<div className="profile-page__collections">
 			{collectionsMini.map((collection) => {
-				return <div className="profile-page__item">{collection}</div>;
+				return (
+					<div key={nanoid()} className="profile-page__item">
+						{collection}
+					</div>
+				);
 			})}
 		</div>
 	);
@@ -55,13 +59,20 @@ export default function ProfilePage() {
 				<header className="profile-page__header">
 					<div className="profile-page__avatar">
 						<div className="profile-page__pic">
-							<img src={avatar} alt="avatar" />
+							<img className="profile-page__img" src={avatar} alt="avatar" />
+							{!avatar ? (
+								<div className="profile-page__extra">
+									{(user?.name && user?.name[0]) || user?.email[0]}
+								</div>
+							) : null}
 						</div>
 						<h1 className="profile-page__name h1">{user && user.name}</h1>
 						<p className="profile-page__text">
-							<p className="profile-page__FOLLOWERS">{numberOfFOLLOWERS}</p>
+							<p className="profile-page__FOLLOWERS">
+								followers: {numberOfFOLLOWERS}
+							</p>
 							<p className="profile-page__FOLLOWING">
-								FOLLOWING: {numberOfFOLLOWING}
+								following: {numberOfFOLLOWING}
 							</p>
 						</p>
 					</div>

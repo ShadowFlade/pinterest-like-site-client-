@@ -18,7 +18,6 @@ export const MyContext = React.createContext<IContext>({
 
 const ContextProvider = ({ children }: { children: JSX.Element }) => {
 	const login = () => {
-		console.log('requesting');
 		return axios.get('/login/auth', axiosConfig);
 	};
 	const {
@@ -27,7 +26,8 @@ const ContextProvider = ({ children }: { children: JSX.Element }) => {
 		refetch,
 	}: UseQueryResult<AxiosResponse<{ isAuth: boolean; user: User }>> = useQuery(
 		'profile-me',
-		login
+		login,
+		reactQueryConfig
 	);
 	const defaultState = {
 		isAuth: data?.data.isAuth || false,

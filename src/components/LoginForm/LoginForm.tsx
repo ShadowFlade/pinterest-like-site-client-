@@ -39,7 +39,7 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 			}}
 			validationSchema={loginSchema}
 			onSubmit={(values, props) => {
-				console.log(values);
+				console.dir(values);
 			}}
 		>
 			{({ setErrors }) => (

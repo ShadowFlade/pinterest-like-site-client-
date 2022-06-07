@@ -12,7 +12,6 @@ export interface userCreatePinOptions {
 }
 //TODO dont like passing data arguments into userCreatePin arguments
 export default function useCreatePin({ cb, user }: userCreatePinOptions) {
-	console.log('creating pin', user);
 	console.dir(user);
 	const queryClient = useQueryClient();
 	return useMutation(uploadPin, {
@@ -30,14 +29,12 @@ export default function useCreatePin({ cb, user }: userCreatePinOptions) {
 					typeof fileReader.result === 'string' &&
 					fileReader.readyState == 2
 				) {
-					console.log(user);
 					const newPin: Pin = {
 						_id: nanoid(),
 						title: String(newPinData.title),
 						img: fileReader.result,
 						author: user?.name || user?.email || undefined,
 					};
-					console.log(newPin, 'NEW PIN');
 
 					await queryClient.cancelQueries('pins');
 					queryClient.setQueryData('pins', (old: string[]) => {
