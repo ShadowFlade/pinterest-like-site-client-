@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 export interface Pin {
 	img: string | File;
@@ -16,7 +17,7 @@ export interface Pin {
 
 export default function PostMainPage({ img, title, author, reactions, _id }: Pin) {
 	return (
-		<a className="main-post__link" href={`/pin/detailed/${_id}`}>
+		<Link to={`/pin/detailed/${_id}`} className="main-post__link">
 			<div className="main-post card">
 				<div className="main-post__pic ">
 					<img
@@ -32,6 +33,6 @@ export default function PostMainPage({ img, title, author, reactions, _id }: Pin
 					{reactions && <div className="main-post__reactions"></div>}
 				</div>
 			</div>
-		</a>
+		</Link>
 	);
 }

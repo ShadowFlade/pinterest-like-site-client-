@@ -14,7 +14,10 @@ import CollectionMiniModal from '../../components/CollectionMiniModal/Collection
 import { useState, useRef, useContext } from 'react';
 import { MyContext } from '@/Context/Context';
 import { nanoid } from 'nanoid';
+import { Share } from '@mui/icons-material';
 import './ProfilePage.scss';
+import { Link } from 'react-router-dom';
+import { BASE_URL } from '@/variables';
 
 export default function ProfilePage() {
 	const { isAuth, user } = useContext(MyContext);
@@ -37,12 +40,21 @@ export default function ProfilePage() {
 	));
 	const numberOfFOLLOWERS = FOLLOWERS > 0 ? FOLLOWERS : 'No one is FOLLOWING you yet...';
 	const numberOfFOLLOWING =
-		FOLLOWING > 0 ? FOLLOWING : '0(${<a href="/">Want to follow somebody?</a>})';
+		FOLLOWING > 0 ? (
+			FOLLOWING
+		) : (
+			<span>
+				<span>0</span>
+				<a href="/" className="ms-2 mt-2 fs-6">
+					Want to follow somebody?
+				</a>
+			</span>
+		);
 	const tabProfileContent = (
 		<div className="profile-page__collections">
 			{collectionsMini.map((collection) => {
 				return (
-					<div key={nanoid()} className="profile-page__item">
+					<div key={nanoid()} className="profile-page__item m-2">
 						{collection}
 					</div>
 				);
@@ -68,12 +80,18 @@ export default function ProfilePage() {
 						</div>
 						<h1 className="profile-page__name h1">{user && user.name}</h1>
 						<p className="profile-page__text">
-							<p className="profile-page__FOLLOWERS">
+							<p className="profile-page__FOLLOWERS mt-2">
 								followers: {numberOfFOLLOWERS}
 							</p>
-							<p className="profile-page__FOLLOWING">
+							<p className="profile-page__FOLLOWING mt-2">
 								following: {numberOfFOLLOWING}
 							</p>
+							<span className="mt-2">
+								<Link to={`${user?._id}`}>
+									<Share />
+									<span className="share">Share your profile</span>
+								</Link>
+							</span>
 						</p>
 					</div>
 				</header>
