@@ -1,9 +1,8 @@
-const STALE_TIME = 5000;
+const STALE_TIME = 1000 * 120;
 const reactQueryConfig = {
 	retry: false,
 	staleTime: STALE_TIME,
-	cacheTime: 1000,
 	refetchOnWindowFocus: false,
-	refetchInterval: 1000 * 120,
+	refetchInterval: STALE_TIME,
 };
 export { STALE_TIME, reactQueryConfig };

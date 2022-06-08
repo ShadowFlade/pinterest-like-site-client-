@@ -17,10 +17,10 @@ import { nanoid } from 'nanoid';
 import './ProfilePage.scss';
 
 export default function ProfilePage() {
-	const { isAuth, user, refetch } = useContext(MyContext);
+	const { isAuth, user } = useContext(MyContext);
 	const avatar = '';
 	const FOLLOWERS = 5;
-	const FOLLOWING = 10;
+	const FOLLOWING = 0;
 	const [activeCollection, setActiveCollection] = useState();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const closeModal = () => {

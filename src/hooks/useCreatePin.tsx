@@ -12,7 +12,6 @@ export interface userCreatePinOptions {
 }
 //TODO dont like passing data arguments into userCreatePin arguments
 export default function useCreatePin({ cb, user }: userCreatePinOptions) {
-	console.dir(user);
 	const queryClient = useQueryClient();
 	return useMutation(uploadPin, {
 		onMutate: async ({ e, data }) => {

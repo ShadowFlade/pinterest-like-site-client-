@@ -1,3 +1,4 @@
+import queryClient from '@/index';
 import * as React from 'react';
 import { forwardRef, MutableRefObject } from 'react';
 import CookiePrompt from '../../components/CookiePrompt/CookiePrompts';
@@ -6,16 +7,16 @@ import PostMainPage, { Pin } from '../../components/PostMainPage/PostMainPage';
 import usePins from '../../hooks/usePins';
 import { IMainPageProps } from './main-page';
 import './MainPage.scss';
-
 const MainPage = forwardRef(
 	(
 		{ isUploadPinOpen, closeModal }: IMainPageProps,
 		ref: MutableRefObject<null | HTMLDivElement>
 	) => {
-		const { data, status, error } = usePins();
+		const { data, isSuccess, error } = usePins();
 
-		if (status === 'success') {
-			const posts = data.map((item: Pin) => {
+		const postsData = data;
+		if (isSuccess && postsData) {
+			const posts = postsData.map((item: Pin) => {
 				if (!item.img) {
 					return;
 				}

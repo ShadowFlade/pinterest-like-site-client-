@@ -6,21 +6,18 @@ import { useParams } from 'react-router';
 import PinAuthorBlock from '../PinAuthorBlock/PinAuthorBlock';
 import ContentLoader from 'react-content-loader';
 import { Pin } from '../PostMainPage/PostMainPage';
-import './PinDetailed.scss';
 import { Author, DetailedResponse } from './pin-detailed';
-import { STALE_TIME } from '@/variables';
-
+import { reactQueryConfig, STALE_TIME } from '@/variables';
+import queryClient from '@/index';
+import './PinDetailed.scss';
 export default function PinDetailed() {
 	const { id } = useParams();
+
 	const getData = async (): Promise<AxiosResponse<DetailedResponse>> => {
 		return axios.get(`pin/detailed/${id}`, axiosConfig);
 	};
 
-	const { data, isLoading, isSuccess, error } = useQuery('getSinglePin', getData, {
-		retry: false,
-		staleTime: STALE_TIME,
-	});
-
+	const { data, isLoading, isSuccess, error } = useQuery(['getSinglePin', id], getData);
 	const { pin, author }: DetailedResponse =
 		isSuccess && data ? data.data : { pin: undefined, author: undefined }; // why if we substitute it with isSuccess it yields a mistake
 

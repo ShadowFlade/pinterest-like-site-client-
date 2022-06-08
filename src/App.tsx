@@ -2,7 +2,7 @@ import * as ReactDOM from 'react-dom/client';
 import * as React from 'react';
 import { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import imgSrc10 from './components/PostMainPage/imgs/wp3161439.jpg';
 import CookiePrompt from './components/CookiePrompt/CookiePrompts';
@@ -28,6 +28,10 @@ const axiosConfig = {
 };
 
 const App = () => {
+	const navigate = useNavigate();
+	const goBack = React.useCallback(() => {
+		navigate(-1);
+	}, []);
 	const mainPage = useRef<null | HTMLDivElement>(null);
 	const followers = 0;
 	const following = 5;
@@ -44,7 +48,10 @@ const App = () => {
 
 	return (
 		<ContextProvider>
-			<div className="app">
+			<div className="app mx-5">
+				<button onClick={goBack} className="btn btn-dark btn-lg back-button">
+					Back
+				</button>
 				<Routes>
 					<Route
 						path="/"
@@ -68,8 +75,8 @@ const App = () => {
 							}
 						/>
 						<Route path="profile/me" element={<ProfilePage />} />
+						<Route path="pin/detailed/:id" element={<PinDetailed />} />
 					</Route>
-					<Route path="pin/detailed/:id" element={<PinDetailed />} />
 				</Routes>
 			</div>
 		</ContextProvider>
