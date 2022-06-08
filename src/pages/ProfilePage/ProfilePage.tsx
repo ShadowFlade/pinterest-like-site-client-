@@ -11,13 +11,14 @@ import imgSrc8 from '../../components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from '../../components/PostMainPage/imgs/wp3161438.jpg';
 import ProfileTabs, { EProfileTabs } from '../../components/ProfileTabs/ProfileTabs';
 import CollectionMiniModal from '../../components/CollectionMiniModal/CollectionMiniModal';
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef, useContext, MouseEventHandler } from 'react';
 import { MyContext } from '@/Context/Context';
 import { nanoid } from 'nanoid';
-import { Share } from '@mui/icons-material';
+import { Share, SubdirectoryArrowLeftRounded } from '@mui/icons-material';
 import './ProfilePage.scss';
 import { Link } from 'react-router-dom';
 import { BASE_URL } from '@/variables';
+import AlertInfo from '@/components/AlertInfo/AlertInfo';
 
 export default function ProfilePage() {
 	const { isAuth, user } = useContext(MyContext);
@@ -65,6 +66,16 @@ export default function ProfilePage() {
 		{ title: EProfileTabs.Created, content: tabProfileContent },
 		{ title: EProfileTabs.Default, content: <div>...</div> },
 	];
+	const [alert, setAlert] = useState(false);
+	const onClick: MouseEventHandler<HTMLButtonElement> = (e: React.MouseEvent) => {
+		copyToClipboard();
+	};
+	const copyToClipboard = () => {
+		navigator.clipboard.writeText(`${BASE_URL}/profile/${user?._id}`).then(() => {
+			setAlert(true);
+			setTimeout(() => setAlert(false), 5000);
+		});
+	};
 	return (
 		<div className="profile-page">
 			<div className="profile-page__content">
@@ -87,10 +98,10 @@ export default function ProfilePage() {
 								following: {numberOfFOLLOWING}
 							</p>
 							<span className="mt-2">
-								<Link to={`${user?._id}`}>
+								<button className="bg-transparent mt-2" onClick={onClick}>
 									<Share />
-									<span className="share">Share your profile</span>
-								</Link>
+									<span className="share lead">Share your profile</span>
+								</button>
 							</span>
 						</p>
 					</div>
@@ -105,6 +116,7 @@ export default function ProfilePage() {
 				ref={collMiniModalRef}
 				closeModal={closeModal}
 			></CollectionMiniModal>
+			<AlertInfo text="Link to your profile was copied to clipboard" visible={alert} />
 		</div>
 	);
 }
