@@ -13,6 +13,8 @@ import './PinDetailed.scss';
 import LikeButton from '../LikeButton/LikeButton';
 import Reactions from '../Reactions/Reactions';
 import reactions from './reactions';
+import SuggestedPanel from '../SuggestedPanel/SuggestedPanel';
+import Spinner from '../SpinnerCat/SpinnerCat';
 export default function PinDetailed() {
 	const { id } = useParams();
 
@@ -85,6 +87,9 @@ export default function PinDetailed() {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="pin-detailed__suggested">
+				{isLoading ? <Spinner /> : <SuggestedPanel keywords={pin?.keywords as string[]} />}
 			</div>
 		</div>
 	);

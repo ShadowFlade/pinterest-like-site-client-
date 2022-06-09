@@ -41,7 +41,7 @@ export default function RegisterForm({ left, closeRegisterModal }: IRegisterForm
 			}}
 			validationSchema={registerSchema}
 			onSubmit={(values) => {
-				console.log(values);
+				console.dir(values);
 			}}
 		>
 			{({ isSubmitting }) => (

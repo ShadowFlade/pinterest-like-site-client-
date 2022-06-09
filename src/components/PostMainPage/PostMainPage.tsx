@@ -7,6 +7,7 @@ export interface Pin {
 	author: string | undefined;
 	type?: string;
 	readonly _id: string;
+	keywords?: string[];
 	reactions?: {
 		emoji: string;
 		emojiCount: number;
