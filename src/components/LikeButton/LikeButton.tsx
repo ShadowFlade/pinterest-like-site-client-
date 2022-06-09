@@ -11,8 +11,10 @@ export default function LikeButton({ numberOfLikes }: ILikeButtonProps) {
 		setLiked(!liked);
 	};
 	return (
-		<div className="like-button fs-5">
-			<span className="like-button__number">{liked ? numberOfLikes + 1 : numberOfLikes}</span>
+		<div className="like-button fs-5  d-flex align-items-center">
+			<span className="like-button__number display-3">
+				{liked ? numberOfLikes + 1 : numberOfLikes}
+			</span>
 			<span className="like-button__like  ms-1" onClick={like}>
 				<Like ref={checkbox} color="red" liked={liked} setIsLiked={setLiked} />
 			</span>

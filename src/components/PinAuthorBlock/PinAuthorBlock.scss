@@ -1,4 +1,9 @@
+@import '~bootstrap/scss/bootstrap';
 .pin-author {
-	&__reactions {
+	&__name {
+		word-break: break-all;
+		&:hover {
+			color: $primary !important;
+		}
 	}
 }

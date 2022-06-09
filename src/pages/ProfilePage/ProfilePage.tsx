@@ -98,9 +98,12 @@ export default function ProfilePage() {
 								following: {numberOfFOLLOWING}
 							</p>
 							<span className="mt-2">
-								<button className="bg-transparent mt-2" onClick={onClick}>
+								<button
+									className="bg-transparent mt-2 mx-auto d-flex justify-content-center align-items-center"
+									onClick={onClick}
+								>
 									<Share />
-									<span className="share lead">Share your profile</span>
+									<span className="share lead ms-1">Share your profile</span>
 								</button>
 							</span>
 						</p>

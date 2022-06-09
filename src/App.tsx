@@ -28,6 +28,7 @@ const axiosConfig = {
 };
 
 const App = () => {
+	const [isDev, setDev] = useState(false);
 	const navigate = useNavigate();
 	const goBack = React.useCallback(() => {
 		navigate(-1);
@@ -49,9 +50,11 @@ const App = () => {
 	return (
 		<ContextProvider>
 			<div className="app mx-5">
-				<button onClick={goBack} className="btn btn-dark btn-lg back-button">
-					Back
-				</button>
+				{isDev ? (
+					<button onClick={goBack} className="btn btn-dark btn-lg back-button">
+						Back
+					</button>
+				) : null}
 				<Routes>
 					<Route
 						path="/"

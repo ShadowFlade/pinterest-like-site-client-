@@ -10,6 +10,9 @@ import { Author, DetailedResponse } from './pin-detailed';
 import { reactQueryConfig, STALE_TIME } from '@/variables';
 import queryClient from '@/index';
 import './PinDetailed.scss';
+import LikeButton from '../LikeButton/LikeButton';
+import Reactions from '../Reactions/Reactions';
+import reactions from './reactions';
 export default function PinDetailed() {
 	const { id } = useParams();
 
@@ -48,7 +51,11 @@ export default function PinDetailed() {
 		);
 	const authorBlock =
 		isSuccess && author ? (
-			<PinAuthorBlock authorName={author.name || author.email} avatar={''} />
+			<PinAuthorBlock
+				authorName={author.name || author.email}
+				avatar={''}
+				authorID={author._id}
+			/>
 		) : (
 			<ContentLoader height={200} viewBox="0 0 200px 200px">
 				<rect x="0" y="0" rx="5" ry="5" width="500" height="100" />
@@ -61,14 +68,21 @@ export default function PinDetailed() {
 					<div className="pin__pic">{img}</div>
 					<div className="pin__info">
 						{/* <header className="pin__header"></header> */}
-						<div className="pin__main mt-5">
-							<h2 className="pin__title h2 text-white">{title}</h2>
-							<div className="pin__description mt-1 pb-2 border-bottom border-1 border-white">
+						<div className="pin__main display-3 my-auto">
+							<h2 className="pin__title h1 display-2 text-white">{title}</h2>
+							<div className="pin__description mt-3 pb-2 border-bottom border-1 border-white">
 								{description}
 							</div>
-							<div className="pin__author mt-3">{authorBlock}</div>
+							<div className="pin__author mt-5">{authorBlock}</div>
 						</div>
-						<div className="pin__interactions"></div>
+						<div className="pin__interactions mt-3">
+							<div className="pin__like mt-3">
+								<LikeButton numberOfLikes={5} />
+							</div>
+							<div className="pin__reactions mt-3 display-3">
+								<Reactions reactions={reactions} />
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

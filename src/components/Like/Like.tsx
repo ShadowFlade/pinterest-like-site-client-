@@ -10,30 +10,24 @@ export interface ILikeProps {
 
 const Like = forwardRef(
 	({ color, liked, setIsLiked }: ILikeProps, ref: React.RefObject<HTMLInputElement>) => {
-		const isChecked = ref && ref.current && ref.current.checked;
+		// const isChecked = ref && ref.current && ref.current.checked;
 		const favoriteStyles = {
-			fill: isChecked ? color : 'transparent',
-			opacity: isChecked ? 1 : 0,
+			fill: liked ? color : 'transparent',
+			opacity: liked ? 1 : 0,
 		};
 		const favoriteBorderStyles = { fill: color };
 		const like = () => {
 			setIsLiked(!liked);
 		};
 		return (
-			<span className="like">
-				<input
-					onClick={like}
-					ref={ref}
-					type="checkbox"
-					name="like"
-					className="like__input"
-				/>
+			<div className="like" onClick={like}>
 				<Favorite className="like__icon" style={favoriteStyles} />
 				<FavoriteBorder
-					className="like__icon like__icon--secondary"
+					fontSize="large"
+					className="like__icon like__icon--secondary  like__icon--floating"
 					style={favoriteBorderStyles}
 				/>
-			</span>
+			</div>
 		);
 	}
 );
