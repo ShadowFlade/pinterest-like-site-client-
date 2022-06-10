@@ -26,7 +26,7 @@ export default function useCreatePin({ cb, user }: userCreatePinOptions) {
 				if (
 					fileReader.result &&
 					typeof fileReader.result === 'string' &&
-					fileReader.readyState == 2
+					fileReader.readyState == 2 //TODO mb need to clean (2 lines above and this one)
 				) {
 					const newPin: Pin = {
 						_id: nanoid(),

@@ -3,7 +3,6 @@ import { useContext, useRef, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { axiosConfig } from '../../App';
 import { MyContext } from '@/Context/Context';
 import './UploadPinForm.scss';
 import { IUploadPinFormProps } from './upload-pin-form';

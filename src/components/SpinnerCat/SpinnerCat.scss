@@ -108,6 +108,12 @@
 	justify-content: center;
 	align-items: center;
 	background-color: #e6dcdc;
+
+	position: relative;
+	top: -1rem;
+	z-index: 0;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
 }
 
 //   html {

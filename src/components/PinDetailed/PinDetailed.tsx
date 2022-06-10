@@ -1,6 +1,7 @@
+import * as React from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { axiosConfig } from '@/App';
 import axios, { AxiosResponse } from 'axios';
-import * as React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router';
 import PinAuthorBlock from '../PinAuthorBlock/PinAuthorBlock';
@@ -14,8 +15,29 @@ import LikeButton from '../LikeButton/LikeButton';
 import Reactions from '../Reactions/Reactions';
 import reactions from './reactions';
 import SuggestedPanel from '../SuggestedPanel/SuggestedPanel';
-import Spinner from '../SpinnerCat/SpinnerCat';
+import Spinner, { catStyle } from '../SpinnerCat/SpinnerCat';
+import { sample } from '@/utils/utils';
+
+import SpinnerCat from '../SpinnerCat/SpinnerCat';
+import RevolverSpinner from '../RevolerSpinner/RevolverSpinner';
+
+export interface Spinner {
+	action?: Dispatch<SetStateAction<boolean>>;
+	element: JSX.Element;
+}
+
+const pickSpinner = (arr: Spinner[]) => {
+	const el = sample(arr);
+	el.action ? el?.action() : false;
+	return el.element;
+};
 export default function PinDetailed() {
+	const [isCatStyle, setIsCatStyle] = useState(false);
+	const spinners = [
+		{ action: setIsCatStyle, element: <SpinnerCat setIsCatStyle={setIsCatStyle} /> },
+		{ element: <RevolverSpinner /> },
+	];
+
 	const { id } = useParams();
 
 	const getData = async (): Promise<AxiosResponse<DetailedResponse>> => {
@@ -63,6 +85,8 @@ export default function PinDetailed() {
 				<rect x="0" y="0" rx="5" ry="5" width="500" height="100" />
 			</ContentLoader>
 		);
+	const spinner = pickSpinner(spinners) as JSX.Element;
+
 	return (
 		<div className="bg px-2 py-2">
 			<div className="pin">
@@ -70,7 +94,7 @@ export default function PinDetailed() {
 					<div className="pin__pic">{img}</div>
 					<div className="pin__info">
 						{/* <header className="pin__header"></header> */}
-						<div className="pin__main display-3 my-auto">
+						<div className="pin__main display-4 my-auto">
 							<h2 className="pin__title h1 display-2 text-white">{title}</h2>
 							<div className="pin__description mt-3 pb-2 border-bottom border-1 border-white">
 								{description}
@@ -81,15 +105,15 @@ export default function PinDetailed() {
 							<div className="pin__like mt-3">
 								<LikeButton numberOfLikes={5} />
 							</div>
-							<div className="pin__reactions mt-3 display-3">
+							<div className="pin__reactions mt-3 display-4">
 								<Reactions reactions={reactions} />
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className="pin-detailed__suggested">
-				{isLoading ? <Spinner /> : <SuggestedPanel keywords={pin?.keywords as string[]} />}
+			<div className="pin-detailed__suggested" style={isCatStyle ? catStyle : {}}>
+				{isLoading ? spinner : <SuggestedPanel keywords={pin?.keywords as string[]} />}
 			</div>
 		</div>
 	);

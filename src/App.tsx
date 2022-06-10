@@ -23,8 +23,8 @@ import ContextProvider from './Context/Context';
 import PinDetailed from './components/PinDetailed/PinDetailed';
 const axiosConfig = {
 	baseURL: 'http://localhost:3002/',
-	withCredentials: true,
-	'Access-Control-Allow-Origin': true,
+	// withCredentials: true,
+	'Access-Control-Allow-Credentials': true,
 };
 
 const App = () => {

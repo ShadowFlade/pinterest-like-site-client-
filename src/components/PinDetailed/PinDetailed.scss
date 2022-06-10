@@ -5,6 +5,8 @@
 .pin {
 	border-radius: 20px;
 	overflow: hidden;
+	z-index: 1;
+	position: relative;
 	&__pic {
 		background-color: transparent;
 		width: 50%;
@@ -19,4 +21,7 @@
 		padding: 1.5rem 1rem;
 		background-color: $secondary;
 	}
+}
+.pin-detailed__suggested {
+	padding: 5rem 0;
 }
