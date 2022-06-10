@@ -25,7 +25,7 @@ export default function RegisterForm({ left, closeRegisterModal }: IRegisterForm
 	const registerUser = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const userData = new FormData(e.target as HTMLFormElement);
-		await axios.post('/register', userData, axiosConfig).then((res) => {
+		await axios.post('/auth/register', userData, axiosConfig).then((res) => {
 			if (res.data.success) {
 				closeRegisterModal();
 			} else {

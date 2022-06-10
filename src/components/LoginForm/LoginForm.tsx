@@ -21,7 +21,7 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 		e.preventDefault();
 		const userData = new FormData(e.target as HTMLFormElement);
 		const sleep = new Promise((res) => setTimeout(res, timeBeforeServerErrorDisappears));
-		await axios.post('/login', userData, axiosConfig).then((res) => {
+		await axios.post('/auth/login', userData, axiosConfig).then((res) => {
 			if (res.data.error) {
 				setError(res.data.error);
 				sleep.then(() => setError(''));

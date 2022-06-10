@@ -18,7 +18,7 @@ export const MyContext = React.createContext<IContext>({
 
 const ContextProvider = ({ children }: { children: JSX.Element }) => {
 	const login = () => {
-		return axios.get('/login/auth', axiosConfig);
+		return axios.get('/auth', axiosConfig);
 	};
 	const {
 		data,
