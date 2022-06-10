@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import './PostMainPage.scss';
 
 export interface Pin {
 	img: string | File;
