@@ -24,7 +24,7 @@ import PinDetailed from './components/PinDetailed/PinDetailed';
 const axiosConfig = {
 	baseURL: 'http://localhost:3002/',
 	'Access-Control-Allow-Credentials': true,
-	withCredentials: true,
+	// withCredentials: true,
 };
 
 const App = () => {
