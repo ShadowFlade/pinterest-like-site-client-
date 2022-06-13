@@ -17,7 +17,6 @@ const axiosConfig = {
 	'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,PUT,PATCH,DELETE,HEAD',
 	'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 	withCredentials: true,
-	Credential: 'same-origin',
 	'Access-Control-Allow-Origin': 'http://localhost, http://res.cloudinary.com',
 };
 
