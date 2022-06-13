@@ -22,11 +22,17 @@ export interface Pin {
 }
 
 export default function PostMainPage({ img, title, author, reactions, _id }: Pin) {
+	const pattern = /cloudinary/;
+	const isLocal = pattern.test(img);
+	console.log(isLocal, img, 'local');
+
 	const [elem, setElem] = useState<JSX.Element | null>(null);
 	const getImg = () => {
-		return axios.get(img, axiosConfig);
+		return axios.get(img, { ...axiosConfig, withCredentials: false });
 	};
-	const { data, isSuccess, isError } = useQuery<AxiosResponse<string>>([_id], getImg);
+	const { data, isSuccess, isError } = useQuery<AxiosResponse<string>>([_id], getImg, {
+		enabled: isLocal,
+	});
 	if (isError) {
 		axios.post('/pin/delete', { _id }, axiosConfig).then(({ data }) => {
 			console.log(data);
