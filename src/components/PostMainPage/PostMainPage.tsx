@@ -24,7 +24,6 @@ export interface Pin {
 export default function PostMainPage({ img, title, author, reactions, _id }: Pin) {
 	const pattern = /cloudinary/;
 	const isLocal = pattern.test(img);
-	console.log(isLocal, img, 'local');
 
 	const [elem, setElem] = useState<JSX.Element | null>(null);
 	const getImg = () => {
@@ -34,9 +33,7 @@ export default function PostMainPage({ img, title, author, reactions, _id }: Pin
 		enabled: isLocal,
 	});
 	if (isError) {
-		axios.post('/pin/delete', { _id }, axiosConfig).then(({ data }) => {
-			console.log(data);
-		});
+		axios.post('/pin/delete', { _id }, axiosConfig);
 		return null;
 	}
 	return (

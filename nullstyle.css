@@ -86,3 +86,11 @@ img:-moz-broken::before {
 	content: none !important;
 	unicode-bidi: normal;
 }
+ul,
+ol,
+menu {
+	list-style-type: none;
+	margin-block-start: 0;
+	margin-block-end: 0;
+	padding-inline-start: 0;
+}

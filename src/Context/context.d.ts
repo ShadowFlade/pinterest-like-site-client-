@@ -1,11 +1,24 @@
 import { AxiosResponse } from 'axios';
 import * as React from 'react';
 import { Dispatch } from 'react';
-import { QueryObserverResult } from 'react-query';
+import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from 'react-query';
 
 interface IContext {
 	isAuth: boolean;
 	user: User | null;
+	refetch:
+		| (<TPageData>(
+				options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+		  ) => Promise<
+				QueryObserverResult<
+					{
+						isAuth: boolean;
+						user: User;
+					},
+					unknown
+				>
+		  >)
+		| undefined;
 }
 export enum AccessGroup {
 	User = 'User',

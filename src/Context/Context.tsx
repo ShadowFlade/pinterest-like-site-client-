@@ -13,17 +13,17 @@ import { IContext, User } from './context';
 export const MyContext = React.createContext<IContext>({
 	isAuth: false,
 	user: null,
+	refetch: undefined,
 });
 
 const ContextProvider = ({ children }: { children: JSX.Element }) => {
-	const login = () => {
-		return axios
-			.get('/auth', axiosConfig)
-			.then(({ data }) => {
-				console.log(data);
-				return data;
-			})
-			.catch((reason) => console.error(reason));
+	const login = async () => {
+		try {
+			const { data } = await axios.get('/auth', axiosConfig);
+			return data;
+		} catch (reason) {
+			return console.error(reason);
+		}
 	};
 	const { data, isSuccess, refetch }: UseQueryResult<{ isAuth: boolean; user: User }> = useQuery(
 		'profile-me',

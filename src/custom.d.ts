@@ -9,23 +9,23 @@
 //   export default src;
 // }
 declare module '*.svg?inline' {
-  const content: any;
-  export default content;
+	const content: any;
+	export default content;
 }
 declare module '*.svg' {
-  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
-  export default content;
+	const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+	export default content;
 }
 declare module '*.jpeg' {
-  const content: any;
-  export default content;
+	const content: any;
+	export default content;
 }
 declare module '*.jpg' {
-  const content: any;
-  export default content;
+	const content: any;
+	export default content;
 }
 
 declare module '*.png' {
-  const content: any;
-  export default content;
+	const content: any;
+	export default content;
 }

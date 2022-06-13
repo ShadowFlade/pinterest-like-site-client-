@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/bootstrap';
+.context-menu {
+	border: 2px solid $secondary;
+	&__item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-inline: 0.3rem;
+		border-bottom: 1px solid $secondary;
+		border-collapse: collapse;
+		&--logout {
+			color: red;
+			fill: red;
+		}
+	}
+	&__option {
+		margin-left: 0.3rem;
+	}
+}

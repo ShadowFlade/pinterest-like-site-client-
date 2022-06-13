@@ -1,0 +1,9 @@
+.pop-item {
+	position: absolute;
+	display: none;
+	text-align: center;
+	background-color: white; //TODO theme bg
+	&--active {
+		display: block;
+	}
+}

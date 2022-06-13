@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import SecondaryIcon from '../SecondaryIcon/SecondaryIcon';
 import { IHeaderProps } from './header';
 import ChatIcon from '../SecondaryIcon/chat-dots.svg';
@@ -8,6 +8,9 @@ import ProfileIcon from '../ProfileIcon/ProfileIcon';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import { MyContext } from '@/Context/Context';
+import { bindOutsideClickDetection } from '@/utils/utils';
+import PopItem from '../PopItem/PopItem';
+import Contextmenu from '../ContextMenu/ContextMenu';
 
 export default function Header({
 	messagesCount,
@@ -19,8 +22,19 @@ export default function Header({
 }: IHeaderProps) {
 	const iconWidth = 35;
 	const { isAuth, user } = useContext(MyContext);
+	const profileLink = useRef(null);
+	const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
+
 	const auth = isAuth ? (
-		<Link to={'/profile/me'} className="header__profile-icon mx-2">
+		<Link
+			to={'/profile/me'}
+			className="header__profile-icon mx-2"
+			ref={profileLink}
+			onContextMenu={(e) => {
+				e.preventDefault();
+				setIsContextMenuVisible((c) => !c);
+			}}
+		>
 			<ProfileIcon name={user?.name || user?.email || ''} />
 		</Link>
 	) : (
@@ -58,7 +72,6 @@ export default function Header({
 				Add pin
 			</button>
 			<div className="d-flex flex-grow-1 mx-2 position-relative">
-				{/* SEARCH ICON */}
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -93,6 +106,15 @@ export default function Header({
 				</div>
 			</div>
 			{auth}
+			{profileLink.current ? (
+				<PopItem
+					clickElement={profileLink.current}
+					isShow={isContextMenuVisible}
+					show={setIsContextMenuVisible}
+				>
+					<Contextmenu show={setIsContextMenuVisible} />
+				</PopItem>
+			) : null}
 		</div>
 	);
 }

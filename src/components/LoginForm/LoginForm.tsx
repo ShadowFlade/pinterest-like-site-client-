@@ -7,6 +7,7 @@ import FormInputFieldError from '../FormInputFieldError/FormInputFieldError';
 import { ILoginForm } from './login-form';
 import axios from 'axios';
 import { axiosConfig } from '@/index';
+import { MyContext } from '@/Context/Context';
 
 const loginSchema = yup.object().shape({
 	email: yup.string().email('Invalid email').required(),
@@ -16,6 +17,7 @@ const loginSchema = yup.object().shape({
 
 const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 	const [error, setError] = useState('');
+	const { refetch } = React.useContext(MyContext);
 	const timeBeforeServerErrorDisappears = 5000;
 	const login = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -27,6 +29,7 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 				sleep.then(() => setError(''));
 			} else if (res.data.success) {
 				closeRegisterModal();
+				refetch ? refetch() : false;
 			}
 		});
 	};
