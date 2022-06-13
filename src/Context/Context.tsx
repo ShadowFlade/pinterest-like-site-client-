@@ -7,31 +7,32 @@ import * as React from 'react';
 
 import { Dispatch, useCallback, useMemo, useState, memo, useEffect } from 'react';
 import { useQuery, UseQueryResult } from 'react-query';
-import { axiosConfig } from '../App';
+import { axiosConfig } from '..';
 import { IContext, User } from './context';
 
 export const MyContext = React.createContext<IContext>({
 	isAuth: false,
 	user: null,
-	refetch: null,
 });
 
 const ContextProvider = ({ children }: { children: JSX.Element }) => {
 	const login = () => {
-		return axios.get('/auth', axiosConfig);
+		return axios
+			.get('/auth', axiosConfig)
+			.then(({ data }) => {
+				console.log(data);
+				return data;
+			})
+			.catch((reason) => console.error(reason));
 	};
-	const {
-		data,
-		isSuccess,
-		refetch,
-	}: UseQueryResult<AxiosResponse<{ isAuth: boolean; user: User }>> = useQuery(
+	const { data, isSuccess, refetch }: UseQueryResult<{ isAuth: boolean; user: User }> = useQuery(
 		'profile-me',
 		login,
 		reactQueryConfig
 	);
 	const defaultState = {
-		isAuth: data?.data.isAuth || false,
-		user: data?.data.user || null,
+		isAuth: data?.isAuth || false,
+		user: data?.user || null,
 		refetch,
 	};
 

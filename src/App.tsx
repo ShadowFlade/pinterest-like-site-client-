@@ -21,11 +21,6 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
 import ContextProvider from './Context/Context';
 import PinDetailed from './components/PinDetailed/PinDetailed';
-const axiosConfig = {
-	baseURL: 'http://localhost:3002/',
-	'Access-Control-Allow-Credentials': true,
-	// withCredentials: true,
-};
 
 const App = () => {
 	const [isDev, setDev] = useState(false);
@@ -85,5 +80,4 @@ const App = () => {
 		</ContextProvider>
 	);
 };
-export { axiosConfig };
 export default App;

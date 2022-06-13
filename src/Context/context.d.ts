@@ -6,11 +6,6 @@ import { QueryObserverResult } from 'react-query';
 interface IContext {
 	isAuth: boolean;
 	user: User | null;
-	refetch:
-		| (() => Promise<
-				QueryObserverResult<AxiosResponse<{ isAuth: boolean; user: User }, any>, unknown>
-		  >)
-		| null;
 }
 export enum AccessGroup {
 	User = 'User',

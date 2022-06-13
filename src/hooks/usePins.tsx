@@ -1,8 +1,8 @@
-import { axiosConfig } from '../App';
 import { Pin } from '../components/PostMainPage/PostMainPage';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { reactQueryConfig, STALE_TIME } from '@/variables';
+import { axiosConfig } from '..';
 
 const usePins = () => {
 	const fetchPins = async () => {

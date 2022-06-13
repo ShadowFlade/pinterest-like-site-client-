@@ -1,4 +1,4 @@
-import { axiosConfig } from '@/App';
+import { axiosConfig } from '@/index';
 import axios, { AxiosResponse } from 'axios';
 import * as React from 'react';
 import { useQuery } from 'react-query';

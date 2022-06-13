@@ -3,10 +3,10 @@ import { useState, useRef, ChangeEvent } from 'react';
 import * as yup from 'yup';
 import * as React from 'react';
 import AuthFormInputField from '../AuthFormInputFiled/AuthFormInputField';
-import { axiosConfig } from '../../App';
 import FormInputFieldError from '../FormInputFieldError/FormInputFieldError';
 import { ILoginForm } from './login-form';
 import axios from 'axios';
+import { axiosConfig } from '@/index';
 
 const loginSchema = yup.object().shape({
 	email: yup.string().email('Invalid email').required(),

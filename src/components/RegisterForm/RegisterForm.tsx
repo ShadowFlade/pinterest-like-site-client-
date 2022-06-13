@@ -1,4 +1,3 @@
-import { axiosConfig } from '../../App';
 import * as React from 'react';
 import { useState } from 'react';
 import * as yup from 'yup';
@@ -6,6 +5,7 @@ import AuthFormInputField from '../AuthFormInputFiled/AuthFormInputField';
 import { Form, Formik } from 'formik';
 import FormInputFieldError from '../FormInputFieldError/FormInputFieldError';
 import axios from 'axios';
+import { axiosConfig } from '@/index';
 export interface IRegisterFormProps {
 	left: boolean;
 	closeRegisterModal: () => void;

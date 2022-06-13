@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { axiosConfig } from '@/App';
 import axios, { AxiosResponse } from 'axios';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router';
@@ -9,7 +8,7 @@ import ContentLoader from 'react-content-loader';
 import { Pin } from '../PostMainPage/PostMainPage';
 import { Author, DetailedResponse } from './pin-detailed';
 import { reactQueryConfig, STALE_TIME } from '@/variables';
-import queryClient from '@/index';
+import queryClient, { axiosConfig } from '@/index';
 import './PinDetailed.scss';
 import LikeButton from '../LikeButton/LikeButton';
 import Reactions from '../Reactions/Reactions';
