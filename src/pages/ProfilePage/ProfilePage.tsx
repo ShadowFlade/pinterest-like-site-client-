@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { useState, useRef, useContext, MouseEventHandler } from 'react';
 import CollectionMini from '../../components/CollectionMini/CollectionMini';
+import { nanoid } from 'nanoid';
+import ProfileTabs, { EProfileTabs } from '../../components/ProfileTabs/ProfileTabs';
 import img1 from '../../components/PostMainPage/imgs/_.jpeg';
 import img2 from '../../components/PostMainPage/imgs/8Os5eDI.jpg';
 import img3 from '../../components/PostMainPage/imgs/hotobuildmuscle.png';
@@ -9,18 +12,13 @@ import imgSrc6 from '../../components/PostMainPage/imgs/TheHistoryofWebDesign.jp
 import imgSrc7 from '../../components/PostMainPage/imgs/v8mhrscjvbegyopaxuki.png';
 import imgSrc8 from '../../components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from '../../components/PostMainPage/imgs/wp3161438.jpg';
-import ProfileTabs, { EProfileTabs } from '../../components/ProfileTabs/ProfileTabs';
 import CollectionMiniModal from '../../components/CollectionMiniModal/CollectionMiniModal';
-import { useState, useRef, useContext, MouseEventHandler } from 'react';
 import { MyContext } from '@/Context/Context';
-import { nanoid } from 'nanoid';
-import { Share, SubdirectoryArrowLeftRounded } from '@mui/icons-material';
-import './ProfilePage.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Share } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '@/variables';
 import AlertInfo from '@/components/AlertInfo/AlertInfo';
-import axios from 'axios';
-import { axiosConfig } from '@/index';
+import './ProfilePage.scss';
 
 export default function ProfilePage() {
 	const navigate = useNavigate();

@@ -28,7 +28,7 @@ const hideOnClickOutside = (
 		clickElement?.contains(target) || clickElement?.parentNode?.contains(target);
 	if (!isClickInside) {
 		if (!!cb) {
-			cb((c) => !c);
+			cb(false);
 		} else {
 			popElement ? (popElement.style.display = 'none') : null;
 		}

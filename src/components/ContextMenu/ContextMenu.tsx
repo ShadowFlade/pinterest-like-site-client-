@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Logout } from '@mui/icons-material';
-import './ContextMenu.scss';
 import axios from 'axios';
 import { axiosConfig } from '@/index';
 import { Dispatch } from 'react';
 import { MyContext } from '@/Context/Context';
+import './ContextMenu.scss';
 export interface IContextmenuProps {
 	show: Dispatch<React.SetStateAction<boolean>>;
 }
@@ -13,7 +13,6 @@ export default function Contextmenu({ show }: IContextmenuProps) {
 	const { refetch } = React.useContext(MyContext);
 	const logout = () => {
 		axios.get('auth/logout', axiosConfig).then(({ data }) => {
-			console.log(data);
 			if (data.success) {
 				show(false);
 				refetch ? refetch() : false;

@@ -8,15 +8,6 @@ import imgSrc10 from './components/PostMainPage/imgs/wp3161439.jpg';
 import CookiePrompt from './components/CookiePrompt/CookiePrompts';
 import Header from './components/Header/Header';
 import MainPage from './pages/MainPage/MainPage';
-import imgSrc1 from './components/PostMainPage/imgs/_.jpeg';
-import imgSrc2 from './components/PostMainPage/imgs/8Os5eDI.jpg';
-import imgSrc3 from './components/PostMainPage/imgs/37MemesYouComeToExpectFromeBaumsWorldFeatures.jpeg';
-import imgSrc4 from './components/PostMainPage/imgs/hotobuildmuscle.png';
-import imgSrc5 from './components/PostMainPage/imgs/SQLCommanSQLCheatSheetSQLServerSQLforBeginner.jpeg';
-import imgSrc6 from './components/PostMainPage/imgs/TheHistoryofWebDesign.jpeg';
-import imgSrc7 from './components/PostMainPage/imgs/v8mhrscjvbegyopaxuki.png';
-import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
-import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
 import ContextProvider, { MyContext } from './Context/Context';
@@ -30,7 +21,6 @@ const App = () => {
 		navigate(-1);
 	}, []);
 	const { isAuth, user } = useContext(MyContext);
-	console.log(isAuth, user);
 	const mainPage = useRef<null | HTMLDivElement>(null);
 
 	const closeModal = () => {
