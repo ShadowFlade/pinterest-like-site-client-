@@ -5,20 +5,28 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
 @each $color, $value in $theme-colors {
-  .btn-#{$color} {
-    @include button-variant(
-      $value,
-      $value,
-      // modify
-      $hover-background: darken($value, 25%),
-      $hover-border: lighten($value, 10%),
-      $active-background: lighten($value, 10%),
-      $active-border: lighten($value, 12.5%) // /modify
-    );
-  }
+	.btn-#{$color} {
+		@include button-variant(
+			$value,
+			$value,
+			// modify
+			$hover-background: darken($value, 25%),
+			$hover-border: lighten($value, 10%),
+			$active-background: lighten($value, 10%),
+			$active-border: lighten($value, 12.5%) // /modify
+		);
+	}
 }
 p {
-  margin-bottom: 0;
+	margin-bottom: 0;
+}
+a,
+a:visited,
+a:-webkit-any-link,
+:any-link {
+	text-decoration: none;
+	border: 0;
+	color: none;
 }
 @import '../../components/PostMainPage/PostMainPage.scss'; // Optional
 // @import '../../../node_modules/bootstrap/scss/reboot';

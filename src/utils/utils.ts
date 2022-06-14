@@ -21,14 +21,14 @@ const hideOnClickOutside = (
 	clickElement: null | HTMLElement,
 	popElement: null | HTMLElement,
 	// className?: string,
-	cb?: React.Dispatch<React.SetStateAction<boolean>>
+	cb?: () => void
 ) => {
 	const target = e.target as Node;
 	const isClickInside =
 		clickElement?.contains(target) || clickElement?.parentNode?.contains(target);
 	if (!isClickInside) {
 		if (!!cb) {
-			cb(false);
+			cb();
 		} else {
 			popElement ? (popElement.style.display = 'none') : null;
 		}

@@ -11,14 +11,15 @@ export interface IPopItemProps {
 
 export default function PopItem({ children, clickElement, show, isShow }: IPopItemProps) {
 	const pop = useRef(null);
+	const closeElement = () => {
+		show(false);
+	};
 	const hideOnClick = (e: MouseEvent) => {
-		hideOnClickOutside(e, clickElement, pop.current, show);
+		hideOnClickOutside(e, clickElement, pop.current, closeElement);
 		e.stopImmediatePropagation();
 	};
 	useEffect(() => {
 		document.body.addEventListener('click', hideOnClick);
-
-		console.log('bound'); //TODO ask:if we put return document.body.removeEventListener the passed func will not work
 		return () => {
 			document.body.removeEventListener('click', hideOnClick);
 		};

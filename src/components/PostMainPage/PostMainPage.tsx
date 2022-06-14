@@ -1,9 +1,10 @@
-import { axiosConfig } from '@/index';
-import axios, { AxiosResponse } from 'axios';
 import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
+
+import axios, { AxiosResponse } from 'axios';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import { axiosConfig } from '@/index';
+
 import './PostMainPage.scss';
 
 export interface Pin {
@@ -25,11 +26,10 @@ export default function PostMainPage({ img, title, author, reactions, _id }: Pin
 	const pattern = /cloudinary/;
 	const isLocal = pattern.test(img);
 
-	const [elem, setElem] = useState<JSX.Element | null>(null);
 	const getImg = () => {
 		return axios.get(img, { ...axiosConfig, withCredentials: false });
 	};
-	const { data, isSuccess, isError } = useQuery<AxiosResponse<string>>([_id], getImg, {
+	const { data, isError } = useQuery<AxiosResponse<string>>([_id], getImg, {
 		enabled: isLocal,
 	});
 	if (isError) {

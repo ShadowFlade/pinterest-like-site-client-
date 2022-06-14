@@ -53,10 +53,7 @@ button::-moz-focus-inner {
 	padding: 0;
 	border: 0;
 }
-a,
-a:visited {
-	text-decoration: none;
-}
+
 a:hover {
 	text-decoration: none;
 }
@@ -77,8 +74,14 @@ h6 {
 	font-weight: 400;
 }
 /*--------------------*/
-a:-webkit-any-link {
-	color: inherit;
+
+a,
+a:visited,
+a:-webkit-any-link,
+:any-link {
+	text-decoration: none;
+	border: 0;
+	color: none;
 }
 
 input:-moz-broken::before,
