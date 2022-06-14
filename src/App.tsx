@@ -2,7 +2,7 @@ import * as ReactDOM from 'react-dom/client';
 import * as React from 'react';
 import { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import imgSrc10 from './components/PostMainPage/imgs/wp3161439.jpg';
 import CookiePrompt from './components/CookiePrompt/CookiePrompts';
@@ -19,20 +19,19 @@ import imgSrc8 from './components/PostMainPage/imgs/wp3161437.jpg';
 import imgSrc9 from './components/PostMainPage/imgs/wp3161438.jpg';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
-import ContextProvider from './Context/Context';
+import ContextProvider, { MyContext } from './Context/Context';
 import PinDetailed from './components/PinDetailed/PinDetailed';
 
 const App = () => {
 	const [isDev, setDev] = useState(false);
+	const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 	const navigate = useNavigate();
 	const goBack = React.useCallback(() => {
 		navigate(-1);
 	}, []);
+	const { isAuth, user } = useContext(MyContext);
+	console.log(isAuth, user);
 	const mainPage = useRef<null | HTMLDivElement>(null);
-	const followers = 0;
-	const following = 5;
-
-	const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 
 	const closeModal = () => {
 		setIsUploadPinOpen(false);
@@ -43,41 +42,42 @@ const App = () => {
 	};
 
 	return (
-		<ContextProvider>
-			<div className="app mx-5">
-				{isDev ? (
-					<button onClick={goBack} className="btn btn-dark btn-lg back-button">
-						Back
-					</button>
-				) : null}
-				<Routes>
+		<div className="app mx-5">
+			{isDev ? (
+				<button onClick={goBack} className="btn btn-dark btn-lg back-button">
+					Back
+				</button>
+			) : null}
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<Layout
+							closeModal={closeModal}
+							isUploadPinOpen={isUploadPinOpen}
+							mainPage={mainPage}
+							handlePinState={handlePinState}
+						/>
+					}
+				>
 					<Route
-						path="/"
+						index
 						element={
-							<Layout
+							<MainPage
+								ref={mainPage}
 								closeModal={closeModal}
 								isUploadPinOpen={isUploadPinOpen}
-								mainPage={mainPage}
-								handlePinState={handlePinState}
 							/>
 						}
-					>
-						<Route
-							index
-							element={
-								<MainPage
-									ref={mainPage}
-									closeModal={closeModal}
-									isUploadPinOpen={isUploadPinOpen}
-								/>
-							}
-						/>
-						<Route path="profile/me" element={<ProfilePage />} />
-						<Route path="pin/detailed/:id" element={<PinDetailed />} />
-					</Route>
-				</Routes>
-			</div>
-		</ContextProvider>
+					/>
+
+					<Route path="profile/me" element={<ProfilePage />} />
+					<Route path="pin/detailed/:id" element={<PinDetailed />} />
+
+					<Route path="*" element={<Navigate to={isAuth ? '/profile/me' : '/'} />} />
+				</Route>
+			</Routes>
+		</div>
 	);
 };
 export default App;

@@ -16,12 +16,18 @@ import { MyContext } from '@/Context/Context';
 import { nanoid } from 'nanoid';
 import { Share, SubdirectoryArrowLeftRounded } from '@mui/icons-material';
 import './ProfilePage.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '@/variables';
 import AlertInfo from '@/components/AlertInfo/AlertInfo';
+import axios from 'axios';
+import { axiosConfig } from '@/index';
 
 export default function ProfilePage() {
+	const navigate = useNavigate();
 	const { isAuth, user } = useContext(MyContext);
+	if (!isAuth) {
+		navigate('/');
+	}
 	const avatar = '';
 	const FOLLOWERS = 5;
 	const FOLLOWING = 0;

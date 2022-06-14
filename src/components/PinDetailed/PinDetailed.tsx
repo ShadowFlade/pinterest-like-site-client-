@@ -1,24 +1,22 @@
 import * as React from 'react';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router';
-import PinAuthorBlock from '../PinAuthorBlock/PinAuthorBlock';
+import { useNavigate, useParams } from 'react-router';
 import ContentLoader from 'react-content-loader';
-import { Pin } from '../PostMainPage/PostMainPage';
-import { Author, DetailedResponse } from './pin-detailed';
-import { reactQueryConfig, STALE_TIME } from '@/variables';
-import queryClient, { axiosConfig } from '@/index';
-import './PinDetailed.scss';
+import PinAuthorBlock from '../PinAuthorBlock/PinAuthorBlock';
+import { DetailedResponse } from './pin-detailed';
 import LikeButton from '../LikeButton/LikeButton';
 import Reactions from '../Reactions/Reactions';
-import reactions from './reactions';
 import SuggestedPanel from '../SuggestedPanel/SuggestedPanel';
 import Spinner, { catStyle } from '../SpinnerCat/SpinnerCat';
 import { sample } from '@/utils/utils';
-
 import SpinnerCat from '../SpinnerCat/SpinnerCat';
 import RevolverSpinner from '../RevolerSpinner/RevolverSpinner';
+import { MyContext } from '@/Context/Context';
+import { axiosConfig } from '@/index';
+import reactions from './reactions';
+import './PinDetailed.scss';
 
 export interface Spinner {
 	action?: Dispatch<SetStateAction<boolean>>;
@@ -31,6 +29,11 @@ const pickSpinner = (arr: Spinner[]) => {
 	return el.element;
 };
 export default function PinDetailed() {
+	const navigate = useNavigate();
+	const { isAuth } = useContext(MyContext);
+	if (!isAuth) {
+		navigate('/');
+	}
 	const [isCatStyle, setIsCatStyle] = useState(false);
 	const spinners = [
 		{ action: setIsCatStyle, element: <SpinnerCat setIsCatStyle={setIsCatStyle} /> },
