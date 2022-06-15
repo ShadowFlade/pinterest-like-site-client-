@@ -32,10 +32,8 @@ export default function PostMainPage({ img, title, author, reactions, _id }: Pin
 	const { data, isError } = useQuery<AxiosResponse<string>>([_id], getImg, {
 		enabled: isLocal,
 	});
-	console.log(isError, 'ERRRO?');
 	if (isError) {
 		axios.post('/pin/delete', { _id }, { ...axiosConfig, withCredentials: false });
-		console.log('should delete');
 		return null;
 	}
 	return (

@@ -31,10 +31,11 @@ const MainPage = forwardRef(
 					/>
 				);
 			});
+
 			return (
 				<div className="main-page px-2" ref={ref}>
 					<CookiePrompt />
-					{posts && posts.length > 1 ? (
+					{posts && posts.length > 0 ? (
 						<MasonryLayout items={posts} />
 					) : (
 						<h1>Your pins could be here!</h1>

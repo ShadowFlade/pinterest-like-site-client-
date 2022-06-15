@@ -43,7 +43,7 @@ export default function PinDetailed() {
 	const { id } = useParams();
 
 	const getData = async (): Promise<AxiosResponse<DetailedResponse>> => {
-		return axios.get(`pin/detailed/${id}`, axiosConfig);
+		return axios.get(`/pin/detailed/${id}`, axiosConfig);
 	};
 
 	const { data, isLoading, isSuccess, error } = useQuery(['getSinglePin', id], getData);
