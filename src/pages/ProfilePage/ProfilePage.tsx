@@ -16,7 +16,7 @@ import CollectionMiniModal from '../../components/CollectionMiniModal/Collection
 import { MyContext } from '@/Context/Context';
 import { Share } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '@/variables';
+import { BASE_URL, reactQueryConfig } from '@/variables';
 import AlertInfo from '@/components/AlertInfo/AlertInfo';
 import './ProfilePage.scss';
 import { axiosConfig } from '@/index';
@@ -25,6 +25,7 @@ import { useQuery } from 'react-query';
 import { Collection } from '@/components/CollectionMini/collection-mini';
 
 export default function ProfilePage() {
+	const [collectionModalVisible, setCollectionModalVisible] = useState(false);
 	const { isAuth, user } = useContext(MyContext);
 
 	const navigate = useNavigate();
@@ -34,19 +35,27 @@ export default function ProfilePage() {
 	const getCollections = async (): Promise<AxiosResponse<Collection[]>> => {
 		return await axios.post('/collections/my', { user }, axiosConfig);
 	};
-	const { data, isError, isSuccess } = useQuery(['collections', user?._id], getCollections, {
-		enabled: !!user,
-	});
+	const { data } = useQuery(
+		['collections', user?._id],
+		getCollections,
+
+		{ ...reactQueryConfig, enabled: !!user }
+	);
 	const collections = data?.data;
-	console.log(collections, 'COLLECTIONs');
+	const setCollection = (collection: Collection) => {
+		setActiveCollection(collection);
+	};
 	const collectionsMini =
 		collections &&
 		collections.map((item) => (
 			<CollectionMini
 				key={nanoid()}
 				imgs={[item.pins[0].img, item.pins[1].img, item.pins[2].img]}
+				setActiveCollection={() => setCollection(item)}
+				showCollectionModal={setCollectionModalVisible}
 			/>
 		));
+
 	const tabProfileContent = (
 		<div className="profile-page__collections">
 			{collectionsMini &&
@@ -66,7 +75,7 @@ export default function ProfilePage() {
 	const avatar = '';
 	const FOLLOWERS = 5;
 	const FOLLOWING = 0;
-	const [activeCollection, setActiveCollection] = useState();
+	const [activeCollection, setActiveCollection] = useState<Collection | undefined>();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const closeModal = () => {
 		setIsModalOpen(false);
@@ -138,6 +147,9 @@ export default function ProfilePage() {
 			<CollectionMiniModal
 				ref={collMiniModalRef}
 				closeModal={closeModal}
+				show={collectionModalVisible}
+				setShow={setCollectionModalVisible}
+				collection={activeCollection}
 			></CollectionMiniModal>
 			<AlertInfo text="Link to your profile was copied to clipboard" visible={alert} />
 		</div>

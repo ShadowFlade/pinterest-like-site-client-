@@ -26,7 +26,6 @@ export interface ProfileStatistics {
 	};
 }
 
-export type Collection = string[];
 export interface IProfilePageProps {
 	avatar: string;
 	followers: number;

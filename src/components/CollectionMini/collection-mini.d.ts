@@ -1,6 +1,9 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Pin } from '../PostMainPage/PostMainPage';
 
 export interface ICollectionMiniProps {
+	showCollectionModal: Dispatch<SetStateAction<boolean>>;
+	setActiveCollection: () => void;
 	imgs: [string, string | undefined, string | undefined];
 }
 export type Collection = {
