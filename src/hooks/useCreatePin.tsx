@@ -60,5 +60,5 @@ export default function useCreatePin({ cb, user }: userCreatePinOptions) {
 async function uploadPin({ e, data }: { e: React.FormEvent; data: PinUploadData }): Promise<void> {
 	const newData = new FormData(e.target as HTMLFormElement);
 	newData.append('authorId', data.authorId);
-	return await axios.post('/pinupload', newData, axiosConfig);
+	await axios.post('/pin/upload', newData, axiosConfig);
 }
