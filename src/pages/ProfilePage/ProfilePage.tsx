@@ -19,13 +19,50 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '@/variables';
 import AlertInfo from '@/components/AlertInfo/AlertInfo';
 import './ProfilePage.scss';
+import { axiosConfig } from '@/index';
+import axios, { AxiosResponse } from 'axios';
+import { useQuery } from 'react-query';
+import { Collection } from '@/components/CollectionMini/collection-mini';
 
 export default function ProfilePage() {
-	const navigate = useNavigate();
 	const { isAuth, user } = useContext(MyContext);
+
+	const navigate = useNavigate();
 	if (!isAuth) {
 		navigate('/');
 	}
+	const getCollections = async (): Promise<AxiosResponse<Collection[]>> => {
+		return await axios.post('/collections/my', { user }, axiosConfig);
+	};
+	const { data, isError, isSuccess } = useQuery(['collections', user?._id], getCollections, {
+		enabled: !!user,
+	});
+	const collections = data?.data;
+	console.log(collections, 'COLLECTIONs');
+	const collectionsMini =
+		collections &&
+		collections.map((item) => (
+			<CollectionMini
+				key={nanoid()}
+				imgs={[item.pins[0].img, item.pins[1].img, item.pins[2].img]}
+			/>
+		));
+	const tabProfileContent = (
+		<div className="profile-page__collections">
+			{collectionsMini &&
+				collectionsMini.map((collection) => {
+					return (
+						<div key={nanoid()} className="profile-page__item m-2">
+							{collection}
+						</div>
+					);
+				})}
+		</div>
+	);
+	const collectionsTabs = [
+		{ title: EProfileTabs.Created, content: tabProfileContent },
+		{ title: EProfileTabs.Default, content: <div>...</div> },
+	];
 	const avatar = '';
 	const FOLLOWERS = 5;
 	const FOLLOWING = 0;
@@ -35,14 +72,7 @@ export default function ProfilePage() {
 		setIsModalOpen(false);
 	};
 	const collMiniModalRef = useRef();
-	const collections = [
-		[img1, img2, img3],
-		[imgSrc4, imgSrc5, imgSrc6],
-		[imgSrc7, imgSrc8, imgSrc9],
-	];
-	const collectionsMini = collections.map((item) => (
-		<CollectionMini key={nanoid()} imgs={[item[0], item[1], item[2]]} />
-	));
+
 	const numberOfFOLLOWERS = FOLLOWERS > 0 ? FOLLOWERS : 'No one is FOLLOWING you yet...';
 	const numberOfFOLLOWING =
 		FOLLOWING > 0 ? (
@@ -55,21 +85,7 @@ export default function ProfilePage() {
 				</a>
 			</span>
 		);
-	const tabProfileContent = (
-		<div className="profile-page__collections">
-			{collectionsMini.map((collection) => {
-				return (
-					<div key={nanoid()} className="profile-page__item m-2">
-						{collection}
-					</div>
-				);
-			})}
-		</div>
-	);
-	const tabsAndTabsContent = [
-		{ title: EProfileTabs.Created, content: tabProfileContent },
-		{ title: EProfileTabs.Default, content: <div>...</div> },
-	];
+
 	const [alert, setAlert] = useState(false);
 	const onClick: MouseEventHandler<HTMLButtonElement> = (e: React.MouseEvent) => {
 		copyToClipboard();
@@ -114,7 +130,7 @@ export default function ProfilePage() {
 					</div>
 				</header>
 				<div className="profile-page__collections">
-					<ProfileTabs items={tabsAndTabsContent} />
+					<ProfileTabs items={collectionsTabs} />
 				</div>
 			</div>
 

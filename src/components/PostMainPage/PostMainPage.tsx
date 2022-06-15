@@ -14,6 +14,7 @@ export interface Pin {
 	type?: string;
 	readonly _id: string;
 	keywords?: string[];
+	collections?: string[];
 	reactions?: {
 		emoji: string;
 		emojiCount: number;
