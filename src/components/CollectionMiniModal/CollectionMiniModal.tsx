@@ -27,11 +27,15 @@ const CollectionMiniModal = forwardRef(
 				centered
 				show={show}
 				onHide={hide}
-				animation={false}
+				className={` ${
+					show ? 'collection-mini__modal--visible' : 'collection-mini__modal--hidden'
+				}`}
 			>
-				<Modal.Header>
-					<Modal.Title id="contained-modal-title-vcenter">
-						<h4>{collection && collection?.title}</h4>
+				<Modal.Header closeButton>
+					<Modal.Title id="contained-modal-title-vcenter" className="text-center">
+						<h2 className="h2 text-center text-capitalize">
+							{collection && collection?.title}
+						</h2>
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
