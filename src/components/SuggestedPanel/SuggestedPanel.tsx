@@ -28,7 +28,7 @@ export default function SuggestedPanel({ keywords }: ISuggestedPanelProps) {
 						_id={item?._id || ''}
 						img={item?.img || ''}
 						title={item?.title || ''}
-						author={item?.author || ''}
+						user={item?.user || ''}
 					/>
 				);
 		  })

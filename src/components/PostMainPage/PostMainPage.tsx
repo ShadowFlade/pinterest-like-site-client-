@@ -10,7 +10,22 @@ import './PostMainPage.scss';
 export interface Pin {
 	img: string;
 	title: string;
-	author: string | undefined;
+	user: string | undefined;
+	type?: string;
+	readonly _id: string;
+	keywords?: string[];
+	collections?: string[];
+	reactions?: {
+		emoji: string;
+		emojiCount: number;
+		likesCount: number;
+	};
+	description?: string;
+}
+export interface PinData {
+	img: string;
+	title: string;
+	user: { _id: string; email: string; name?: string };
 	type?: string;
 	readonly _id: string;
 	keywords?: string[];
@@ -23,7 +38,7 @@ export interface Pin {
 	description?: string;
 }
 
-export default function PostMainPage({ img, title, author, reactions, _id }: Pin) {
+export default function PostMainPage({ img, title, user, reactions, _id }: Pin) {
 	const pattern = /cloudinary/;
 	const isLocal = pattern.test(img);
 	const getImg = () => {
@@ -49,7 +64,7 @@ export default function PostMainPage({ img, title, author, reactions, _id }: Pin
 				</div>
 				<div className="card-body">
 					<h5 className="main-post__title card-title">{title}</h5>
-					<p className="main-post__author card-text">{author} </p>
+					<p className="main-post__author card-text">{user} </p>
 					{data ? <div className="main-post__reactions"></div> : ''}
 				</div>
 			</div>

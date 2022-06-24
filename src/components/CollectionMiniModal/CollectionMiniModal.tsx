@@ -44,7 +44,7 @@ const CollectionMiniModal = forwardRef(
 							items={collection?.pins.map((item) => (
 								<PostMainPage
 									_id={item._id}
-									author={item.author}
+									user={item.user}
 									img={item.img}
 									title={item.title}
 								/>

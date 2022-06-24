@@ -3,7 +3,7 @@ import * as React from 'react';
 import { forwardRef, MutableRefObject } from 'react';
 import CookiePrompt from '../../components/CookiePrompt/CookiePrompts';
 import MasonryLayout from '../../components/MasonryLayout/MasonryLayout';
-import PostMainPage, { Pin } from '../../components/PostMainPage/PostMainPage';
+import PostMainPage, { Pin, PinData } from '../../components/PostMainPage/PostMainPage';
 import usePins from '../../hooks/usePins';
 import { IMainPageProps } from './main-page';
 import './MainPage.scss';
@@ -16,13 +16,13 @@ const MainPage = forwardRef(
 
 		const postsData = data;
 		if (isSuccess && postsData) {
-			const posts = postsData.map((item: Pin) => {
+			const posts = postsData.map((item: PinData) => {
 				if (!item.img) {
 					return;
 				}
 				return (
 					<PostMainPage
-						author={item.author}
+						user={item.user.email || item.user.name || ''}
 						img={item.img}
 						reactions={item.reactions}
 						title={item.title}
