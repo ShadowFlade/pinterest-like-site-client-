@@ -52,8 +52,8 @@ export default function PinDetailed() {
 
 	const src = isSuccess && pin && typeof pin.img === 'string' ? pin.img : '';
 	const img = isLoading ? (
-		<ContentLoader height={200} viewBox="0 0 400px 200px">
-			<rect x="0" y="0" rx="5" ry="5" width="300" height="100" />
+		<ContentLoader height="100%" width="100%" viewBox="0 0 400px 200px">
+			<rect x="0" y="0" rx="5" ry="5" width="100%" height="100%" />
 		</ContentLoader>
 	) : (
 		<img src={src} alt="" className="pin__img" />
@@ -63,7 +63,7 @@ export default function PinDetailed() {
 		isSuccess && pin ? (
 			pin.description
 		) : (
-			<ContentLoader height={200} viewBox="0 0 200px 200px">
+			<ContentLoader height={20} viewBox="0 0 200px 200px">
 				<rect x="0" y="0" rx="5" ry="5" width="500" height="100" />
 			</ContentLoader>
 		);
@@ -71,7 +71,7 @@ export default function PinDetailed() {
 		isSuccess && pin ? (
 			pin.title
 		) : (
-			<ContentLoader height={200} viewBox="0 0 200px 200px">
+			<ContentLoader height={100} viewBox="0 0 200px 200px">
 				<rect x="0" y="0" rx="5" ry="5" width="500" height="100" />
 			</ContentLoader>
 		);
@@ -83,7 +83,7 @@ export default function PinDetailed() {
 				authorID={author._id}
 			/>
 		) : (
-			<ContentLoader height={200} viewBox="0 0 200px 200px">
+			<ContentLoader height={100} viewBox="0 0 200px 200px">
 				<rect x="0" y="0" rx="5" ry="5" width="500" height="100" />
 			</ContentLoader>
 		);
