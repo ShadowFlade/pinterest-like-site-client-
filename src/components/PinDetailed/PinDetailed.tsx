@@ -52,8 +52,8 @@ export default function PinDetailed() {
 
 	const src = isSuccess && pin && typeof pin.img === 'string' ? pin.img : '';
 	const img = isLoading ? (
-		<ContentLoader height={500} viewBox="0 0 400px 500px">
-			<rect x="0" y="0" rx="5" ry="5" width="300" height="300" />
+		<ContentLoader height={200} viewBox="0 0 400px 200px">
+			<rect x="0" y="0" rx="5" ry="5" width="300" height="100" />
 		</ContentLoader>
 	) : (
 		<img src={src} alt="" className="pin__img" />
@@ -115,7 +115,14 @@ export default function PinDetailed() {
 				</div>
 			</div>
 			<div className="pin-detailed__suggested" style={isCatStyle ? catStyle : {}}>
-				{isLoading ? spinner : <SuggestedPanel keywords={pin?.keywords as string[]} />}
+				{isLoading ? (
+					spinner
+				) : (
+					<SuggestedPanel
+						currentPinId={id as string}
+						keywords={pin?.keywords as string[]}
+					/>
+				)}
 			</div>
 		</div>
 	);

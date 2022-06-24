@@ -12,8 +12,9 @@ import './SuggestedPanel.scss';
 
 export interface ISuggestedPanelProps {
 	keywords: string[];
+	currentPinId: string;
 }
-export default function SuggestedPanel({ keywords }: ISuggestedPanelProps) {
+export default function SuggestedPanel({ keywords, currentPinId }: ISuggestedPanelProps) {
 	const getSuggestedPins = (): Promise<AxiosResponse<Pin[]>> => {
 		return axios.post('/pin/suggested', keywords, axiosConfig);
 	};
@@ -23,14 +24,18 @@ export default function SuggestedPanel({ keywords }: ISuggestedPanelProps) {
 	);
 	const pinsList = isSuccess
 		? data?.data.map((item) => {
-				return (
-					<PostMainPage
-						_id={item?._id || ''}
-						img={item?.img || ''}
-						title={item?.title || ''}
-						user={item?.user || ''}
-					/>
-				);
+				if (item._id !== currentPinId) {
+					return (
+						<PostMainPage
+							_id={item?._id || ''}
+							img={item?.img || ''}
+							title={item?.title || ''}
+							user={item?.user || ''}
+						/>
+					);
+				} else {
+					return;
+				}
 		  })
 		: null;
 	return (
