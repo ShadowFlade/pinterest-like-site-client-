@@ -5,6 +5,7 @@ export interface ICollectionMiniProps {
 	showCollectionModal: Dispatch<SetStateAction<boolean>>;
 	setActiveCollection: () => void;
 	imgs: [string, string | undefined, string | undefined];
+	title: string;
 }
 export type Collection = {
 	_id: string;

@@ -39,7 +39,7 @@ export default function ProfilePage() {
 		['collections', user?._id],
 		getCollections,
 
-		{ ...reactQueryConfig, enabled: !!user }
+		{ ...reactQueryConfig, enabled: !!user, refetchInterval: Infinity }
 	);
 	const collections = data?.data;
 	const setCollection = (collection: Collection) => {
@@ -53,6 +53,7 @@ export default function ProfilePage() {
 				imgs={[item.pins[0].img, item.pins[1].img, item.pins[2].img]}
 				setActiveCollection={() => setCollection(item)}
 				showCollectionModal={setCollectionModalVisible}
+				title={item.title}
 			/>
 		));
 

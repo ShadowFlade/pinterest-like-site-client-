@@ -6,6 +6,7 @@ import './CollectionMini.scss';
 
 export default function CollectionMini({
 	imgs,
+	title,
 	showCollectionModal,
 	setActiveCollection,
 }: ICollectionMiniProps) {
@@ -19,11 +20,20 @@ export default function CollectionMini({
 	return (
 		<div className="collection-mini" onClick={goToCollectionModal}>
 			<div className="collection-mini__inner">
-				<div className="collection-mini__big-pic" style={applyStyle(imgs[0])}></div>
-				<div className="collection-mini__small-pics">
-					<div className="collection-mini__small-pic" style={applyStyle(imgs[1])}></div>
-					<div className="collection-mini__small-pic" style={applyStyle(imgs[2])}></div>
+				<div className="collection-mini__pics">
+					<div className="collection-mini__big-pic" style={applyStyle(imgs[0])}></div>
+					<div className="collection-mini__small-pics">
+						<div
+							className="collection-mini__small-pic"
+							style={applyStyle(imgs[1])}
+						></div>
+						<div
+							className="collection-mini__small-pic"
+							style={applyStyle(imgs[2])}
+						></div>
+					</div>
 				</div>
+				<div className="collection-mini__title h4">{title}</div>
 			</div>
 		</div>
 	);
