@@ -36,7 +36,11 @@ export default function SuggestedPanel({ keywords }: ISuggestedPanelProps) {
 	return (
 		<div className="suggested-panel">
 			<div className="suggested-panel__inner">
-				{pinsList ? <MasonryLayout items={pinsList} /> : null}
+				{pinsList && pinsList.length > 0 ? (
+					<MasonryLayout items={pinsList} />
+				) : (
+					'no pin here' //TODO change to isDev from context or just delete it and put smth else here
+				)}
 			</div>
 		</div>
 	);

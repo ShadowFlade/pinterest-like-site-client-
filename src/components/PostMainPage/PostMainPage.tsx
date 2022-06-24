@@ -26,7 +26,6 @@ export interface Pin {
 export default function PostMainPage({ img, title, author, reactions, _id }: Pin) {
 	const pattern = /cloudinary/;
 	const isLocal = pattern.test(img);
-
 	const getImg = () => {
 		return axios.get(img, { ...axiosConfig, withCredentials: false });
 	};
