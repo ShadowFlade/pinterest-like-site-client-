@@ -6,6 +6,7 @@ import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from 'react-
 interface IContext {
 	isAuth: boolean;
 	user: User | null;
+	csrf: any;
 	refetch:
 		| (<TPageData>(
 				options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined

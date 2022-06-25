@@ -17,7 +17,7 @@ const loginSchema = yup.object().shape({
 
 const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 	const [error, setError] = useState('');
-	const { refetch } = React.useContext(MyContext);
+	const { refetch, csrf } = React.useContext(MyContext);
 	const timeBeforeServerErrorDisappears = 5000;
 	const login = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -64,7 +64,7 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 						type="password"
 						autofocus={false}
 					></AuthFormInputField>
-
+					<input type="hidden" name="_csrf" value={csrf} />
 					<button type="submit" className="btn btn-primary">
 						Login
 					</button>

@@ -12,6 +12,7 @@ import ContextProvider from './Context/Context';
 const axiosConfig = {
 	baseURL: 'http://localhost:3002/',
 	withCredentials: true,
+
 	'Content-Type': 'application/json;charset=UTF-8',
 	'Access-Control-Allow-Credentials': true,
 	'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,PUT,PATCH,DELETE,HEAD',
