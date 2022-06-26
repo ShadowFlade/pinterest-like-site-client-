@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { axiosConfig } from '@/index';
 
 import './PostMainPage.scss';
+import { MyContext } from '@/Context/Context';
 
 export interface Pin {
 	img: string;

@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import * as yup from 'yup';
 import AuthFormInputField from '../AuthFormInputFiled/AuthFormInputField';
 import { Form, Formik } from 'formik';
 import FormInputFieldError from '../FormInputFieldError/FormInputFieldError';
 import axios from 'axios';
 import { axiosConfig } from '@/index';
+import { MyContext } from '@/Context/Context';
 export interface IRegisterFormProps {
 	left: boolean;
 	closeRegisterModal: () => void;
@@ -21,6 +22,7 @@ const registerSchema = yup
 	.required();
 
 export default function RegisterForm({ left, closeRegisterModal }: IRegisterFormProps) {
+	const context = useContext(MyContext);
 	const [error, setError] = useState('');
 	const registerUser = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -64,6 +66,8 @@ export default function RegisterForm({ left, closeRegisterModal }: IRegisterForm
 						autofocus={false}
 					></AuthFormInputField>
 					<div className="submit">
+						<input type="hidden" name="_csrf" value={context.csrf} />
+
 						<button className="btn btn-primary" disabled={isSubmitting}>
 							Register
 						</button>
