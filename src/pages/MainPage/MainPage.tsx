@@ -1,4 +1,3 @@
-import queryClient from '@/index';
 import * as React from 'react';
 import { forwardRef, MutableRefObject } from 'react';
 import CookiePrompt from '../../components/CookiePrompt/CookiePrompts';

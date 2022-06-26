@@ -1,0 +1,15 @@
+@use 'sass:color';
+$color: rgba(18, 79, 220, 0.883);
+.error-page {
+	&__text {
+		padding-top: 13rem;
+	}
+	&__link {
+		color: $color !important;
+		&:hover {
+			cursor: pointer;
+			transition: color 0.15s linear;
+			color: darken($color, 20%) !important;
+		}
+	}
+}

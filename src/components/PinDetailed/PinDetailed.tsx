@@ -49,8 +49,9 @@ export default function PinDetailed() {
 	const { data, isLoading, isSuccess, error } = useQuery(['getSinglePin', id], getData);
 	const { pin, author }: DetailedResponse =
 		isSuccess && data ? data.data : { pin: undefined, author: undefined }; // why if we substitute it with isSuccess it yields a mistake
-
 	const src = isSuccess && pin && typeof pin.img === 'string' ? pin.img : '';
+	console.log(src);
+
 	const img = isLoading ? (
 		<ContentLoader height="100%" width="100%" viewBox="0 0 400px 200px">
 			<rect x="0" y="0" rx="5" ry="5" width="100%" height="100%" />

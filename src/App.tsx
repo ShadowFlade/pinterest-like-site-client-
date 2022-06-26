@@ -12,11 +12,16 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
 import ContextProvider, { MyContext } from './Context/Context';
 import PinDetailed from './components/PinDetailed/PinDetailed';
+import ErrorPage from './pages/404/404';
+import usePrevPath from './hooks/usePrevPath';
 
 const App = () => {
 	const [isDev, setDev] = useState(false);
 	const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 	const navigate = useNavigate();
+	const location = useLocation();
+	const prevPath = usePrevPath(location.pathname);
+
 	const goBack = React.useCallback(() => {
 		navigate(-1);
 	}, []);
@@ -63,8 +68,7 @@ const App = () => {
 
 					<Route path="profile/me" element={<ProfilePage />} />
 					<Route path="pin/detailed/:id" element={<PinDetailed />} />
-
-					<Route path="*" element={<Navigate to={isAuth ? '/profile/me' : '/'} />} />
+					<Route path="*" element={<ErrorPage prevPath={prevPath} />} />
 				</Route>
 			</Routes>
 		</div>

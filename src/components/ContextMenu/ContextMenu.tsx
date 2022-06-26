@@ -23,14 +23,6 @@ export default function Contextmenu({ show }: IContextmenuProps) {
 		<div className="context-menu">
 			<div className="context-menu__inner">
 				<ul className="context-menu__list">
-					<li className="context-menu__item">
-						<span className="context-menu__icon"></span>
-						<span className="context-menu__option"></span>
-					</li>
-					<li className="context-menu__item">
-						<span className="context-menu__icon"></span>
-						<span className="context-menu__option"></span>
-					</li>
 					<li className="context-menu__item context-menu__item--logout" onClick={logout}>
 						<span className="context-menu__icon">
 							<Logout />
