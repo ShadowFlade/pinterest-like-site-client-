@@ -21,7 +21,7 @@ export default function PinAuthorBlock({ authorName, avatar, authorID }: IPinAut
 						<img src={avatar} className="pin-author__img" />
 					</div>
 					<Link
-						to={`${keys.frontURL}/profile/${authorID}`}
+						to={`profile/${authorID}`}
 						className="pin-author__name h4 display-3 ms-2 text-secondary fw-bolder"
 					>
 						{authorName}

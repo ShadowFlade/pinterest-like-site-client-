@@ -28,7 +28,7 @@ export default function Header({
 
 	const auth = isAuth ? (
 		<Link
-			to={`${keys.frontURL}/profile/me`}
+			to={`profile/me`}
 			className="header__profile-icon mx-2"
 			ref={profileLink}
 			onContextMenu={(e) => {

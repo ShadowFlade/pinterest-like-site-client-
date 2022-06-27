@@ -4,9 +4,9 @@ const serverURL = `${
 		: 'http://localhost:3002/'
 }`;
 const frontURL = `${
-	process.env.NODE_ENV === 'production'
-		? 'https://shadowflade.github.io/pinterest-like-site-client-/'
-		: 'http://localhost/'
+	process.env.NODE_ENV === 'development'
+		? '/'
+		: 'https://shadowflade.github.io/pinterest-like-site-client-/'
 }`;
 
 const keys = {

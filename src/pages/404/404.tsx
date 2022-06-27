@@ -27,7 +27,7 @@ export default function ErrorPage({ prevPath }: IErrorPageProps) {
 				<p>
 					We tried really hard, but could'nt find the page you were looking for. You may
 					find what you were looking for on our{' '}
-					<Link className=" error-page__link" to={`${keys.frontURL}`}>
+					<Link className=" error-page__link" to={`/`}>
 						homepage.
 					</Link>{' '}
 					Or you can just{' '}

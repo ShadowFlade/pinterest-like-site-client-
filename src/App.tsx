@@ -46,7 +46,7 @@ const App = () => {
 			) : null}
 			<Routes>
 				<Route
-					path={`${keys.frontURL}`}
+					path={`/`}
 					element={
 						<Layout
 							closeModal={closeModal}
@@ -67,8 +67,8 @@ const App = () => {
 						}
 					/>
 
-					<Route path={`${keys.frontURL}profile/me`} element={<ProfilePage />} />
-					<Route path={`${keys.frontURL}pin/detailed/:id`} element={<PinDetailed />} />
+					<Route path={`/profile/me`} element={<ProfilePage />} />
+					<Route path={`/pin/detailed/:id`} element={<PinDetailed />} />
 					<Route path="*" element={<ErrorPage prevPath={prevPath} />} />
 				</Route>
 			</Routes>

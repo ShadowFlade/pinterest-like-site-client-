@@ -23,6 +23,7 @@ const config = {
 		chunkFilename: '[name].bundle.js',
 		filename: '[name].bundle.js',
 		publicPath: publicPath(),
+		clean: true,
 	},
 	resolve: {
 		alias: {
@@ -108,9 +109,6 @@ const config = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: '../index.html',
-		}),
-		new CleanWebpackPlugin({
-			cleanAfterEveryBuildPatterns: ['dist'],
 		}),
 		new MiniCssExtractPlugin({ filename: `${paths.assets}css/[name].[hash].css` }),
 		new webpack.DefinePlugin({

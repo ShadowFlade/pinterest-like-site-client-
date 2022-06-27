@@ -54,7 +54,7 @@ export default function PostMainPage({ img, title, user, reactions, _id }: Pin) 
 		return null;
 	}
 	return (
-		<Link to={`${keys.frontURL}/pin/detailed/${_id}`} className="main-post__link">
+		<Link to={`pin/detailed/${_id}`} className="main-post__link">
 			<div className="main-post card">
 				<div className="main-post__pic ">
 					<img
