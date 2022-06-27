@@ -82,7 +82,7 @@ export default function ProfilePage() {
 		) : (
 			<span>
 				<span>0</span>
-				<a href="/" className="ms-2 mt-2 fs-6">
+				<a href={`${keys.frontURL}`} className="ms-2 mt-2 fs-6">
 					Want to follow somebody?
 				</a>
 			</span>

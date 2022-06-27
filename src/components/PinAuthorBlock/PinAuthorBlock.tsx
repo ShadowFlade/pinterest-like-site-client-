@@ -1,3 +1,4 @@
+import keys from '@/keys';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './PinAuthorBlock.scss';
@@ -20,7 +21,7 @@ export default function PinAuthorBlock({ authorName, avatar, authorID }: IPinAut
 						<img src={avatar} className="pin-author__img" />
 					</div>
 					<Link
-						to={`/profile/${authorID}`}
+						to={`${keys.frontURL}/profile/${authorID}`}
 						className="pin-author__name h4 display-3 ms-2 text-secondary fw-bolder"
 					>
 						{authorName}

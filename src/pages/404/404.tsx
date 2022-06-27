@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import './404.scss';
 import errorImg from './404.png';
+import keys from '@/keys';
 export interface IErrorPageProps {
 	prevPath: string;
 }
@@ -26,7 +27,7 @@ export default function ErrorPage({ prevPath }: IErrorPageProps) {
 				<p>
 					We tried really hard, but could'nt find the page you were looking for. You may
 					find what you were looking for on our{' '}
-					<Link className=" error-page__link" to={'/'}>
+					<Link className=" error-page__link" to={`${keys.frontURL}`}>
 						homepage.
 					</Link>{' '}
 					Or you can just{' '}

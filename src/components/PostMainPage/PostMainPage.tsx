@@ -7,6 +7,7 @@ import { axiosConfig } from '@/index';
 
 import './PostMainPage.scss';
 import { MyContext } from '@/Context/Context';
+import keys from '@/keys';
 
 export interface Pin {
 	img: string;
@@ -53,7 +54,7 @@ export default function PostMainPage({ img, title, user, reactions, _id }: Pin) 
 		return null;
 	}
 	return (
-		<Link to={`/pin/detailed/${_id}`} className="main-post__link">
+		<Link to={`${keys.frontURL}/pin/detailed/${_id}`} className="main-post__link">
 			<div className="main-post card">
 				<div className="main-post__pic ">
 					<img

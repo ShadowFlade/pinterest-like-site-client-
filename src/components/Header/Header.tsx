@@ -11,6 +11,7 @@ import { MyContext } from '@/Context/Context';
 import { bindOutsideClickDetection } from '@/utils/utils';
 import PopItem from '../PopItem/PopItem';
 import Contextmenu from '../ContextMenu/ContextMenu';
+import keys from '@/keys';
 
 export default function Header({
 	messagesCount,
@@ -27,7 +28,7 @@ export default function Header({
 
 	const auth = isAuth ? (
 		<Link
-			to={'/profile/me'}
+			to={`${keys.frontURL}/profile/me`}
 			className="header__profile-icon mx-2"
 			ref={profileLink}
 			onContextMenu={(e) => {
@@ -49,7 +50,7 @@ export default function Header({
 	);
 	return (
 		<div className="navbar navbar-expand-lg">
-			<a href="/" className="mx-2">
+			<a href={`${keys.frontURL}`} className="mx-2">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width={iconWidth}
