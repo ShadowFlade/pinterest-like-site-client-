@@ -1,4 +1,5 @@
 declare const keys: {
-    baseURL: string;
+    serverURL: string;
+    frontURL: string;
 };
 export default keys;

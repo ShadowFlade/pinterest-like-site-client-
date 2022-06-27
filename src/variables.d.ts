@@ -1,4 +1,3 @@
-declare const BASE_URL: string;
 declare const STALE_TIME: number;
 declare const reactQueryConfig: {
     retry: boolean;
@@ -6,4 +5,4 @@ declare const reactQueryConfig: {
     refetchOnWindowFocus: boolean;
     refetchInterval: number;
 };
-export { STALE_TIME, reactQueryConfig, BASE_URL };
+export { STALE_TIME, reactQueryConfig };

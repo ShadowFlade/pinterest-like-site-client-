@@ -11,7 +11,7 @@ const paths = {
 	assets: './assets/',
 };
 function publicPath() {
-	return isDev ? '/' : '/google-books/';
+	return isDev ? '/' : '/pinterest-like-site-client-/';
 }
 const config = {
 	context: paths.src,
