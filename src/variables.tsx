@@ -1,6 +1,5 @@
 import keys from './keys';
 
-const BASE_URL = keys.baseURL;
 const STALE_TIME = 1000 * 120;
 const reactQueryConfig = {
 	retry: false,
@@ -8,4 +7,4 @@ const reactQueryConfig = {
 	refetchOnWindowFocus: false,
 	refetchInterval: STALE_TIME,
 };
-export { STALE_TIME, reactQueryConfig, BASE_URL };
+export { STALE_TIME, reactQueryConfig };

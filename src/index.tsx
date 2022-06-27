@@ -11,13 +11,13 @@ import './scss/custom/main.scss';
 import ContextProvider from './Context/Context';
 
 const axiosConfig = {
-	baseURL: keys.baseURL,
+	baseURL: keys.serverURL,
 	withCredentials: true,
 	'Content-Type': 'application/json;charset=UTF-8',
 	'Access-Control-Allow-Credentials': true,
 	'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,PUT,PATCH,DELETE,HEAD',
 	'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-	'Access-Control-Allow-Origin': `${keys.baseURL}, http://res.cloudinary.com`,
+	'Access-Control-Allow-Origin': `${keys.frontURL}, http://res.cloudinary.com`,
 };
 const root = document.querySelector('#root');
 
