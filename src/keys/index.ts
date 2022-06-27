@@ -6,7 +6,7 @@ const serverURL = `${
 const frontURL = `${
 	process.env.NODE_ENV === 'production'
 		? 'https://shadowflade.github.io/pinterest-like-site-client-/'
-		: 'http://localhost'
+		: 'http://localhost/'
 }`;
 
 const keys = {

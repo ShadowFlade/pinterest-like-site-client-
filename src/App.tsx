@@ -14,6 +14,7 @@ import ContextProvider, { MyContext } from './Context/Context';
 import PinDetailed from './components/PinDetailed/PinDetailed';
 import ErrorPage from './pages/404/404';
 import usePrevPath from './hooks/usePrevPath';
+import keys from './keys';
 
 const App = () => {
 	const [isDev, setDev] = useState(false);
@@ -45,7 +46,7 @@ const App = () => {
 			) : null}
 			<Routes>
 				<Route
-					path="/"
+					path={`${keys.frontURL}`}
 					element={
 						<Layout
 							closeModal={closeModal}
@@ -66,8 +67,8 @@ const App = () => {
 						}
 					/>
 
-					<Route path="profile/me" element={<ProfilePage />} />
-					<Route path="pin/detailed/:id" element={<PinDetailed />} />
+					<Route path={`${keys.frontURL}profile/me`} element={<ProfilePage />} />
+					<Route path={`${keys.frontURL}pin/detailed/:id`} element={<PinDetailed />} />
 					<Route path="*" element={<ErrorPage prevPath={prevPath} />} />
 				</Route>
 			</Routes>
