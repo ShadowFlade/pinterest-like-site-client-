@@ -1,4 +1,6 @@
-const BASE_URL = 'http://localhost';
+import keys from './keys';
+
+const BASE_URL = keys.baseURL;
 const STALE_TIME = 1000 * 120;
 const reactQueryConfig = {
 	retry: false,
