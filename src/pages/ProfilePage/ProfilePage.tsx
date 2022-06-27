@@ -4,10 +4,11 @@ import CollectionMini from '../../components/CollectionMini/CollectionMini';
 import { nanoid } from 'nanoid';
 import ProfileTabs, { EProfileTabs } from '../../components/ProfileTabs/ProfileTabs';
 import CollectionMiniModal from '../../components/CollectionMiniModal/CollectionMiniModal';
+import keys from '@/keys';
 import { MyContext } from '@/Context/Context';
 import { Share } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL, reactQueryConfig } from '@/variables';
+import { reactQueryConfig } from '@/variables';
 import AlertInfo from '@/components/AlertInfo/AlertInfo';
 import './ProfilePage.scss';
 import { axiosConfig } from '@/index';
@@ -92,7 +93,7 @@ export default function ProfilePage() {
 		copyToClipboard();
 	};
 	const copyToClipboard = () => {
-		navigator.clipboard.writeText(`${BASE_URL}/profile/${user?._id}`).then(() => {
+		navigator.clipboard.writeText(`${keys.frontURL}/profile/${user?._id}`).then(() => {
 			setAlert(true);
 			setTimeout(() => setAlert(false), 5000);
 		});

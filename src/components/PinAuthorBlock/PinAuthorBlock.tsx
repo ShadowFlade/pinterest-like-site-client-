@@ -1,9 +1,5 @@
-import { BASE_URL } from '@/variables';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import LikeButton from '../LikeButton/LikeButton';
-import Reactions from '../Reactions/Reactions';
-import { IReaction } from '../Reactions/reactions';
 import './PinAuthorBlock.scss';
 
 export interface IPinAuthorBlockProps {
