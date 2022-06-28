@@ -17,7 +17,7 @@ const axiosConfig = {
 	'Access-Control-Allow-Credentials': true,
 	'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,PUT,PATCH,DELETE,HEAD',
 	'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-	'Access-Control-Allow-Origin': `${keys.frontURL}, http://res.cloudinary.com`,
+	'Access-Control-Allow-Origin': `${keys.frontURL}, https://res.cloudinary.com,${keys.serverURL}`,
 };
 const root = document.querySelector('#root');
 

@@ -42,9 +42,7 @@ export default function RegisterForm({ left, closeRegisterModal }: IRegisterForm
 				email: '',
 			}}
 			validationSchema={registerSchema}
-			onSubmit={(values) => {
-				console.dir(values);
-			}}
+			onSubmit={(values) => {}}
 		>
 			{({ isSubmitting }) => (
 				<Form id="register" onSubmit={registerUser} tabIndex={502}>

@@ -50,7 +50,6 @@ export default function PinDetailed() {
 	const { pin, author }: DetailedResponse =
 		isSuccess && data ? data.data : { pin: undefined, author: undefined }; // why if we substitute it with isSuccess it yields a mistake
 	const src = isSuccess && pin && typeof pin.img === 'string' ? pin.img : '';
-	console.log(src);
 
 	const img = isLoading ? (
 		<ContentLoader height="100%" width="100%" viewBox="0 0 400px 200px">
