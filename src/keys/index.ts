@@ -1,7 +1,7 @@
 const serverURL = `${
 	process.env.NODE_ENV === 'production'
 		? 'https://floating-earth-90111.herokuapp.com/'
-		: 'http://localhost:3002/'
+		: 'http://localhost:5000/'
 }`;
 const frontURL = `${
 	process.env.NODE_ENV === 'development' ? '/' : '/pinterest-like-site-client-/'

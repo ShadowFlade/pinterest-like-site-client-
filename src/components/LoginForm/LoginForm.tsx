@@ -41,7 +41,9 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 				email: '',
 			}}
 			validationSchema={loginSchema}
-			onSubmit={(values, props) => {}}
+			onSubmit={(values, props) => {
+				console.dir(values);
+			}}
 		>
 			{({ setErrors }) => (
 				<Form id="login" onSubmit={login}>
