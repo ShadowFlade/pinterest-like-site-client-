@@ -12,10 +12,12 @@ export interface IPopItemProps {
 export default function PopItem({ children, clickElement, show, isShow }: IPopItemProps) {
 	const pop = useRef(null);
 	const closeElement = () => {
-		show(false);
+		show(!isShow);
 	};
 	const hideOnClick = (e: MouseEvent) => {
-		hideOnClickOutside(e, clickElement, pop.current, closeElement);
+		clickElement && pop.current
+			? bindOutsideClickDetection(clickElement, pop.current, closeElement)
+			: null;
 		e.stopImmediatePropagation();
 	};
 	useEffect(() => {

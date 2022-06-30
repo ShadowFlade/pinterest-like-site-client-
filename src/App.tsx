@@ -18,6 +18,7 @@ import keys from './keys';
 
 const App = () => {
 	const [isDev, setDev] = useState(false);
+	const [isAddPinPopupVisible, setAddPinPopupVisible] = useState(false);
 	const [isUploadPinOpen, setIsUploadPinOpen] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -32,9 +33,15 @@ const App = () => {
 	const closeModal = () => {
 		setIsUploadPinOpen(false);
 	};
-
+	const handlePinPopupShow = () => {
+		setAddPinPopupVisible(!isAddPinPopupVisible);
+	};
 	const handlePinState = () => {
-		setIsUploadPinOpen(!isUploadPinOpen);
+		if (user) {
+			setIsUploadPinOpen(!isUploadPinOpen);
+		} else {
+			handlePinPopupShow();
+		}
 	};
 
 	return (
@@ -49,6 +56,8 @@ const App = () => {
 					path={`${keys.frontURL}`}
 					element={
 						<Layout
+							isAddPinPopupVisible={isAddPinPopupVisible}
+							handlePinPopupVisible={handlePinPopupShow}
 							closeModal={closeModal}
 							isUploadPinOpen={isUploadPinOpen}
 							mainPage={mainPage}

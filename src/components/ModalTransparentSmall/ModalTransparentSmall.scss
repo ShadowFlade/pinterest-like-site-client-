@@ -1,0 +1,22 @@
+.modal-ts {
+	opacity: 0 !important;
+	&__dialog {
+		margin-inline: 0 !important;
+	}
+	&__body {
+		display: inline;
+		p {
+			display: inline;
+		}
+		padding: 0.3rem 0.5rem;
+		text-align: center;
+	}
+	&__inside-dialog {
+		text-align: center;
+		position: relative;
+		transition: all 0.15s linear;
+	}
+	&__inside-content {
+		text-align: center;
+	}
+}

@@ -26,6 +26,7 @@ const hideOnClickOutside = (
 	const target = e.target as Node;
 	const isClickInside =
 		clickElement?.contains(target) || clickElement?.parentNode?.contains(target);
+
 	if (!isClickInside) {
 		if (!!cb) {
 			cb();
@@ -37,7 +38,8 @@ const hideOnClickOutside = (
 // +closes and opens a popelement on click on clickelement
 const bindOutsideClickDetection = (
 	clickElementName: string | HTMLElement,
-	popElementName: string | HTMLElement
+	popElementName: string | HTMLElement,
+	cb: () => void
 ) => {
 	let clickElement: null | HTMLElement;
 	let popElement: null | HTMLElement;
@@ -61,12 +63,12 @@ const bindOutsideClickDetection = (
 			popElement ? (popElement.style.display = 'block') : null;
 			e.stopPropagation();
 			document.addEventListener('click', (e: MouseEvent) =>
-				hideOnClickOutside(e, clickElement, popElement)
+				hideOnClickOutside(e, clickElement, popElement, cb)
 			);
 		} else if (isVisible(popElement) && !kidsHaveTarget) {
 			popElement ? (popElement.style.display = 'none') : null;
 			document.removeEventListener('click', (e: MouseEvent) =>
-				hideOnClickOutside(e, clickElement, popElement)
+				hideOnClickOutside(e, clickElement, popElement, cb)
 			);
 		}
 	};

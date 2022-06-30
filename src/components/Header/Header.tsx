@@ -12,6 +12,7 @@ import { bindOutsideClickDetection } from '@/utils/utils';
 import PopItem from '../PopItem/PopItem';
 import Contextmenu from '../ContextMenu/ContextMenu';
 import keys from '@/keys';
+import ModalTransparentSmall from '../ModalTransparentSmall/ModalTransparentSmall';
 
 export default function Header({
 	messagesCount,
@@ -20,8 +21,11 @@ export default function Header({
 	handleModalState,
 	handleLoginModal,
 	handleRegisterModal,
+	handlePinPopupVisible,
+	isAddPinPopupVisible,
 }: IHeaderProps) {
 	const iconWidth = 35;
+	const addPinButton = useRef<HTMLButtonElement | null>(null);
 	const { isAuth, user } = useContext(MyContext);
 	const profileLink = useRef(null);
 	const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
@@ -68,10 +72,21 @@ export default function Header({
 
 			<button
 				onClick={() => handleModalState()}
+				ref={addPinButton}
 				className="btn btn-dark text white rounded-pill mx-2 header__home-button add-pin-button"
 			>
 				Add pin
 			</button>
+			{addPinButton.current ? (
+				<ModalTransparentSmall
+					isVisible={isAddPinPopupVisible}
+					hide={handlePinPopupVisible}
+					clickElement={addPinButton.current}
+				>
+					<p>Sorry, but you have to sign-in first :(</p>
+				</ModalTransparentSmall>
+			) : null}
+
 			<div className="d-flex flex-grow-1 mx-2 position-relative">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

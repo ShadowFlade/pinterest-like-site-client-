@@ -12,6 +12,8 @@ export default function Layout({
 	isUploadPinOpen,
 	closeModal,
 	mainPage,
+	handlePinPopupVisible,
+	isAddPinPopupVisible,
 }: ILayoutProps) {
 	const [isLeft, setIsLeft] = useState(true);
 	const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
@@ -32,6 +34,8 @@ export default function Layout({
 	return (
 		<div>
 			<Header
+				handlePinPopupVisible={handlePinPopupVisible}
+				isAddPinPopupVisible={isAddPinPopupVisible}
 				notifsCount={5}
 				messagesCount={10}
 				name={'Sergay'}
