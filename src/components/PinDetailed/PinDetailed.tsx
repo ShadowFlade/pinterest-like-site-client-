@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { useQuery } from 'react-query';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import ContentLoader from 'react-content-loader';
 import PinAuthorBlock from '../PinAuthorBlock/PinAuthorBlock';
 import { DetailedResponse } from './pin-detailed';
@@ -29,11 +29,6 @@ const pickSpinner = (arr: Spinner[]) => {
 	return el.element;
 };
 export default function PinDetailed() {
-	const navigate = useNavigate();
-	const { isAuth } = useContext(MyContext);
-	if (!isAuth) {
-		navigate('/');
-	}
 	const [isCatStyle, setIsCatStyle] = useState(false);
 	const spinners = [
 		{ action: setIsCatStyle, element: <SpinnerCat setIsCatStyle={setIsCatStyle} /> },
@@ -48,9 +43,8 @@ export default function PinDetailed() {
 
 	const { data, isLoading, isSuccess, error } = useQuery(['getSinglePin', id], getData);
 	const { pin, author }: DetailedResponse =
-		isSuccess && data ? data.data : { pin: undefined, author: undefined }; // why if we substitute it with isSuccess it yields a mistake
+		isSuccess && data ? data.data : { pin: undefined, author: undefined };
 	const src = isSuccess && pin && typeof pin.img === 'string' ? pin.img : '';
-
 	const img = isLoading ? (
 		<ContentLoader height="100%" width="100%" viewBox="0 0 400px 200px">
 			<rect x="0" y="0" rx="5" ry="5" width="100%" height="100%" />
@@ -95,7 +89,6 @@ export default function PinDetailed() {
 				<div className="pin__inner d-flex">
 					<div className="pin__pic">{img}</div>
 					<div className="pin__info">
-						{/* <header className="pin__header"></header> */}
 						<div className="pin__main display-4 my-auto">
 							<h2 className="pin__title h1 display-2 text-white">{title}</h2>
 							<div className="pin__description mt-3 pb-2 border-bottom border-1 border-white">

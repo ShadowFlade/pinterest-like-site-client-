@@ -16,7 +16,7 @@ export interface ISuggestedPanelProps {
 }
 export default function SuggestedPanel({ keywords, currentPinId }: ISuggestedPanelProps) {
 	const getSuggestedPins = (): Promise<AxiosResponse<Pin[]>> => {
-		return axios.post('/pin/suggested', keywords, axiosConfig);
+		return axios.post('/pin/suggested', { keywords }, axiosConfig);
 	};
 	const { data, isSuccess } = useQuery<AxiosResponse<Pin[]>>(
 		['suggested-pins', keywords],
