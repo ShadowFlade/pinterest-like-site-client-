@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"jsx": "react",
 		"lib": ["es6", "dom", "DOM", "DOM.Iterable", "ESNext"],
-		"module": "es6",
+		"module": "es2020",
 		"composite": true,
 		"target": "es2015",
 		"sourceMap": true,

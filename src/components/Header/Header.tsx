@@ -10,9 +10,15 @@ import './Header.scss';
 import { MyContext } from '@/Context/Context';
 import { bindOutsideClickDetection } from '@/utils/utils';
 import PopItem from '../PopItem/PopItem';
-import Contextmenu from '../ContextMenu/ContextMenu';
+import ContextMenu from '../ContextMenu/ContextMenu';
 import keys from '@/keys';
 import ModalTransparentSmall from '../ModalTransparentSmall/ModalTransparentSmall';
+import Burger from '../Burger/Burger';
+import { Logout } from '@mui/icons-material';
+import axios from 'axios';
+import { axiosConfig } from '@/index';
+import DropdownMenuOption from '../DropdownMenuOption/DropdownMenuOptoin';
+import DropdownMenu from 'react-bootstrap/esm/DropdownMenu';
 
 export default function Header({
 	messagesCount,
@@ -24,12 +30,13 @@ export default function Header({
 	handlePinPopupVisible,
 	isAddPinPopupVisible,
 }: IHeaderProps) {
+	const [burgerVisible, setBurgerVisible] = useState(false);
 	const iconWidth = 35;
 	const addPinButton = useRef<HTMLButtonElement | null>(null);
 	const { isAuth, user } = useContext(MyContext);
 	const profileLink = useRef(null);
 	const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
-
+	const { refetch } = useContext(MyContext);
 	const auth = isAuth ? (
 		<Link
 			to={`profile/me`}
@@ -52,6 +59,35 @@ export default function Header({
 			</button>
 		</div>
 	);
+	const toggleBurgerMenu = (option: boolean) => {
+		if (option && typeof option === 'boolean') {
+			setBurgerVisible(option);
+		} else {
+			setBurgerVisible(!burgerVisible);
+		}
+	};
+	const logout = () => {
+		axios.get('auth/logout', axiosConfig).then(({ data }) => {
+			if (data.success) {
+				toggleBurgerMenu(false);
+				refetch ? refetch() : false;
+			}
+		});
+	};
+
+	const logoutItem = (
+		<DropdownMenuOption action={logout} icon={<Logout />} modif="logout" text="Logout" />
+	);
+
+	const items = [
+		isAuth ? (
+			logoutItem
+		) : (
+			<DropdownMenuOption action={handleLoginModal} modif="login" text="Login" />
+		),
+		isAuth ? null : <DropdownMenuOption text="Register" action={handleRegisterModal} />,
+	];
+
 	return (
 		<div className="navbar navbar-expand-lg">
 			<a href={`${keys.frontURL}`} className="mx-2">
@@ -69,7 +105,6 @@ export default function Header({
 			<button className="btn btn-dark text-white rounded-pill mx-2 header__home-button">
 				My pins
 			</button>
-
 			<button
 				onClick={() => handleModalState()}
 				ref={addPinButton}
@@ -86,8 +121,7 @@ export default function Header({
 					<p>Sorry, but you have to sign-in first :(</p>
 				</ModalTransparentSmall>
 			) : null}
-
-			<div className="d-flex flex-grow-1 mx-2 position-relative">
+			<div className="header__search-field d-flex flex-grow-1 mx-2 position-relative">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -106,21 +140,21 @@ export default function Header({
 					aria-describedby="input-group-left"
 				/>
 			</div>
-			<div
-				className={`navbar-collapse collapse mx-2 flex-grow-0 ${isAuth ? 'd-none' : null}`}
-			>
-				<div className="col-6 mx-1">
-					<SecondaryIcon notifsCount={messagesCount}>
-						<BellIcon />
-					</SecondaryIcon>
-				</div>
+			{isAuth ? (
+				<div className={`navbar-collapse collapse mx-2 flex-grow-0 `}>
+					<div className="col-6 mx-1">
+						<SecondaryIcon notifsCount={messagesCount}>
+							<BellIcon />
+						</SecondaryIcon>
+					</div>
 
-				<div className="col-6 mx-1">
-					<SecondaryIcon notifsCount={notifsCount}>
-						<ChatIcon />
-					</SecondaryIcon>
+					<div className="col-6 mx-1">
+						<SecondaryIcon notifsCount={notifsCount}>
+							<ChatIcon />
+						</SecondaryIcon>
+					</div>
 				</div>
-			</div>
+			) : null}
 			{auth}
 			{profileLink.current ? (
 				<PopItem
@@ -128,9 +162,18 @@ export default function Header({
 					isShow={isContextMenuVisible}
 					show={setIsContextMenuVisible}
 				>
-					<Contextmenu show={setIsContextMenuVisible} />
+					<ContextMenu
+						show={setIsContextMenuVisible}
+						visible={isContextMenuVisible}
+						items={[logoutItem]}
+					/>
 				</PopItem>
 			) : null}
+			<div className="header__burger">
+				<Burger toggle={toggleBurgerMenu}>
+					<ContextMenu show={toggleBurgerMenu} visible={burgerVisible} items={items} />
+				</Burger>
+			</div>
 		</div>
 	);
 }
