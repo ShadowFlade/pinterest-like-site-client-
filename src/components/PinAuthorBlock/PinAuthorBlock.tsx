@@ -12,9 +12,6 @@ export interface IPinAuthorBlockProps {
 export default function PinAuthorBlock({ authorName, avatar, authorID }: IPinAuthorBlockProps) {
 	return (
 		<div className="pin-author">
-			<div className="pin-author__callout">
-				<strong>Share your feedback</strong>
-			</div>
 			<div className="pin-author__main">
 				<div className="pin-author__info d-flex">
 					<div className="pin-author__avatar">

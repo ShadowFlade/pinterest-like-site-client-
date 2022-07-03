@@ -86,7 +86,7 @@ export default function PinDetailed() {
 	return (
 		<div className="bg px-2 py-2">
 			<div className="pin">
-				<div className="pin__inner d-flex">
+				<div className="pin__inner ">
 					<div className="pin__pic">{img}</div>
 					<div className="pin__info">
 						<div className="pin__main display-4 my-auto">
