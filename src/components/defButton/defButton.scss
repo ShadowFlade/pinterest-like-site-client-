@@ -1,9 +1,7 @@
 @import '../../scss/custom/custom.scss';
 @import '../../scss/custom/mixins.scss';
-// .def-button {
-//   min-width: 100px;
-//   // --bs-btn-hover-bg: shade-color($secondary, 50%);
-//   &:hover {
-//     background-color: shade-color($secondary, 50%);
-//   }
-// }
+.def-button {
+	max-height: rem(46);
+	min-width: rem(68);
+	width: 100%;
+}

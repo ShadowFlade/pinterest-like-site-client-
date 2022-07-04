@@ -1,0 +1,43 @@
+@import '../../scss/custom/custom.scss';
+@import '../../scss/custom/mixins.scss';
+.cookie-prompt {
+	&__inner {
+		@media screen and (max-width: 920px) {
+			& {
+				display: block !important;
+			}
+		}
+	}
+	&__buttons {
+		margin-left: auto;
+		justify-content: flex-end;
+		@media screen and (max-width: 920px) {
+			& {
+				margin-left: 0;
+				justify-content: center;
+				width: auto !important;
+				margin-top: 0.5rem !important;
+			}
+		}
+		@media screen and (max-width: 400px) {
+			& {
+				flex-wrap: wrap;
+			}
+		}
+	}
+	&__text {
+		@media screen and (max-width: 920px) {
+			& {
+				width: 100% !important;
+			}
+		}
+	}
+	&__button {
+		@media screen and (max-width: 400px) {
+			& {
+				margin: 0.5rem;
+				width: 100%;
+			}
+		}
+	}
+}
