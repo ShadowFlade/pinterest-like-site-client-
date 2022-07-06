@@ -20,7 +20,6 @@ const hideOnClickOutside = (
 	e: MouseEvent,
 	clickElement: null | HTMLElement,
 	popElement: null | HTMLElement,
-	// className?: string,
 	cb?: () => void
 ) => {
 	const target = e.target as Node;
@@ -83,4 +82,30 @@ const bindOutsideClickDetection = (
 	}
 };
 
-export { sample, randomNumberBetween, bindOutsideClickDetection, hideOnClickOutside };
+const calculateThePositionOfPopupElement = (
+	anchorElement: HTMLElement | HTMLDivElement | null,
+	popupElement: HTMLElement | null
+): { offsetLeft: number; offsetTop: number } | false => {
+	if (anchorElement !== null && popupElement !== null) {
+		const offsetLeft =
+			anchorElement?.offsetLeft -
+			(popupElement.offsetWidth / 2 - anchorElement?.offsetWidth - 2);
+		const offsetTop =
+			anchorElement?.offsetTop -
+			(popupElement.offsetHeight / 2 - anchorElement?.offsetHeight - 2);
+		return {
+			offsetLeft,
+			offsetTop,
+		};
+	} else {
+		return false;
+	}
+};
+
+export {
+	sample,
+	randomNumberBetween,
+	bindOutsideClickDetection,
+	hideOnClickOutside,
+	calculateThePositionOfPopupElement,
+};

@@ -1,9 +1,13 @@
 .modal-ts {
 	opacity: 0 !important;
+	background-color: transparent;
 	&__dialog {
+		background-color: inherit;
 		margin-inline: 0 !important;
 	}
 	&__body {
+		background-color: inherit;
+
 		display: inline;
 		p {
 			display: inline;
@@ -12,11 +16,14 @@
 		text-align: center;
 	}
 	&__inside-dialog {
+		background-color: inherit;
+
 		text-align: center;
 		position: relative;
 		transition: all 0.15s linear;
 	}
 	&__inside-content {
+		background-color: inherit;
 		text-align: center;
 	}
 }

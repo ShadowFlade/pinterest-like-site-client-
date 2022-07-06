@@ -170,7 +170,7 @@ export default function Header({
 				</PopItem>
 			) : null}
 			<div className="header__burger">
-				<Burger toggle={toggleBurgerMenu}>
+				<Burger burgerVisible={burgerVisible} toggle={toggleBurgerMenu}>
 					<ContextMenu show={toggleBurgerMenu} visible={burgerVisible} items={items} />
 				</Burger>
 			</div>
