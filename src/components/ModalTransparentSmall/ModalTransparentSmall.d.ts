@@ -5,5 +5,6 @@ export interface IModalTransparentSmallProps {
     hide: () => void;
     children: JSX.Element;
     clickElement: HTMLElement;
+    transparent?: boolean;
 }
-export default function ModalTransparentSmall({ isVisible, hide, children, clickElement, }: IModalTransparentSmallProps): JSX.Element;
+export default function ModalTransparentSmall({ isVisible, hide, children, clickElement, transparent, }: IModalTransparentSmallProps): JSX.Element;

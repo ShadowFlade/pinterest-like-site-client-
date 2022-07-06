@@ -20,39 +20,38 @@ const CollectionMiniModal = forwardRef(
 		};
 
 		return (
-			<Modal
-				size="lg"
-				fullscreen={true}
-				aria-labelledby="contained-modal-title-vcenter"
-				centered
-				show={show}
-				onHide={hide}
-				// className={` ${
-				// 	show ? 'collection-mini__modal--visible' : 'collection-mini__modal--hidden'
-				// }`}
-			>
-				<Modal.Header closeButton>
-					<Modal.Title id="contained-modal-title-vcenter" className="text-center">
-						<h2 className="h2 text-center text-capitalize">
-							{collection && collection?.title}
-						</h2>
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					{collection && (
-						<MasonryLayout
-							items={collection?.pins.map((item) => (
-								<PostMainPage
-									_id={item._id}
-									user={item.user}
-									img={item.img}
-									title={item.title}
-								/>
-							))}
-						/>
-					)}
-				</Modal.Body>
-			</Modal>
+			<div onClick={(e) => e.stopPropagation()}>
+				<Modal
+					size="lg"
+					fullscreen={true}
+					aria-labelledby="contained-modal-title-vcenter"
+					centered
+					show={show}
+					onHide={hide}
+				>
+					<Modal.Header closeButton>
+						<Modal.Title id="contained-modal-title-vcenter" className="text-center">
+							<h2 className="h2 text-center text-capitalize">
+								{collection && collection?.title}
+							</h2>
+						</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						{collection && (
+							<MasonryLayout
+								items={collection?.pins.map((item) => (
+									<PostMainPage
+										_id={item._id}
+										user={item.user}
+										img={item.img}
+										title={item.title}
+									/>
+								))}
+							/>
+						)}
+					</Modal.Body>
+				</Modal>
+			</div>
 		);
 	}
 );
