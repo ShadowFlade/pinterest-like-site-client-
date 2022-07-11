@@ -1,11 +1,8 @@
-import { DetailedResponse } from '@/components/PinDetailed/pin-detailed';
 import { reactQueryConfig } from '@/variables';
-import { Login } from '@mui/icons-material';
 import axios, { AxiosResponse } from 'axios';
 import { ObjectId } from 'mongodb';
 import * as React from 'react';
 
-import { Dispatch, useCallback, useMemo, useState, memo, useEffect } from 'react';
 import { useQuery, UseQueryResult } from 'react-query';
 import { axiosConfig } from '..';
 import { IContext, User } from './context';

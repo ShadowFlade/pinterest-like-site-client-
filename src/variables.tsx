@@ -1,5 +1,3 @@
-import keys from './keys';
-
 const STALE_TIME = 1000 * 120;
 const reactQueryConfig = {
 	retry: false,

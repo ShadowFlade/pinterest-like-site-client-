@@ -7,23 +7,48 @@ import CollectionMiniModal from '../../components/CollectionMiniModal/Collection
 import keys from '@/keys';
 import { MyContext } from '@/Context/Context';
 import { Share } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { reactQueryConfig } from '@/variables';
 import AlertInfo from '@/components/AlertInfo/AlertInfo';
-import './ProfilePage.scss';
 import { axiosConfig } from '@/index';
 import axios, { AxiosResponse } from 'axios';
-import { useQuery } from 'react-query';
+import { QueryFunctionContext, useQuery } from 'react-query';
 import { Collection } from '@/components/CollectionMini/collection-mini';
+import { User } from '@/Context/context';
+import './ProfilePage.scss';
 
 export default function ProfilePage() {
+	const { id } = useParams();
 	const [collectionModalVisible, setCollectionModalVisible] = useState(false);
 	const { isAuth, user } = useContext(MyContext);
-
 	const navigate = useNavigate();
-	if (!isAuth) {
+	const location = useLocation();
+	if (location.pathname === '/profile/me' && !isAuth) {
 		navigate('/');
 	}
+
+	const getUser = async (
+		context: QueryFunctionContext<(string | undefined)[]>
+	): Promise<AxiosResponse<User | null, any> | null> => {
+		const id = context.queryKey[0];
+		console.log('🚀 ~ file: ProfilePage.tsx ~ line 34 ~ ProfilePage ~ id', id);
+		if (id) {
+			console.log('have id');
+			return axios.get(`${keys.serverURL}profile/${id}`, {
+				...axiosConfig,
+				withCredentials: false,
+			});
+		} else {
+			return null;
+		}
+	};
+	const { data: someData, isSuccess } = useQuery([id], getUser, {
+		...reactQueryConfig,
+		enabled: !!id,
+	});
+	const nonAuthUser = isSuccess ? someData?.data : undefined;
+	console.log(nonAuthUser);
+	const profileUser = user || nonAuthUser;
 	const getCollections = async (): Promise<AxiosResponse<Collection[]>> => {
 		return await axios.post('/collections/my', { user }, axiosConfig);
 	};
@@ -82,9 +107,11 @@ export default function ProfilePage() {
 		) : (
 			<span>
 				<span>0</span>
-				<a href={`${keys.frontURL}`} className="ms-2 mt-2 fs-6">
-					Want to follow somebody?
-				</a>
+				{isAuth ? (
+					<a href={`${keys.frontURL}`} className="ms-2 mt-2 fs-6">
+						Want to follow somebody?
+					</a>
+				) : null}
 			</span>
 		);
 
@@ -107,15 +134,17 @@ export default function ProfilePage() {
 							<img className="profile-page__img" src={avatar} alt="avatar" />
 							{!avatar ? (
 								<div className="profile-page__extra">
-									{(user?.name && user?.name[0]) || user?.email[0]}
+									{(profileUser?.name && profileUser?.name[0]) ||
+										profileUser?.email[0]}
 								</div>
 							) : null}
 						</div>
-						<h1 className="profile-page__name h1">{user && user.name}</h1>
+						<h1 className="profile-page__name h1">{profileUser && profileUser.name}</h1>
 						<p className="profile-page__text">
 							<p className="profile-page__FOLLOWERS mt-2">
 								followers: {numberOfFOLLOWERS}
 							</p>
+							<p>{isSuccess ? 'smth' : 'nothing'}</p>
 							<p className="profile-page__FOLLOWING mt-2">
 								following: {numberOfFOLLOWING}
 							</p>

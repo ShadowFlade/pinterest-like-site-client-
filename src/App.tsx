@@ -77,6 +77,7 @@ const App = () => {
 					/>
 
 					<Route path={`${keys.frontURL}profile/me`} element={<ProfilePage />} />
+					<Route path={`${keys.frontURL}profile/:id`} element={<ProfilePage />} />
 					<Route path={`${keys.frontURL}pin/detailed/:id`} element={<PinDetailed />} />
 					<Route path="*" element={<ErrorPage prevPath={prevPath} />} />
 				</Route>
