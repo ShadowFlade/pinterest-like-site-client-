@@ -16,7 +16,7 @@
 		"deploy": "gh-pages -d build",
 		"just_deploy": "gh-pages -d build",
 		"preinstall": "npx force-resolutions",
-		"start": "npm run build && ./app.bundle.js",
+		"start": "npm run build",
 		"postinstall": "NODE_ENV=production webpack"
 	},
 	"keywords": [],
