@@ -23,7 +23,7 @@ const root = document.querySelector('#root');
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { ...reactQueryConfig } } });
 // @ts-ignore
-ReactDOM.createRoot(root).render(
+ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<ContextProvider>
@@ -33,7 +33,8 @@ ReactDOM.createRoot(root).render(
 				</BrowserRouter>
 			</ContextProvider>
 		</QueryClientProvider>
-	</React.StrictMode>
+	</React.StrictMode>,
+	root
 );
 
 export default queryClient;

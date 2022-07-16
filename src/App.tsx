@@ -1,4 +1,3 @@
-import * as ReactDOM from 'react-dom/client';
 import * as React from 'react';
 import { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
