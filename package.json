@@ -16,7 +16,7 @@
 		"deploy": "gh-pages -d build",
 		"just_deploy": "gh-pages -d build",
 		"preinstall": "npx force-resolutions",
-		"start": "npm run build"
+		"start": "webpack"
 	},
 	"keywords": [],
 	"author": "",
