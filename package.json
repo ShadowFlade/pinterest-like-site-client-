@@ -16,7 +16,7 @@
 		"deploy": "gh-pages -d build",
 		"just_deploy": "gh-pages -d build",
 		"preinstall": "npx force-resolutions",
-		"start": "npm install -D webpack-cli && webpack"
+		"start": "./node_modules/webpack/bin/webpack.js"
 	},
 	"keywords": [],
 	"author": "",
