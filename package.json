@@ -54,7 +54,6 @@
 		"postcss-loader": "^6.2.1",
 		"postcss-preset-env": "^7.4.2",
 		"prettier": "^2.6.1",
-		"react-query-devtools": "^2.6.3",
 		"react-svg-loader": "^3.0.3",
 		"sass": "^1.49.9",
 		"sass-loader": "^12.6.0",
