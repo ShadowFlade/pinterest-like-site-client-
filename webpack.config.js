@@ -10,8 +10,9 @@ const paths = {
 	dist: path.resolve(__dirname, 'build'),
 	assets: './assets/',
 };
+// /pinterest-like-site-client/
 function publicPath() {
-	return isDev ? '/' : '/pinterest-like-site-client-/';
+	return isDev ? './' : 'https://pinterest-front1337.herokuapp.com/';
 }
 const config = {
 	context: paths.src,
