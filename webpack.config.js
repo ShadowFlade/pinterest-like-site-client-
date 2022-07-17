@@ -23,7 +23,7 @@ const config = {
 		path: paths.dist,
 		chunkFilename: '[name].bundle.js',
 		filename: '[name].bundle.js',
-		publicPath: publicPath(),
+		publicPath: '/',
 		clean: true,
 	},
 	resolve: {
