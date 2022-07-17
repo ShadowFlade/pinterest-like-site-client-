@@ -11,13 +11,13 @@
 	"main": "./index.tsx",
 	"scripts": {
 		"dev": "cross-env NODE_ENV=development webpack serve",
-		"build": "cross-env NODE_ENV=production webpack",
+		"build": "NODE_ENV=production webpack",
 		"build-local": "cross-env NODE_ENV=development webpack",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
 		"just_deploy": "gh-pages -d build",
 		"preinstall": "npx force-resolutions",
-		"start": "./index.html",
+		"start": "NODE_ENV=production webpack serve",
 		"heroku-postbuild": "NODE_ENV=production webpack"
 	},
 	"keywords": [],
