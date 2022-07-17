@@ -1,6 +1,7 @@
 {
 	"name": "[something]terest",
 	"version": "1.0.0",
+	"homepage": ".",
 	"eslintConfig": {
 		"env": {
 			"browser": true,

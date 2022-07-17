@@ -8,7 +8,7 @@ const isProd = !isDev;
 const paths = {
 	src: path.resolve(__dirname, 'src'),
 	dist: path.resolve(__dirname, 'build'),
-	assets: './assets/',
+	assets: 'assets/',
 };
 // /pinterest-like-site-client/
 function publicPath() {
@@ -22,8 +22,8 @@ const config = {
 	output: {
 		path: paths.dist,
 		chunkFilename: '[name].bundle.js',
-		filename: '[name].bundle.js',
-		publicPath: '/',
+		filename: paths.assets + 'js/[name].bundle.js',
+		publicPath: './',
 		clean: true,
 	},
 	resolve: {
