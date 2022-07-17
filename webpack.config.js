@@ -12,7 +12,7 @@ const paths = {
 };
 // /pinterest-like-site-client/
 function publicPath() {
-	return isDev ? './' : 'https://pinterest-front1337.herokuapp.com/';
+	return isDev ? '/' : 'https://pinterest-front1337.herokuapp.com/';
 }
 const config = {
 	context: paths.src,
