@@ -22,7 +22,7 @@ const config = {
 	output: {
 		path: paths.dist,
 		chunkFilename: '[name].bundle.js',
-		filename: paths.assets + 'js/[name].bundle.js',
+		filename: '[name].bundle.js',
 		publicPath: './',
 		clean: true,
 	},

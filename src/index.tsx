@@ -27,7 +27,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<ContextProvider>
-				<BrowserRouter basename="/index.html">
+				<BrowserRouter>
 					<App />
 					<ReactQueryDevtools />
 				</BrowserRouter>
