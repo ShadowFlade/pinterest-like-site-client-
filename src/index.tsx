@@ -29,7 +29,6 @@ ReactDOM.render(
 			<ContextProvider>
 				<BrowserRouter basename="/">
 					<App />
-					<ReactQueryDevtools />
 				</BrowserRouter>
 			</ContextProvider>
 		</QueryClientProvider>

@@ -40,11 +40,9 @@ const App = () => {
 
 	return (
 		<div className="app mx-5">
-			{isDev ? (
-				<button onClick={goBack} className="btn btn-dark btn-lg back-button">
-					Back
-				</button>
-			) : null}
+			<button onClick={goBack} className="btn btn-dark btn-lg back-button">
+				Back
+			</button>
 			<Routes>
 				<Route
 					path={`${keys.frontURL}`}
