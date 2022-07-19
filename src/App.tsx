@@ -46,7 +46,6 @@ const App = () => {
 					Back
 				</button>
 			) : null}
-			<ProfilePage />
 			<Routes>
 				<Route
 					path={'/'}
