@@ -1,7 +1,7 @@
 {
 	"name": "[something]terest",
 	"version": "1.0.0",
-	"homepage": ".",
+	"homepage": "https://pinterest-front1337.herokuapp.com",
 	"eslintConfig": {
 		"env": {
 			"browser": true,

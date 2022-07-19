@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { useContext, useEffect, useRef, useState } from 'react';
-import axios from 'axios';
-import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import imgSrc10 from './components/PostMainPage/imgs/wp3161439.jpg';
-import CookiePrompt from './components/CookiePrompt/CookiePrompts';
-import Header from './components/Header/Header';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import MainPage from './pages/MainPage/MainPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Layout from './layout/Layout';
-import ContextProvider, { MyContext } from './Context/Context';
+import { MyContext } from './Context/Context';
 import PinDetailed from './components/PinDetailed/PinDetailed';
 import ErrorPage from './pages/404/404';
 import usePrevPath from './hooks/usePrevPath';
@@ -75,9 +70,9 @@ const App = () => {
 						}
 					/>
 
-					<Route path={`${keys.frontURL}profile/me`} element={<ProfilePage />} />
-					<Route path={`${keys.frontURL}profile/:id`} element={<ProfilePage />} />
-					<Route path={`${keys.frontURL}pin/detailed/:id`} element={<PinDetailed />} />
+					<Route path={`${keys.frontURL}/profile/me`} element={<ProfilePage />} />
+					<Route path={`${keys.frontURL}/profile/:id`} element={<ProfilePage />} />
+					<Route path={`${keys.frontURL}/pin/detailed/:id`} element={<PinDetailed />} />
 					<Route path="*" element={<ErrorPage prevPath={prevPath} />} />
 				</Route>
 			</Routes>

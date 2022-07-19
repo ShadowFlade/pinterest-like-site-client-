@@ -4,7 +4,7 @@ const serverURL = `${
 		: 'http://localhost:3002/'
 }`;
 const frontURL = `${
-	process.env.NODE_ENV === 'development' ? '/' : 'https://pinterest-front1337.herokuapp.com/'
+	process.env.NODE_ENV === 'development' ? '/' : 'https://pinterest-front1337.herokuapp.com'
 }`;
 
 const keys = {
