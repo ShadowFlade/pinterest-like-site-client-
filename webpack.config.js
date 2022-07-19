@@ -38,7 +38,7 @@ const config = {
 		hot: true,
 		open: true,
 		historyApiFallback: {
-			rewrites: [{ from: /./, to: '/index.html' }],
+			rewrites: [{ from: /./, to: '../index.html' }],
 		},
 	},
 	module: {
