@@ -49,7 +49,7 @@ const App = () => {
 			<ProfilePage />
 			<Routes>
 				<Route
-					path={keys.frontURL}
+					path={'/'}
 					element={
 						<Layout
 							isAddPinPopupVisible={isAddPinPopupVisible}
@@ -72,9 +72,9 @@ const App = () => {
 						}
 					/>
 
-					<Route path="/profile/me" element={<ProfilePage />} />
-					<Route path="/profile/:id" element={<ProfilePage />} />
-					<Route path="/pin/detailed/:id" element={<PinDetailed />} />
+					<Route path="profile/me" element={<ProfilePage />} />
+					<Route path="profile/:id" element={<ProfilePage />} />
+					<Route path="pin/detailed/:id" element={<PinDetailed />} />
 					<Route path="*" element={<ErrorPage prevPath={prevPath} />} />
 				</Route>
 			</Routes>
