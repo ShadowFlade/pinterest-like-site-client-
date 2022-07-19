@@ -23,7 +23,7 @@ const config = {
 		path: paths.dist,
 		chunkFilename: '[name].bundle.js',
 		filename: '[name].bundle.js',
-		publicPath: './',
+		publicPath: '/',
 		clean: true,
 	},
 	resolve: {
@@ -38,7 +38,7 @@ const config = {
 		hot: true,
 		open: true,
 		historyApiFallback: {
-			rewrites: [{ from: /./, to: '../index.html' }],
+			rewrites: [{ from: /./, to: '/index.html' }],
 		},
 	},
 	module: {
