@@ -5,7 +5,7 @@ import { IHeaderProps } from './header';
 import ChatIcon from '../SecondaryIcon/chat-dots.svg';
 import BellIcon from '../SecondaryIcon/bell-fill.svg';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.scss';
 import { MyContext } from '@/Context/Context';
 import { bindOutsideClickDetection } from '@/utils/utils';
@@ -31,6 +31,7 @@ export default function Header({
 	isAddPinPopupVisible,
 }: IHeaderProps) {
 	const [burgerVisible, setBurgerVisible] = useState(false);
+	const navigate = useNavigate();
 	const iconWidth = 35;
 	const addPinButton = useRef<HTMLButtonElement | null>(null);
 	const { isAuth, user } = useContext(MyContext);
@@ -78,7 +79,9 @@ export default function Header({
 	const logoutItem = (
 		<DropdownMenuOption action={logout} icon={<Logout />} modif="logout" text="Logout" />
 	);
-
+	const goToProfilePage = () => {
+		navigate('/profile/me');
+	};
 	const items = [
 		isAuth ? (
 			logoutItem
@@ -86,6 +89,7 @@ export default function Header({
 			<DropdownMenuOption action={handleLoginModal} modif="login" text="Login" />
 		),
 		isAuth ? null : <DropdownMenuOption text="Register" action={handleRegisterModal} />,
+		isAuth ? <DropdownMenuOption action={goToProfilePage} text="Your profile" /> : null,
 	];
 
 	return (

@@ -18,9 +18,10 @@ import { User } from '@/Context/context';
 import './ProfilePage.scss';
 
 export default function ProfilePage() {
-	const { id } = useParams();
 	const [collectionModalVisible, setCollectionModalVisible] = useState(false);
 	const { isAuth, user } = useContext(MyContext);
+
+	const _id = user?._id;
 	const navigate = useNavigate();
 	const location = useLocation();
 	if (location.pathname === '/profile/me' && !isAuth) {
@@ -31,9 +32,7 @@ export default function ProfilePage() {
 		context: QueryFunctionContext<(string | undefined)[]>
 	): Promise<AxiosResponse<User | null, any> | null> => {
 		const id = context.queryKey[0];
-		console.log('🚀 ~ file: ProfilePage.tsx ~ line 34 ~ ProfilePage ~ id', id);
 		if (id) {
-			console.log('have id');
 			return axios.get(`${keys.serverURL}profile/${id}`, {
 				...axiosConfig,
 				withCredentials: false,
@@ -42,12 +41,11 @@ export default function ProfilePage() {
 			return null;
 		}
 	};
-	const { data: someData, isSuccess } = useQuery([id], getUser, {
+	const { data: someData, isSuccess } = useQuery([_id], getUser, {
 		...reactQueryConfig,
-		enabled: !!id,
+		enabled: !!_id,
 	});
 	const nonAuthUser = isSuccess ? someData?.data : undefined;
-	console.log(nonAuthUser);
 	const profileUser = user || nonAuthUser;
 	const getCollections = async (): Promise<AxiosResponse<Collection[]>> => {
 		return await axios.post('/collections/my', { user }, axiosConfig);

@@ -36,7 +36,7 @@ export default function ContextMenu({ show, items, visible }: IContextMenuProps)
 						return (
 							<li
 								className="context-menu__item context-menu__item--logout"
-								onClick={logout}
+								// onClick={logout}
 								key={nanoid()}
 							>
 								{item}

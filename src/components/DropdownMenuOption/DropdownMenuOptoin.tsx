@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { lazy, Suspense } from 'react';
+import './DropdownMenuOption.scss';
 export interface IDropdownMenuOptionProps {
 	icon?: JSX.Element;
 	action: () => void;
