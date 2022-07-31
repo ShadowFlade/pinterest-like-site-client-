@@ -1,7 +1,7 @@
 @use 'sass:color';
 @import '../../scss/custom/custom.scss';
 @import '../../scss/custom/mixins.scss';
-
+$burgerAppearance: 600px;
 .header {
 	&__search-input {
 		padding-left: 1rem;
@@ -29,7 +29,7 @@
 	}
 	&__burger {
 		display: none;
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: $burgerAppearance) {
 			& {
 				display: block;
 			}
@@ -40,6 +40,11 @@
 			& {
 				display: none !important;
 			}
+		}
+	}
+	&__profile-icon {
+		@media screen and (max-width: $burgerAppearance) {
+			display: none;
 		}
 	}
 }
