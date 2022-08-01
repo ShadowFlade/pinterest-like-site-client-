@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { RegisterLoginModal } from './register-login-modal';
 
@@ -23,9 +23,14 @@ const RegisterLoginModal = ({
 }: RegisterLoginModal) => {
 	const wrapper = useRef<HTMLDivElement | null>(null);
 	const body = useRef<HTMLDivElement | null>(null);
+	const [isRegistrationBig, setIsRegisterBig] = useState(false);
 	const slide = (e: React.MouseEvent) => {
 		e.preventDefault();
 		setIsLeft((prev) => !prev);
+	};
+	const closeRegModal = () => {
+		closeRegisterModal();
+		setIsRegisterBig(!isRegistrationBig);
 	};
 
 	return (
@@ -33,7 +38,7 @@ const RegisterLoginModal = ({
 			centered
 			size="xl"
 			show={isRegisterModalOpen}
-			onHide={closeRegisterModal}
+			onHide={closeRegModal}
 			dialogClassName="modal-90w"
 			className="register-login-modal"
 		>
@@ -65,9 +70,18 @@ const RegisterLoginModal = ({
 							Register
 						</button>
 					</div>
-					<div className={`wrapper ${left ? null : 'move'}`} ref={wrapper}>
-						<LoginForm closeRegisterModal={closeRegisterModal} left={left} />
-						<RegisterForm closeRegisterModal={closeRegisterModal} left={left} />
+					<div
+						className={`wrapper ${left ? null : 'move'} ${
+							isRegistrationBig ? 'wrapper--big' : ''
+						}`}
+						ref={wrapper}
+					>
+						<LoginForm closeRegisterModal={closeRegModal} left={left} />
+						<RegisterForm
+							setWrapperMoveInAbsolute={setIsRegisterBig}
+							closeRegisterModal={closeRegModal}
+							left={left}
+						/>
 					</div>
 				</div>
 			</Modal.Body>

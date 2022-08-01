@@ -78,6 +78,7 @@
 		"@reduxjs/toolkit": "^1.8.1",
 		"autoprefixer": "10.4.5",
 		"bootstrap": "^5.2.0-beta1",
+		"boring-avatars": "^1.7.0",
 		"classnames": "^2.3.1",
 		"clean-webpack-plugin": "^4.0.0",
 		"formik": "^2.2.9",
@@ -94,8 +95,8 @@
 		"react-redux": "^8.0.1",
 		"react-router": "^6.3.0",
 		"react-router-dom": "^6.3.0",
-		"yup": "^0.32.11",
-		"webpack-dev-server": "^4.7.4"
+		"webpack-dev-server": "^4.7.4",
+		"yup": "^0.32.11"
 	},
 	"resolutions": {
 		"autoprefixer": "10.4.5"
