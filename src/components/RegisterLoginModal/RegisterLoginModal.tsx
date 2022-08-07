@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useRef } from 'react';
 import { Modal } from 'react-bootstrap';
 import { RegisterLoginModal } from './register-login-modal';
-
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import './RegisterLoginModal.scss';
