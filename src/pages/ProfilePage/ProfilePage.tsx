@@ -14,7 +14,7 @@ import { axiosConfig } from '@/index';
 import axios, { AxiosResponse } from 'axios';
 import { QueryFunctionContext, useQuery } from 'react-query';
 import { Collection } from '@/components/CollectionMini/collection-mini';
-import { User } from '@/Context/context';
+import { User } from '@/Context/ContextType';
 import './ProfilePage.scss';
 
 export default function ProfilePage() {

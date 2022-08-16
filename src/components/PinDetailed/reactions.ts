@@ -1,4 +1,4 @@
-import { IReaction } from '../Reactions/reactions';
+import { IReaction } from '../Reactions/ReactionsType';
 
 const reactions: IReaction[] = [
 	{

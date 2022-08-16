@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
-import { User } from '@/Context/context';
+import { User } from '@/Context/ContextType';
 import { Pin } from '@/components/PostMainPage/PostMainPage';
 import { PinUploadData } from '@/components/UploadPinForm/UploadPinForm';
 import { axiosConfig } from '..';

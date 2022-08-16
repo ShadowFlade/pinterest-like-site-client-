@@ -12,6 +12,7 @@
 		"noImplicitAny": true,
 		"strictNullChecks": true,
 		"baseUrl": "src",
+		"skipLibCheck": true,
 		"paths": {
 			"@/*": ["*"]
 		},

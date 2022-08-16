@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useContext, useRef, useState } from 'react';
 import SecondaryIcon from '../SecondaryIcon/SecondaryIcon';
-import { IHeaderProps } from './header';
+import { IHeaderProps } from './HeaderType';
 import ChatIcon from '../SecondaryIcon/chat-dots.svg';
 import BellIcon from '../SecondaryIcon/bell-fill.svg';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';

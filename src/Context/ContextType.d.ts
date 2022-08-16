@@ -3,12 +3,11 @@ import * as React from 'react';
 import { Dispatch } from 'react';
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from 'react-query';
 
-interface IContext {
+export interface IContext {
 	isAuth: boolean;
 	user: User | null;
 	csrf: any;
-	refetch:
-		| (<TPageData>(
+	refetch: (<TPageData>(
 				options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
 		  ) => Promise<
 				QueryObserverResult<

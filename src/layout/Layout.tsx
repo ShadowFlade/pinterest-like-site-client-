@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import MyModal from '../components/Modal/Modal';
 import UploadPinForm from '../components/UploadPinForm/UploadPinForm';
 import RegisterLoginModal from '../components/RegisterLoginModal/RegisterLoginModal';
-import { ILayoutProps } from './layout';
+import { ILayoutProps } from './LayoutType';
 
 export default function Layout({
 	handlePinState,

@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import * as React from 'react';
 import Emoji from '../Emoji/Emoji';
 import EmojiButton from '../EmojiButton/EmojiButton';
-import { IReactionsProps } from './reactions';
+import { IReactionsProps } from './ReactionsType';
 import './Reactions.scss';
 
 export default function Reactions({ reactions }: IReactionsProps) {

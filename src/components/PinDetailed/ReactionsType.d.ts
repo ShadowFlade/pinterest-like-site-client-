@@ -1,3 +1,5 @@
+// import { IReaction } from '../Reactions/reactions';
+declare const reactions: IReaction[];
 export interface IReaction {
 	emoji: string;
 	amount: number;
@@ -6,3 +8,4 @@ export interface IReaction {
 export interface IReactionsProps {
 	reactions: IReaction[];
 }
+export default reactions;

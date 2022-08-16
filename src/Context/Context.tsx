@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { useQuery, UseQueryResult } from 'react-query';
 import { axiosConfig } from '..';
-import { IContext, User } from './context';
+import { IContext, User } from '@/Context/ContextType';
 
 export const MyContext = React.createContext<IContext>({
 	isAuth: false,
