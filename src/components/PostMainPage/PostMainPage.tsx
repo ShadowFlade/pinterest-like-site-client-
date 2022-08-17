@@ -41,18 +41,6 @@ export interface PinData {
 }
 
 export default function PostMainPage({ img, title, user, reactions, _id }: Pin) {
-	const pattern = /cloudinary/;
-	const isLocal = pattern.test(img);
-	const getImg = () => {
-		return axios.get(img, { ...axiosConfig, withCredentials: false });
-	};
-	const { data, isError } = useQuery<AxiosResponse<string>>([_id], getImg, {
-		enabled: isLocal,
-	});
-	if (isError) {
-		axios.post('/pin/delete', { _id }, { ...axiosConfig, withCredentials: false });
-		return null;
-	}
 	return (
 		<Link to={`pin/detailed/${_id}`} className="main-post__link">
 			<div className="main-post card">
@@ -67,7 +55,6 @@ export default function PostMainPage({ img, title, user, reactions, _id }: Pin) 
 				<div className="card-body">
 					<h5 className="main-post__title card-title">{title}</h5>
 					<p className="main-post__author card-text">{user} </p>
-					{data ? <div className="main-post__reactions"></div> : ''}
 				</div>
 			</div>
 		</Link>
