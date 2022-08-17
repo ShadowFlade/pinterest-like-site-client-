@@ -90,6 +90,7 @@ export default function Header({
 		),
 		isAuth ? null : <DropdownMenuOption text="Register" action={handleRegisterModal} />,
 		isAuth ? <DropdownMenuOption action={goToProfilePage} text="Your profile" /> : null,
+		isAuth ? <p onClick={() => handleModalState()}>Add pin</p> : null 
 	];
 
 	return (

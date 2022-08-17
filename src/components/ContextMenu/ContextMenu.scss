@@ -1,16 +1,24 @@
+@use "sass:color";
 @import '~bootstrap/scss/bootstrap';
+$borderColor:$secondary;
+$borderLight:lighten($borderColor,50%);
 .context-menu {
-	border: 2px solid $secondary;
+	border: 2px solid $borderColor;
 	&__item {
+		cursor:pointer;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		padding-inline: 0.3rem;
-		border-bottom: 1px solid $secondary;
+		border-bottom: 1px solid $borderColor;
 		border-collapse: collapse;
 		&--logout {
 			color: red;
 			fill: red;
+		}
+		&:hover{
+			border-color:$borderLight;
+			box-shadow: 0 20px 30px -10px #26394d,0 -20px 30px -10px #26394d;
 		}
 	}
 	&__option {
