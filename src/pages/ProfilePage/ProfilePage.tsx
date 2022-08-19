@@ -20,8 +20,7 @@ import './ProfilePage.scss';
 export default function ProfilePage() {
 	const [collectionModalVisible, setCollectionModalVisible] = useState(false);
 	const { isAuth, user } = useContext(MyContext);
-
-	const _id = user?._id;
+	const {id : userID} = useParams();
 	const navigate = useNavigate();
 	const location = useLocation();
 	if (location.pathname === '/profile/me' && !isAuth) {
@@ -31,31 +30,32 @@ export default function ProfilePage() {
 	const getUser = async (
 		context: QueryFunctionContext<(string | undefined)[]>
 	): Promise<AxiosResponse<User | null, any> | null> => {
-		const id = context.queryKey[0];
-		if (id) {
-			return axios.get(`${keys.serverURL}profile/${id}`, {
+		
+			return axios.get(`${keys.serverURL}profile/${userID}`, {
 				...axiosConfig,
 				withCredentials: false,
 			});
-		} else {
-			return null;
-		}
+	
 	};
-	const { data: someData, isSuccess } = useQuery([_id], getUser, {
+	const { data: someData, isSuccess } = useQuery([userID], getUser, {
 		...reactQueryConfig,
-		enabled: !!_id,
+		enabled: !! userID,
 	});
 	const nonAuthUser = isSuccess ? someData?.data : undefined;
 	const profileUser = user || nonAuthUser;
 	const getCollections = async (): Promise<AxiosResponse<Collection[]>> => {
-		return await axios.post('/collections/my', { user }, axiosConfig);
+		if(!userID && isAuth){
+			return await axios.post(`/collections/my` ,user, axiosConfig);
+		}
+		return await axios.get(`/collections/user/${userID}` , axiosConfig);
 	};
 	const { data } = useQuery(
-		['collections', user?._id],
+		['collections', userID],
 		getCollections,
 
-		{ ...reactQueryConfig, enabled: !!user, refetchInterval: Infinity }
+		{ ...reactQueryConfig, enabled: !!userID || !!user, refetchInterval: Infinity }
 	);
+
 	const collections = data?.data;
 	const setCollection = (collection: Collection) => {
 		setActiveCollection(collection);
