@@ -31,10 +31,9 @@ export default function RegisterForm({ left, closeRegisterModal }: IRegisterForm
 		const userData = new FormData(e.target as HTMLFormElement);
 		await axios.post('/auth/register', userData, axiosConfig).then((res) => {
 			if (res.data.success) {
-				console.log(res.data.success);
 				setIsSuccess(true);
-				// setTimeout(closeRegisterModal,1000);
-				// setTimeout(()=>setIsSuccess(false),2000);
+				setTimeout(closeRegisterModal,1000);
+				setTimeout(()=>setIsSuccess(false),2000);
 			} else {
 				setError(res.data.error);
 			}

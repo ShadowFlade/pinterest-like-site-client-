@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import Loading from '../Loading/Loading';
 import MasonryLayout from '../MasonryLayout/MasonryLayout';
 import { DetailedResponse } from '../PinDetailed/pin-detailed';
-import PostMainPage, { Pin } from '../PostMainPage/PostMainPage';
+import PostMainPage, { Pin, PinData } from '../PostMainPage/PostMainPage';
 import RevolverSpinner from '../RevolerSpinner/RevolverSpinner';
 import SpinnerCat from '../SpinnerCat/SpinnerCat';
 import './SuggestedPanel.scss';
@@ -15,10 +15,10 @@ export interface ISuggestedPanelProps {
 	currentPinId: string;
 }
 export default function SuggestedPanel({ keywords, currentPinId }: ISuggestedPanelProps) {
-	const getSuggestedPins = (): Promise<AxiosResponse<Pin[]>> => {
+	const getSuggestedPins = (): Promise<AxiosResponse<PinData[]>> => {
 		return axios.post('/pin/suggested', { keywords }, axiosConfig);
 	};
-	const { data, isSuccess } = useQuery<AxiosResponse<Pin[]>>(
+	const { data, isSuccess } = useQuery<AxiosResponse<PinData[]>>(
 		['suggested-pins', keywords],
 		getSuggestedPins
 	);
@@ -45,7 +45,7 @@ export default function SuggestedPanel({ keywords, currentPinId }: ISuggestedPan
 					<MasonryLayout items={pinsList} />
 				) : (
 					'no pin here' //TODO change to isDev from context or just delete it and put smth else here
-				)}
+)}
 			</div>
 		</div>
 	);

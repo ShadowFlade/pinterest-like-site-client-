@@ -33,3 +33,9 @@ export interface IProfilePageProps {
 	name: string;
 	// statistics: ProfileStatistics;//TODO think of what to put here
 }
+
+export interface UserData{
+	email:string;
+	name?:string;
+	_id:string;
+}

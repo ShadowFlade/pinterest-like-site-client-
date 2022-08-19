@@ -32,7 +32,7 @@ export default function useCreatePin({ cb, user }: userCreatePinOptions) {
 						_id: nanoid(),
 						title: String(newPinData.title),
 						img: fileReader.result,
-						user: user?.name || user?.email || undefined,
+						userName: user?.name || user?.email || undefined,
 					};
 
 					await queryClient.cancelQueries('pins');

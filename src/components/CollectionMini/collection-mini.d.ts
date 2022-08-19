@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Pin } from '../PostMainPage/PostMainPage';
+import { Pin, PinData } from '../PostMainPage/PostMainPage';
 
 export interface ICollectionMiniProps {
 	showCollectionModal: Dispatch<SetStateAction<boolean>>;
@@ -9,7 +9,7 @@ export interface ICollectionMiniProps {
 }
 export type Collection = {
 	_id: string;
-	pins: Pin[];
+	pins: PinData[];
 	author: string;
 	title: string;
 };

@@ -21,7 +21,7 @@ const MainPage = forwardRef(
 				}
 				return (
 					<PostMainPage
-						user={item.user.email || item.user.name || ''}
+						user={item.user}
 						img={item.img}
 						reactions={item.reactions}
 						title={item.title}

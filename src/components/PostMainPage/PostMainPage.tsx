@@ -8,11 +8,12 @@ import { axiosConfig } from '@/index';
 import './PostMainPage.scss';
 import { MyContext } from '@/Context/Context';
 import keys from '@/keys';
+import { mapQueryStatusFilter } from 'react-query/types/core/utils';
 
 export interface Pin {
 	img: string;
 	title: string;
-	user: string | undefined;
+	userName: string | undefined;
 	type?: string;
 	readonly _id: string;
 	keywords?: string[];
@@ -40,7 +41,7 @@ export interface PinData {
 	description?: string;
 }
 
-export default function PostMainPage({ img, title, user, reactions, _id }: Pin) {
+export default function PostMainPage({ img, title, user, reactions, _id }: PinData) {
 	return (
 		<Link to={`pin/detailed/${_id}`} className="main-post__link">
 			<div className="main-post card">
@@ -54,7 +55,9 @@ export default function PostMainPage({ img, title, user, reactions, _id }: Pin) 
 				</div>
 				<div className="card-body">
 					<h5 className="main-post__title card-title">{title}</h5>
-					<p className="main-post__author card-text">{user} </p>
+					<Link className="main-post__author card-text" to={`/profile/${user._id}`}>
+						{user.email || user.name || ''}
+					</Link>
 				</div>
 			</div>
 		</Link>
