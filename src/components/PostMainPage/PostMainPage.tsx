@@ -2,13 +2,15 @@ import * as React from 'react';
 
 import axios, { AxiosResponse } from 'axios';
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { axiosConfig } from '@/index';
 
 import './PostMainPage.scss';
 import { MyContext } from '@/Context/Context';
 import keys from '@/keys';
 import { mapQueryStatusFilter } from 'react-query/types/core/utils';
+import { CustomDispatch } from '@/types';
+import { useRef } from 'react';
 
 export interface Pin {
 	img: string;
@@ -39,12 +41,21 @@ export interface PinData {
 		likesCount: number;
 	};
 	description?: string;
+	setAsLastPin?:CustomDispatch<HTMLDivElement | null> | null;
+	// ref?:CustomDispatch<HTMLDivElement> | null;
 }
 
-export default function PostMainPage({ img, title, user, reactions, _id }: PinData) {
+export default function PostMainPage({ img, title, user, reactions, _id,setAsLastPin }: PinData) {
+	const navigate = useNavigate();
+	const lastPin = useRef<HTMLDivElement | null>(null);
+	if(setAsLastPin){
+		setAsLastPin(lastPin.current);
+	}
+	const onClick = ()=>{
+		navigate(`/pin/detailed/${_id}`);
+	}
 	return (
-		<Link to={`pin/detailed/${_id}`} className="main-post__link">
-			<div className="main-post card">
+			<div onClick={onClick} className="main-post card" ref={lastPin}>
 				<div className="main-post__pic ">
 					<img
 						className="main-post__pic-img card-img-top img-fluid"
@@ -60,6 +71,5 @@ export default function PostMainPage({ img, title, user, reactions, _id }: PinDa
 					</Link>
 				</div>
 			</div>
-		</Link>
 	);
 }
