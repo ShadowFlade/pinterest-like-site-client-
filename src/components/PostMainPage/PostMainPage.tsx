@@ -10,7 +10,7 @@ import { MyContext } from '@/Context/Context';
 import keys from '@/keys';
 import { mapQueryStatusFilter } from 'react-query/types/core/utils';
 import { CustomDispatch } from '@/types';
-import { useRef } from 'react';
+import { MutableRefObject, useEffect, useRef } from 'react';
 
 export interface Pin {
 	img: string;
@@ -41,16 +41,20 @@ export interface PinData {
 		likesCount: number;
 	};
 	description?: string;
-	setAsLastPin?:CustomDispatch<HTMLDivElement | null> | null;
+	isLastElement?:boolean;
+	observer?:MutableRefObject<IntersectionObserver>
 	// ref?:CustomDispatch<HTMLDivElement> | null;
 }
 
-export default function PostMainPage({ img, title, user, reactions, _id,setAsLastPin }: PinData) {
+export default function PostMainPage({ img, title, user, reactions, _id,isLastElement,observer }: PinData) {
 	const navigate = useNavigate();
 	const lastPin = useRef<HTMLDivElement | null>(null);
-	if(setAsLastPin){
-		setAsLastPin(lastPin.current);
-	}
+	useEffect(()=>{
+		if(isLastElement){
+			lastPin.current && observer ? observer.current.observe(lastPin.current) : false;
+		}
+	})
+	
 	const onClick = ()=>{
 		navigate(`/pin/detailed/${_id}`);
 	}

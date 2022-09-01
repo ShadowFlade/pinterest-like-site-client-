@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid';
 import * as React from 'react';
 import './MasonryLayout.scss';
 export default function MasonryLayout({ items }: { items: any[] }) {
+	console.log(items,"ITEMS from MANSONRY");
 	return (
 		<div className="masonry-layout">
 			{items.map((post) => {

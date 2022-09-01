@@ -7,8 +7,11 @@ const frontURL = `${
 	process.env.NODE_ENV === 'development' ? '/' : 'https://pinterest-front1337.herokuapp.com'
 }`;
 
+let PINS_PER_PAGE : number = 10;
 const keys = {
 	serverURL,
 	frontURL,
+	PINS_PER_PAGE
 };
+
 export default keys;
