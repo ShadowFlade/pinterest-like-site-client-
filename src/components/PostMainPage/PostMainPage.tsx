@@ -46,12 +46,12 @@ export interface PinData {
 	// ref?:CustomDispatch<HTMLDivElement> | null;
 }
 
-export default function PostMainPage({ img, title, user, reactions, _id,isLastElement,observer }: PinData) {
+const PostMainPage = React.forwardRef(({ img, title, user, reactions, _id,isLastElement,observer }:PinData,ref:MutableRefObject<HTMLDivElement | null>) =>{
 	const navigate = useNavigate();
-	const lastPin = useRef<HTMLDivElement | null>(null);
+	// const lastPin = useRef<HTMLDivElement | null>(null);
 	useEffect(()=>{
 		if(isLastElement){
-			lastPin.current && observer ? observer.current.observe(lastPin.current) : false;
+			ref && ref.current && observer ? observer.current.observe(ref.current) : false;
 		}
 	})
 	
@@ -59,7 +59,7 @@ export default function PostMainPage({ img, title, user, reactions, _id,isLastEl
 		navigate(`/pin/detailed/${_id}`);
 	}
 	return (
-			<div onClick={onClick} className="main-post card" ref={lastPin}>
+			<div onClick={onClick} className="main-post card" ref={ref}>
 				<div className="main-post__pic ">
 					<img
 						className="main-post__pic-img card-img-top img-fluid"
@@ -76,4 +76,6 @@ export default function PostMainPage({ img, title, user, reactions, _id,isLastEl
 				</div>
 			</div>
 	);
-}
+})
+
+export default PostMainPage

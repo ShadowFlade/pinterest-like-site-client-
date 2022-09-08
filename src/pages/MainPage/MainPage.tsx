@@ -9,11 +9,13 @@ import { IMainPageProps } from './main-page';
 import keys from '../../keys/index';
 import './MainPage.scss';
 import { CustomDispatch } from '@/types';
-let options = {
+const lastItemMargin = 10; //percentage
+const  options = {
 	root: null,
 	rootMargin: '0px',
-	threshold: 1
+	threshold: [0,1-(lastItemMargin/100)]
   }
+   
 
 const MainPage = forwardRef(
 	(
@@ -21,30 +23,39 @@ const MainPage = forwardRef(
 		ref: MutableRefObject<null | HTMLDivElement>
 	) => {
 		const [page,setPage ] = useState<number>(1);
-		
+		const [visible,setVisible] = useState(false);
+		const lastPin = useRef<null | HTMLDivElement>(null);
 		const { data :postsData, isSuccess, error,isLoading, refetch } = usePins(page);
-		const [lastPin, setLastPin] = useState<HTMLDivElement | null>(null);
-		console.log(postsData);
 		const observer = useRef(new IntersectionObserver((entries)=>{
-			console.log(entries,"ENTRIES");
-
 			if(entries[0].isIntersecting) {
-				setPage((prev)=>prev+1)};
+				setVisible(true);
+				console.log(entries[0].target);
+				setPage((prev)=>prev+1);
+				console.log('after setPage');
+				refetch();
+			
+		
+			}
+			else {
+				setVisible(false);
+			}
+
 		},options));
 		console.log(page);
 
 		useEffect(()=>{
+			console.log('works');
 			const currentElement = lastPin;
 			const currentObserver = observer.current;
 			if(currentElement){
-				currentObserver.observe(currentElement);
+				currentElement.current && currentObserver.observe(currentElement.current);
 			}
 			return ()=>{
 				if(currentElement){
-					currentObserver.unobserve(currentElement);
+					currentElement.current &&  currentObserver.unobserve(currentElement.current);
 				}
 			}
-		},[lastPin])
+		},[lastPin.current])
 
 		if (isSuccess && postsData) {
 			const posts = postsData.map((item: PinData,i:number) => {
@@ -63,11 +74,11 @@ const MainPage = forwardRef(
 						_id={item._id}
 						isLastElement={i===postsData.length-1}
 						observer = {observer}
+						ref={i===postsData.length-1 ? lastPin : null}
 
 					/>
 				);
 			});
-			console.log(posts,'POSTS');
 
 			return (
 				<div className="main-page px-2" ref={ref}>
