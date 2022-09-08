@@ -29,9 +29,7 @@ const MainPage = forwardRef(
 		const observer = useRef(new IntersectionObserver((entries)=>{
 			if(entries[0].isIntersecting) {
 				setVisible(true);
-				console.log(entries[0].target);
 				setPage((prev)=>prev+1);
-				console.log('after setPage');
 				refetch();
 			
 		
@@ -41,10 +39,8 @@ const MainPage = forwardRef(
 			}
 
 		},options));
-		console.log(page);
 
 		useEffect(()=>{
-			console.log('works');
 			const currentElement = lastPin;
 			const currentObserver = observer.current;
 			if(currentElement){
