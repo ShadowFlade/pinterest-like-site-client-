@@ -38,3 +38,12 @@
 Cypress.Commands.add("getByTestId",(testId)=>{
     cy.get(`[data-cy='${testId}']`)
 });
+
+Cypress.Commands.add("isButtonWithTextExists",(texts:string[])=>{
+    const buttonsTexts = cy.get('button').then($el => $el.contents()).then($nodes => [...$nodes].map((node:any) => {
+        return node.data;
+        }) as unknown as string);
+    buttonsTexts.should((item)=>{
+            return texts.includes(item);
+        }) 
+});
