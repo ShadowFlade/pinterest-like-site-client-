@@ -13,29 +13,18 @@ describe("locating starter page header buttons",() => {
     const registerButtonText = ['register','зарегестрироваться'];
     const addPinButton = ['add pin','добавить пост'];
 
-    it("start page contains login button",() =>{
-        loginButtonText.forEach(element => {
-            if (cy.get('.btn').should("",element)) {
-                return true;
-            }
-        });
+    it("start page contains login button",()=>{
+        cy.isButtonWithTextExists(loginButtonText);
     })
 
-    it("start page contains register button",() =>{
-        registerButtonText.forEach(element => {
-            if(cy.contains('.btn',element)){
-                return true;
-            }
-        });
+    it("start page contains register button",()=>{
+        cy.isButtonWithTextExists(registerButtonText);
     })
 
-    it("start page contains add pin button",() =>{
-        addPinButton.forEach(element => {
-            if(cy.contains('.btn',element)){
-                return true;
-            }
-        });
+    it("start page contains addPin button",()=>{
+        cy.isButtonWithTextExists(addPinButton);
     })
+
 
 
 
