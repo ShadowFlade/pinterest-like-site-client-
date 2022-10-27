@@ -1,17 +1,15 @@
 /// <reference types="cypress"/>
-const numberOfItemsOnStart = 20;
-describe("on start load",()=>{
-    it(`${numberOfItemsOnStart} loaded on start`,()=>{
-        cy.visit('/');
-        cy.get(".main-post").should('have.length',numberOfItemsOnStart);
-    })
-})
-
-
-describe("locating starter page header buttons",() => {
+    const numberOfPostsOnStart = 20;
     const loginButtonText = ['login','Login','логин','войти'];
     const registerButtonText = ['register','зарегестрироваться'];
-    const addPinButton = ['add pin','добавить пост'];
+    const addPinButtonText = ['add pin','добавить пост'];
+describe("start page",()=>{
+    before(()=>{
+        cy.visit('/');
+    })
+    it(`${numberOfPostsOnStart} posts loaded on start`,()=>{
+        cy.get(".main-post").should('have.length',numberOfPostsOnStart);
+    })
 
     it("start page contains login button",()=>{
         cy.isButtonWithTextExists(loginButtonText);
@@ -22,11 +20,27 @@ describe("locating starter page header buttons",() => {
     })
 
     it("start page contains addPin button",()=>{
-        cy.isButtonWithTextExists(addPinButton);
+        cy.isButtonWithTextExists(addPinButtonText);
     })
 
+    it("when add pin button is clicked, modal window is shown (not logged in)",() => {
+        cy.get(".add-pin-button").then((item) => {
+            addPinButtonText.forEach(text=>{
+                const textCandidate = item.contents()[0].data.toLowerCase().trim();
+                if(textCandidate.toLowerCase() === text){
+                    item.click();
+                    cy.get('.modal-ts__body').should('be.visible');
+                }
 
-
-
+            })
+        })
+    })
 })
+
+
+
+
+
+
+
 
