@@ -4,7 +4,7 @@
     const registerButtonText = ['register','зарегестрироваться'];
     const addPinButtonText = ['add pin','добавить пост'];
 describe("start page",()=>{
-    before(()=>{
+    beforeEach(()=>{
         cy.visit('/');
     })
     it(`${numberOfPostsOnStart} posts loaded on start`,()=>{
@@ -35,8 +35,29 @@ describe("start page",()=>{
             })
         })
     })
-})
+    it('cookies bar is hidden on click',() => {
+        const cokkieClass = 'cookie-prompt';
+        const numberOfButtonsInCookie = cy.get('.cookie-prompt').find('.btn').children.length;
+        for(let i=0;i<numberOfButtonsInCookie;i++){
+            cy.visit('/');
+            cy.wrap(cy.get('.'+cokkieClass).find('.btn').eq(i)).click();
+            cy.wait(4000);
+            cy.get('.'+cokkieClass).should('not.exist');
+            cy.wrap(cy.get('.fade')).click
+            }}
+    );
 
+    it('login/register window is opened when clicked',()=>{
+        cy.get('.header__auth').find('.btn').each(item=>{
+                cy.wrap(item).click();
+                cy.get('.register-login-body',{timeout:3000}).should('be.visible');
+                cy.get('.fade').each(item=>item.click());
+                cy.wait(1000);
+            }
+        )
+        })
+    
+})
 
 
 
