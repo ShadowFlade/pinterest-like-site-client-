@@ -19,7 +19,10 @@
 		"just_deploy": "gh-pages -d build",
 		"preinstall": "npx force-resolutions",
 		"start": "NODE_ENV=development webpack serve",
-		"heroku-postbuild": "NODE_ENV=production webpack"
+		"heroku-postbuild": "NODE_ENV=production webpack",
+		"test:chrome": "cypress run --browser chrome",
+        "combine:report": "mochawesome-merge ./mochawesome-report/*.json -o index.json",
+        "generate:report": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
 	},
 	"keywords": [],
 	"author": "",
