@@ -24,9 +24,9 @@ jobs:
         continue-on-error: false
       - name: Copy test execution videos and screenshots
         run: 
-          mkdir public
-          cp -R cypress/videos public-videos
-          cp -R cypress/screenshots public/screenshots
+          mkdir public;
+          cp -R cypress/videos public-videos;
+          cp -R cypress/screenshots public/screenshots;
       - name: Merge test reports
         run: npm run combine:report
       - name: Generate HTML report
