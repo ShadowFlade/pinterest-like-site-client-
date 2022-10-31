@@ -53,7 +53,7 @@ export default function Header({
 	) : (
 		<div className="header__auth">
 			<button onClick={handleLoginModal} className="btn btn-primary mx-1">
-				Login
+				lksjdlfk
 			</button>
 			<button onClick={handleRegisterModal} className="btn btn-secondary mx-1">
 				Register
