@@ -2,9 +2,10 @@
 describe("Working with http requests",()=>{
 	beforeEach(()=>{
 		cy.visit('/');
+		cy.intercept("GET","http://localhost:3002/pins/20",{fixture:"posts.json"});
+
 	})
 	it("should intercept the request to DB for fetching posts(pins) and find post with 'ferris' in it",()=>{
-		cy.intercept("GET","https://localhost:3000",{fixture:"posts.json"});
 		cy.get('.main-post__title').contains('ferris');
 	})
 })

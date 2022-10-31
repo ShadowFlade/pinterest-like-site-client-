@@ -1,0 +1,227 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 5,
+    "pending": 0,
+    "failures": 2,
+    "start": "2022-10-31T15:33:34.279Z",
+    "end": "2022-10-31T15:33:48.551Z",
+    "duration": 14272,
+    "testsRegistered": 7,
+    "passPercent": 71.42857142857143,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2142ed72-8715-47c6-9cd3-6a2070f4e9ee",
+      "title": "",
+      "fullFile": "cypress\\e2e\\locators.cy.js",
+      "file": "cypress\\e2e\\locators.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b9d95e90-6865-41c3-86d5-3f6de82e8a45",
+          "title": "start page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "20 posts loaded on start",
+              "fullTitle": "start page 20 posts loaded on start",
+              "timedOut": null,
+              "duration": 5265,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".main-post\").should('have.length', numberOfPostsOnStart);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.main-post`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.main-post`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\e2e\\locators.cy.js:112:26)",
+                "diff": null
+              },
+              "uuid": "12a3f11f-6c28-4e5a-aea4-b1e10b61cf6a",
+              "parentUUID": "b9d95e90-6865-41c3-86d5-3f6de82e8a45",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains login button",
+              "fullTitle": "start page start page contains login button",
+              "timedOut": null,
+              "duration": 734,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(loginButtonText);",
+              "err": {},
+              "uuid": "17e23778-9552-4429-8a25-757656e650a4",
+              "parentUUID": "b9d95e90-6865-41c3-86d5-3f6de82e8a45",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains register button",
+              "fullTitle": "start page start page contains register button",
+              "timedOut": null,
+              "duration": 306,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(registerButtonText);",
+              "err": {},
+              "uuid": "4d5d49cd-4aea-4ee1-a6ad-5849e9ba641f",
+              "parentUUID": "b9d95e90-6865-41c3-86d5-3f6de82e8a45",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains addPin button",
+              "fullTitle": "start page start page contains addPin button",
+              "timedOut": null,
+              "duration": 317,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(addPinButtonText);",
+              "err": {},
+              "uuid": "123cdda2-0156-4426-aa60-594012fff10c",
+              "parentUUID": "b9d95e90-6865-41c3-86d5-3f6de82e8a45",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "when add pin button is clicked, modal window is shown (not logged in)",
+              "fullTitle": "start page when add pin button is clicked, modal window is shown (not logged in)",
+              "timedOut": null,
+              "duration": 479,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".add-pin-button\").then(item => {\n  addPinButtonText.forEach(text => {\n    const textCandidate = item.contents()[0].data.toLowerCase().trim();\n    if (textCandidate.toLowerCase() === text) {\n      item.click();\n      cy.get('.modal-ts__body').should('be.visible');\n    }\n  });\n});",
+              "err": {},
+              "uuid": "1e8a7997-ba79-44d1-a3f7-b46a24d63e62",
+              "parentUUID": "b9d95e90-6865-41c3-86d5-3f6de82e8a45",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "cookies bar is hidden on click",
+              "fullTitle": "start page cookies bar is hidden on click",
+              "timedOut": null,
+              "duration": 4349,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const cokkieClass = 'cookie-prompt';\nconst numberOfButtonsInCookie = cy.get('.cookie-prompt').find('.btn').children.length;\nfor (let i = 0; i < numberOfButtonsInCookie; i++) {\n  cy.visit('/');\n  cy.wrap(cy.get('.' + cokkieClass).find('.btn').eq(i)).click();\n  cy.wait(4000);\n  cy.get('.' + cokkieClass).should('not.exist');\n  cy.wrap(cy.get('.fade')).click;\n}",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.cookie-prompt`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.cookie-prompt`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\e2e\\locators.cy.js:137:40)",
+                "diff": null
+              },
+              "uuid": "5f8a69f0-71e4-4d71-9d04-4a04fc6ee72d",
+              "parentUUID": "b9d95e90-6865-41c3-86d5-3f6de82e8a45",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login/register window is opened when clicked",
+              "fullTitle": "start page login/register window is opened when clicked",
+              "timedOut": null,
+              "duration": 2631,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header__auth').find('.btn').each(item => {\n  cy.wrap(item).click();\n  cy.get('.register-login-body', {\n    timeout: 3000\n  }).should('be.visible');\n  cy.get('.fade').each(item => item.click());\n  cy.wait(1000);\n});",
+              "err": {},
+              "uuid": "02e3f079-5c74-43a1-be75-fb77d24654ab",
+              "parentUUID": "b9d95e90-6865-41c3-86d5-3f6de82e8a45",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "17e23778-9552-4429-8a25-757656e650a4",
+            "4d5d49cd-4aea-4ee1-a6ad-5849e9ba641f",
+            "123cdda2-0156-4426-aa60-594012fff10c",
+            "1e8a7997-ba79-44d1-a3f7-b46a24d63e62",
+            "02e3f079-5c74-43a1-be75-fb77d24654ab"
+          ],
+          "failures": [
+            "12a3f11f-6c28-4e5a-aea4-b1e10b61cf6a",
+            "5f8a69f0-71e4-4d71-9d04-4a04fc6ee72d"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14081,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

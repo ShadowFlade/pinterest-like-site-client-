@@ -18,15 +18,14 @@ jobs:
         run:
           npm ci
           $(npm bin)/cypress verify
-      - name: Run dev server
-        run: npm run dev
-        
       - name: Run Cypress tests
         run: npm run test:chrome
         continue-on-error: false
       - name: Copy test execution videos and screenshots
         run: 
           mkdir public;
+          rm cypress/videos/*;
+          rm cypress/screenshots/*;
           cp -R cypress/videos public-videos;
           cp -R cypress/screenshots public/screenshots;
       - name: Merge test reports

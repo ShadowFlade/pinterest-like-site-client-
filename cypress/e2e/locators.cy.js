@@ -6,6 +6,7 @@
 describe("start page",()=>{
     beforeEach(()=>{
         cy.visit('/');
+        cy.intercept("GET","http://localhost:3002/pins/20",{fixture:"posts.json"});
     })
     it(`${numberOfPostsOnStart} posts loaded on start`,()=>{
         cy.get(".main-post").should('have.length',numberOfPostsOnStart);

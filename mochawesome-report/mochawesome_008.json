@@ -1,0 +1,246 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 0,
+    "pending": 0,
+    "failures": 7,
+    "start": "2022-10-31T15:26:49.466Z",
+    "end": "2022-10-31T15:27:19.416Z",
+    "duration": 29950,
+    "testsRegistered": 7,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8a2205c2-5c8f-4432-95e1-ec9aff143881",
+      "title": "",
+      "fullFile": "cypress\\e2e\\locators.cy.js",
+      "file": "cypress\\e2e\\locators.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a2cb0b65-a3f6-42b3-8743-a4cd1deeee22",
+          "title": "start page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "20 posts loaded on start",
+              "fullTitle": "start page 20 posts loaded on start",
+              "timedOut": null,
+              "duration": 4275,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".main-post\").should('have.length', numberOfPostsOnStart);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.main-post`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.main-post`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\e2e\\locators.cy.js:111:26)",
+                "diff": null
+              },
+              "uuid": "194a02bc-5a06-4662-9ded-3fe8074a0b93",
+              "parentUUID": "a2cb0b65-a3f6-42b3-8743-a4cd1deeee22",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains login button",
+              "fullTitle": "start page start page contains login button",
+              "timedOut": null,
+              "duration": 4212,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(loginButtonText);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `button`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `button`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\support\\e2e.ts:137:29)",
+                "diff": null
+              },
+              "uuid": "e68d6776-d3f6-4b71-b100-79884c232f81",
+              "parentUUID": "a2cb0b65-a3f6-42b3-8743-a4cd1deeee22",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains register button",
+              "fullTitle": "start page start page contains register button",
+              "timedOut": null,
+              "duration": 4197,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(registerButtonText);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `button`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `button`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\support\\e2e.ts:137:29)",
+                "diff": null
+              },
+              "uuid": "8bbc60f9-25f3-4f52-8198-5c9d956a6be8",
+              "parentUUID": "a2cb0b65-a3f6-42b3-8743-a4cd1deeee22",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains addPin button",
+              "fullTitle": "start page start page contains addPin button",
+              "timedOut": null,
+              "duration": 4279,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(addPinButtonText);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `button`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `button`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\support\\e2e.ts:137:29)",
+                "diff": null
+              },
+              "uuid": "88682983-2327-44b6-a72b-4b636ee571ce",
+              "parentUUID": "a2cb0b65-a3f6-42b3-8743-a4cd1deeee22",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "when add pin button is clicked, modal window is shown (not logged in)",
+              "fullTitle": "start page when add pin button is clicked, modal window is shown (not logged in)",
+              "timedOut": null,
+              "duration": 4326,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".add-pin-button\").then(item => {\n  addPinButtonText.forEach(text => {\n    const textCandidate = item.contents()[0].data.toLowerCase().trim();\n    if (textCandidate.toLowerCase() === text) {\n      item.click();\n      cy.get('.modal-ts__body').should('be.visible');\n    }\n  });\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.add-pin-button`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.add-pin-button`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\e2e\\locators.cy.js:123:8)",
+                "diff": null
+              },
+              "uuid": "a998f44f-cdc2-4e4d-88f1-fac2f5ce438c",
+              "parentUUID": "a2cb0b65-a3f6-42b3-8743-a4cd1deeee22",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "cookies bar is hidden on click",
+              "fullTitle": "start page cookies bar is hidden on click",
+              "timedOut": null,
+              "duration": 4193,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const cokkieClass = 'cookie-prompt';\nconst numberOfButtonsInCookie = cy.get('.cookie-prompt').find('.btn').children.length;\nfor (let i = 0; i < numberOfButtonsInCookie; i++) {\n  cy.visit('/');\n  cy.wrap(cy.get('.' + cokkieClass).find('.btn').eq(i)).click();\n  cy.wait(4000);\n  cy.get('.' + cokkieClass).should('not.exist');\n  cy.wrap(cy.get('.fade')).click;\n}",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.cookie-prompt`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.cookie-prompt`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\e2e\\locators.cy.js:136:40)",
+                "diff": null
+              },
+              "uuid": "2d78b138-34e1-47a5-9b02-be554e3ed711",
+              "parentUUID": "a2cb0b65-a3f6-42b3-8743-a4cd1deeee22",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login/register window is opened when clicked",
+              "fullTitle": "start page login/register window is opened when clicked",
+              "timedOut": null,
+              "duration": 4213,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header__auth').find('.btn').each(item => {\n  cy.wrap(item).click();\n  cy.get('.register-login-body', {\n    timeout: 3000\n  }).should('be.visible');\n  cy.get('.fade').each(item => item.click());\n  cy.wait(1000);\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.header__auth`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.header__auth`, but never found it.\n    at Context.eval (http://localhost/__cypress/tests?p=cypress\\e2e\\locators.cy.js:147:8)",
+                "diff": null
+              },
+              "uuid": "53e8958f-b47f-48f6-a48e-90ea2598fa00",
+              "parentUUID": "a2cb0b65-a3f6-42b3-8743-a4cd1deeee22",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "194a02bc-5a06-4662-9ded-3fe8074a0b93",
+            "e68d6776-d3f6-4b71-b100-79884c232f81",
+            "8bbc60f9-25f3-4f52-8198-5c9d956a6be8",
+            "88682983-2327-44b6-a72b-4b636ee571ce",
+            "a998f44f-cdc2-4e4d-88f1-fac2f5ce438c",
+            "2d78b138-34e1-47a5-9b02-be554e3ed711",
+            "53e8958f-b47f-48f6-a48e-90ea2598fa00"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 29695,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

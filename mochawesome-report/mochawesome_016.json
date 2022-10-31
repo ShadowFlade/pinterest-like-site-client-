@@ -1,0 +1,218 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-10-31T15:44:49.542Z",
+    "end": "2022-10-31T15:44:58.034Z",
+    "duration": 8492,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "512e8b94-fb41-4bd2-9c6c-bd105e6774cc",
+      "title": "",
+      "fullFile": "cypress\\e2e\\locators.cy.js",
+      "file": "cypress\\e2e\\locators.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f48cb465-7924-4432-810f-1842adef1fab",
+          "title": "start page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "20 posts loaded on start",
+              "fullTitle": "start page 20 posts loaded on start",
+              "timedOut": null,
+              "duration": 1383,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".main-post\").should('have.length', numberOfPostsOnStart);",
+              "err": {},
+              "uuid": "5cee76ce-b1b1-43e3-a45b-dd6e86f014a9",
+              "parentUUID": "f48cb465-7924-4432-810f-1842adef1fab",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains login button",
+              "fullTitle": "start page start page contains login button",
+              "timedOut": null,
+              "duration": 757,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(loginButtonText);",
+              "err": {},
+              "uuid": "930cf883-7fca-4b67-a6b3-c9ddfdd04e6d",
+              "parentUUID": "f48cb465-7924-4432-810f-1842adef1fab",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains register button",
+              "fullTitle": "start page start page contains register button",
+              "timedOut": null,
+              "duration": 382,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(registerButtonText);",
+              "err": {},
+              "uuid": "6909f16d-564a-4bec-9b4e-2aa960734a67",
+              "parentUUID": "f48cb465-7924-4432-810f-1842adef1fab",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "start page contains addPin button",
+              "fullTitle": "start page start page contains addPin button",
+              "timedOut": null,
+              "duration": 280,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.isButtonWithTextExists(addPinButtonText);",
+              "err": {},
+              "uuid": "a5d5b625-b71c-4e87-9dd1-b0037c66866f",
+              "parentUUID": "f48cb465-7924-4432-810f-1842adef1fab",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "when add pin button is clicked, modal window is shown (not logged in)",
+              "fullTitle": "start page when add pin button is clicked, modal window is shown (not logged in)",
+              "timedOut": null,
+              "duration": 595,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".add-pin-button\").then(item => {\n  addPinButtonText.forEach(text => {\n    const textCandidate = item.contents()[0].data.toLowerCase().trim();\n    if (textCandidate.toLowerCase() === text) {\n      item.click();\n      cy.get('.modal-ts__body').should('be.visible');\n    }\n  });\n});",
+              "err": {},
+              "uuid": "6dbcfc16-0332-4d59-9f4b-873af95447a5",
+              "parentUUID": "f48cb465-7924-4432-810f-1842adef1fab",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "cookies bar is hidden on click",
+              "fullTitle": "start page cookies bar is hidden on click",
+              "timedOut": null,
+              "duration": 891,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const cokkieClass = 'cookie-prompt';\nconst numberOfButtonsInCookie = cy.get('.cookie-prompt').find('.btn').children.length;\nfor (let i = 0; i < numberOfButtonsInCookie; i++) {\n  cy.visit('/');\n  cy.wrap(cy.get('.' + cokkieClass).find('.btn').eq(i)).click();\n  cy.wait(4000);\n  cy.get('.' + cokkieClass).should('not.exist');\n  cy.wrap(cy.get('.fade')).click;\n}",
+              "err": {},
+              "uuid": "0f38c0b9-5635-43df-896e-39696e2ab834",
+              "parentUUID": "f48cb465-7924-4432-810f-1842adef1fab",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login/register window is opened when clicked",
+              "fullTitle": "start page login/register window is opened when clicked",
+              "timedOut": null,
+              "duration": 3968,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header__auth').find('.btn').each(item => {\n  cy.wrap(item).click();\n  cy.get('.register-login-body', {\n    timeout: 3000\n  }).should('be.visible');\n  cy.get('.fade').each(item => item.click());\n  cy.wait(1000);\n});",
+              "err": {},
+              "uuid": "9df077b2-2f37-4e96-8222-a86d5de484f6",
+              "parentUUID": "f48cb465-7924-4432-810f-1842adef1fab",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5cee76ce-b1b1-43e3-a45b-dd6e86f014a9",
+            "930cf883-7fca-4b67-a6b3-c9ddfdd04e6d",
+            "6909f16d-564a-4bec-9b4e-2aa960734a67",
+            "a5d5b625-b71c-4e87-9dd1-b0037c66866f",
+            "6dbcfc16-0332-4d59-9f4b-873af95447a5",
+            "0f38c0b9-5635-43df-896e-39696e2ab834",
+            "9df077b2-2f37-4e96-8222-a86d5de484f6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8256,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
