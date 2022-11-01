@@ -39,12 +39,10 @@ Cypress.Commands.add("getByTestId",(testId)=>{
     cy.get(`[data-cy='${testId}']`)
 });
 
-Cypress.Commands.add("isButtonWithTextExists",(texts:string[]) => {
-    const buttonsTexts = cy.get('button').then($el => $el.contents()).then($nodes => {
-        return [...$nodes].map((node:any) => {
-            return node.data;
-            }) as unknown as string});
-    buttonsTexts.should((item)=>{
-            return texts.includes(item);
-        }) 
+Cypress.Commands.add("isButtonWithTextExists",(dataID:string,texts:string[]) => {
+    cy.get(`[data-cy='${dataID}']`).should(item=>{
+        const lowerCasedTexts = texts.map(item=>item.toLowerCase());
+        expect(item.text().toLocaleLowerCase()).to.be.oneOf(lowerCasedTexts);
+    })
+
 });

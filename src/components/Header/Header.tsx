@@ -52,10 +52,10 @@ export default function Header({
 		</Link>
 	) : (
 		<div className="header__auth">
-			<button onClick={handleLoginModal} className="btn btn-primary mx-1">
-				lksjdlfk
+			<button data-cy='login-button' onClick={handleLoginModal} className="btn btn-primary mx-1">
+				Login
 			</button>
-			<button onClick={handleRegisterModal} className="btn btn-secondary mx-1">
+			<button data-cy='register-button' onClick={handleRegisterModal} className="btn btn-secondary mx-1">
 				Register
 			</button>
 		</div>
@@ -90,7 +90,7 @@ export default function Header({
 		),
 		isAuth ? null : <DropdownMenuOption text="Register" action={handleRegisterModal} />,
 		isAuth ? <DropdownMenuOption action={goToProfilePage} text="Your profile" /> : null,
-		isAuth ? <p onClick={() => handleModalState()}>Add pin</p> : null 
+		isAuth ? <p  onClick={() => handleModalState()}>Add pin</p> : null 
 	];
 
 	return (
@@ -111,6 +111,7 @@ export default function Header({
 				My pins
 			</button>
 			<button
+				data-cy='add-pin-button'
 				onClick={() => handleModalState()}
 				ref={addPinButton}
 				className="btn btn-dark text white rounded-pill mx-2 header__home-button add-pin-button"
