@@ -39,13 +39,11 @@ const RegisterLoginModal = ({
 			<Modal.Header closeButton />
 			<Modal.Body
 				ref={body}
-				className="register-login-body"
-				style={{ backgroundColor: `${left ? 'white' : '#bbb'} ` }}
+				className={`register-login-body ${
+					left ? 'register-login-body--login' : 'register-login-body--register'
+				}  `}
 			>
-				<div
-					className="veen"
-					style={{ backgroundColor: `${left ? '#13cc13' : '#077707'}` }}
-				>
+				<div className={`${left ? 'veen--login' : 'veen--register'} veen`}>
 					<div className="login-btn splits">
 						<p>Already a user?</p>
 						<button
