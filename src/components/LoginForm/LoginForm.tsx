@@ -33,6 +33,9 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 			}
 		});
 	};
+	function doSmth() {
+		console.log('smth');
+	}
 
 	return (
 		<Formik
@@ -40,12 +43,13 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 				password: '',
 				email: '',
 			}}
+			validateOnBlur={false}
 			validationSchema={loginSchema}
 			onSubmit={(values, props) => {
 				console.dir(values);
 			}}
 		>
-			{({ setErrors }) => (
+			{({ setErrors, handleBlur }) => (
 				<Form id="login" onSubmit={login}>
 					<h3>Login</h3>
 					<AuthFormInputField
@@ -55,6 +59,7 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 						type="mail"
 						autofocus={left}
 						handleServerErrors={setError}
+						handlers={{ onBlur: [handleBlur] }}
 					></AuthFormInputField>
 
 					<AuthFormInputField
