@@ -10,56 +10,54 @@ import keys from '../../keys/index';
 import './MainPage.scss';
 import { CustomDispatch } from '@/types';
 const lastItemMargin = 10; //percentage
-const  options = {
+const options = {
 	root: null,
 	rootMargin: '0px',
-	threshold: [0,1-(lastItemMargin/100)]
-  }
-   
+	threshold: [0, 1 - lastItemMargin / 100],
+};
 
 const MainPage = forwardRef(
 	(
 		{ isUploadPinOpen, closeModal }: IMainPageProps,
 		ref: MutableRefObject<null | HTMLDivElement>
 	) => {
-		const [page,setPage ] = useState<number>(1);
-		const [visible,setVisible] = useState(false);
+		const [page, setPage] = useState<number>(1);
+		const [visible, setVisible] = useState(false);
 		const lastPin = useRef<null | HTMLDivElement>(null);
-		const { data :postsData, isSuccess, error,isLoading, refetch } = usePins(page);
-		const observer = useRef(new IntersectionObserver((entries)=>{
-			if(entries[0].isIntersecting) {
-				setVisible(true);
-				setPage((prev)=>prev+1);
-				refetch();
-			
-		
-			}
-			else {
-				setVisible(false);
-			}
+		const { data: postsData, isSuccess, error, isLoading, refetch } = usePins(page);
+		const observer = useRef(
+			new IntersectionObserver((entries) => {
+				if (entries[0].isIntersecting) {
+					setVisible(true);
+					setPage((prev) => prev + 1);
+					refetch();
+				} else {
+					setVisible(false);
+				}
+			}, options)
+		);
 
-		},options));
-
-		useEffect(()=>{
+		useEffect(() => {
 			const currentElement = lastPin;
 			const currentObserver = observer.current;
-			if(currentElement){
+			if (currentElement) {
 				currentElement.current && currentObserver.observe(currentElement.current);
 			}
-			return ()=>{
-				if(currentElement){
-					currentElement.current &&  currentObserver.unobserve(currentElement.current);
+			return () => {
+				if (currentElement) {
+					currentElement.current && currentObserver.unobserve(currentElement.current);
 				}
-			}
-		},[lastPin.current])
+			};
+		}, [lastPin.current]);
 
 		if (isSuccess && postsData) {
-			const posts = postsData.map((item: PinData,i:number) => {
-	
+			const posts = postsData.map((item: PinData, i: number) => {
+				console.log(item, ' user');
+
 				if (!item.img) {
 					return;
 				}
-				
+
 				return (
 					<PostMainPage
 						user={item.user}
@@ -68,10 +66,9 @@ const MainPage = forwardRef(
 						title={item.title}
 						type={item.type || ''}
 						_id={item._id}
-						isLastElement={i===postsData.length-1}
-						observer = {observer}
-						ref={i===postsData.length-1 ? lastPin : null}
-
+						isLastElement={i === postsData.length - 1}
+						observer={observer}
+						ref={i === postsData.length - 1 ? lastPin : null}
 					/>
 				);
 			});

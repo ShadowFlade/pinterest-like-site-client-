@@ -14,11 +14,13 @@ export interface PinUploadData {
 }
 export default function UploadPinForm({ closeModal }: IUploadPinFormProps) {
 	const { user } = useContext(MyContext);
+	const [customTimingDatepicker, setCustomTimingDatepicker] = useState(false);
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+	const useCustomTiming = useRef<null | HTMLInputElement>(null);
 	const { mutate } = useCreatePin({ cb: closeModal, user: user || null });
 	const defaultErrorMessage = 'This field is required';
 	const [imgShow, setImgshow] = useState(false);
@@ -28,8 +30,17 @@ export default function UploadPinForm({ closeModal }: IUploadPinFormProps) {
 	const onSubmit = async (data: PinUploadData, e: React.FormEvent) => {
 		e.preventDefault();
 		data.authorId = user?._id || '';
+		console.log(data, ' data');
 		mutate({ e, data });
 	};
+
+	function timingDatepickerToggle() {
+		if (useCustomTiming && useCustomTiming.current && useCustomTiming.current.checked) {
+			setCustomTimingDatepicker(true);
+		} else {
+			setCustomTimingDatepicker(false);
+		}
+	}
 
 	function onFileInput(event: React.ChangeEvent) {
 		const reader = new FileReader();
@@ -43,6 +54,21 @@ export default function UploadPinForm({ closeModal }: IUploadPinFormProps) {
 			setImgshow(true);
 		}
 	}
+	const dateNow = new Date();
+	function formatDate(number: number | string) {
+		number = number.toString();
+		if (number == '0') {
+			number = '00';
+		} else if (number.length == 1) {
+			number = '0' + number;
+		}
+		return number;
+	}
+	const dateTimeIn1Hour = `${formatDate(dateNow.getFullYear())}-${formatDate(
+		dateNow.getMonth()
+	)}-${formatDate(dateNow.getDate())}T${formatDate(dateNow.getHours() + 1)}:${formatDate(
+		dateNow.getMinutes()
+	)}`;
 	return (
 		<div className="upload-pin">
 			<form
@@ -106,7 +132,33 @@ export default function UploadPinForm({ closeModal }: IUploadPinFormProps) {
 				</div>
 
 				<div className="upload-pin__item">
-					<button tabIndex={5} className="upload-pin__submit btn btn-primary ">
+					<label className="upload-pin__label upload-pin__label--set-custom-timing">
+						Use custom timing
+						<input
+							onChange={timingDatepickerToggle}
+							ref={useCustomTiming}
+							name="use-custom-timing"
+							type="checkbox"
+						/>
+					</label>
+				</div>
+
+				<div className="upload-pin__item">
+					<label htmlFor="date-to-publish" className="upload-pin__time-picker">
+						Choose the time of you publication (optional)
+					</label>
+					<input
+						tabIndex={6}
+						id="date-to-publish"
+						name="date-to-publish"
+						type="datetime-local"
+						value={dateTimeIn1Hour}
+						disabled={!customTimingDatepicker}
+					/>
+				</div>
+
+				<div className="upload-pin__item">
+					<button tabIndex={6} className="upload-pin__submit btn btn-primary ">
 						Submit
 					</button>
 				</div>

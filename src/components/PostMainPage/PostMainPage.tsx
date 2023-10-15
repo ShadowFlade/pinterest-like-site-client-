@@ -25,6 +25,7 @@ export interface Pin {
 		emojiCount: number;
 		likesCount: number;
 	};
+	user: {};
 	description?: string;
 }
 export interface PinData {
@@ -41,24 +42,28 @@ export interface PinData {
 		likesCount: number;
 	};
 	description?: string;
-	isLastElement?:boolean;
-	observer?:MutableRefObject<IntersectionObserver>
+	isLastElement?: boolean;
+	observer?: MutableRefObject<IntersectionObserver>;
 	// ref?:CustomDispatch<HTMLDivElement> | null;
 }
 
-const PostMainPage = React.forwardRef(({ img, title, user, reactions, _id,isLastElement,observer }:PinData,ref:MutableRefObject<HTMLDivElement | null>) =>{
-	const navigate = useNavigate();
-	// const lastPin = useRef<HTMLDivElement | null>(null);
-	useEffect(()=>{
-		if(isLastElement){
-			ref && ref.current && observer ? observer.current.observe(ref.current) : false;
-		}
-	})
-	
-	const onClick = ()=>{
-		navigate(`/pin/detailed/${_id}`);
-	}
-	return (
+const PostMainPage = React.forwardRef(
+	(
+		{ img, title, user, reactions, _id, isLastElement, observer }: PinData,
+		ref: MutableRefObject<HTMLDivElement | null>
+	) => {
+		const navigate = useNavigate();
+		// const lastPin = useRef<HTMLDivElement | null>(null);
+		useEffect(() => {
+			if (isLastElement) {
+				ref && ref.current && observer ? observer.current.observe(ref.current) : false;
+			}
+		});
+
+		const onClick = () => {
+			navigate(`/pin/detailed/${_id}`);
+		};
+		return (
 			<div onClick={onClick} className="main-post card" ref={ref}>
 				<div className="main-post__pic ">
 					<img
@@ -75,7 +80,8 @@ const PostMainPage = React.forwardRef(({ img, title, user, reactions, _id,isLast
 					</Link>
 				</div>
 			</div>
-	);
-})
+		);
+	}
+);
 
-export default PostMainPage
+export default PostMainPage;

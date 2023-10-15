@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as React from 'react';
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
@@ -27,6 +28,9 @@ const pickSpinner = (arr: Spinner[]) => {
 	const el = sample(arr);
 	el.action ? el?.action() : false;
 	return el.element;
+};
+const testFunc = () => {
+    console.log('tetst');
 };
 export default function PinDetailed() {
 	const [isCatStyle, setIsCatStyle] = useState(false);

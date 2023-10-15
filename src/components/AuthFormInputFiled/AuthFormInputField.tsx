@@ -11,7 +11,7 @@ export interface IAuthFormInputFieldProps {
 	label: string;
 	name: string;
 	handleServerErrors?: Dispatch<SetStateAction<string>>;
-	handlers?: { onClick?: [Function]; onBlur?: [Function] }; //TODO there must be a better way, I want to just specify that there is an array of objects with functions and then unload them onto input not knowing that kind of listeners it is
+	handlers?: any; //TODO there must be a better way, I want to just specify that there is an array of objects with functions and then unload them onto input not knowing that kind of listeners it is
 }
 
 export default function AuthFormInputField({
@@ -30,6 +30,7 @@ export default function AuthFormInputField({
 		setValue(e.target?.value);
 		handleServerErrors && handleServerErrors('');
 	};
+	console.log(handlers, ' handlers');
 	return (
 		<div className={className}>
 			<input
@@ -39,10 +40,7 @@ export default function AuthFormInputField({
 				onChange={changeValue}
 				type={type}
 				autoFocus={autofocus}
-				onBlur={(e) => {
-					handlers?.onClick?.forEach((func) => func(e));
-					handlers?.onBlur?.forEach((func) => func(e));
-				}}
+				{...handlers}
 			/>
 			<label>{label}</label>
 			{meta.touched && meta.error ? <FormInputFieldError message={meta.error} /> : null}

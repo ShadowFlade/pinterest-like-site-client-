@@ -33,6 +33,7 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 			}
 		});
 	};
+
 	function doSmth() {
 		console.log('smth');
 	}
@@ -49,33 +50,38 @@ const LoginForm = ({ left, closeRegisterModal }: ILoginForm) => {
 				console.dir(values);
 			}}
 		>
-			{({ setErrors, handleBlur }) => (
-				<Form id="login" onSubmit={login}>
-					<h3>Login</h3>
-					<AuthFormInputField
-						name="email"
-						label="Mail"
-						className="mail"
-						type="mail"
-						autofocus={left}
-						handleServerErrors={setError}
-						handlers={{ onBlur: [handleBlur] }}
-					></AuthFormInputField>
+			{({ setErrors, handleBlur }) => {
+				const onBlur = function (e: Event) {
+					handleBlur(e);
+				};
+				return (
+					<Form id="login" onSubmit={login}>
+						<h3>Login</h3>
+						<AuthFormInputField
+							name="email"
+							label="Mail"
+							className="mail"
+							type="mail"
+							autofocus={left}
+							handleServerErrors={setError}
+							// handlers={{ onBlur }}
+						></AuthFormInputField>
 
-					<AuthFormInputField
-						name="password"
-						label="password"
-						className="passwd"
-						type="password"
-						autofocus={false}
-					></AuthFormInputField>
-					<input type="hidden" name="_csrf" value={csrf} />
-					<button type="submit" className="btn btn-primary">
-						Login
-					</button>
-					<FormInputFieldError message={error} />
-				</Form>
-			)}
+						<AuthFormInputField
+							name="password"
+							label="password"
+							className="passwd"
+							type="password"
+							autofocus={false}
+						></AuthFormInputField>
+						<input type="hidden" name="_csrf" value={csrf} />
+						<button type="submit" className="btn btn-primary">
+							Login
+						</button>
+						<FormInputFieldError message={error} />
+					</Form>
+				);
+			}}
 		</Formik>
 	);
 };

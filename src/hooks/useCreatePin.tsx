@@ -33,6 +33,7 @@ export default function useCreatePin({ cb, user }: userCreatePinOptions) {
 						title: String(newPinData.title),
 						img: fileReader.result,
 						userName: user?.name || user?.email || undefined,
+						user: {},
 					};
 
 					await queryClient.cancelQueries('pins');
